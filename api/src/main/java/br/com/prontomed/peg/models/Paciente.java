@@ -1,16 +1,27 @@
 package br.com.prontomed.peg.models;
 
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 
+@Entity
 public class Paciente extends Pessoa {
 
+    @ElementCollection
     private List<String> alergias;
+   
     private boolean dm;
+    
     private boolean has;
+    
     private boolean ic;
+    
     private boolean dpoc;
+    
     private boolean ca;
+    
     private boolean etilista;
+    
     private boolean tabagista;
 
     public List<String> getAlergias() {

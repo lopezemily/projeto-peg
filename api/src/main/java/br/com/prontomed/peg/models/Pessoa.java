@@ -1,15 +1,28 @@
 package br.com.prontomed.peg.models;
 
 import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Pessoa {
     
+    @Id
     private String cpf;
+    
     private String nome;
+    
     private LocalDateTime dtNascimento;
+    
     private int idade;
+    
     private char sexo;
+    
     private Endereco endereco;
+    
     private Contato contato;
 
     public String getCpf() {
