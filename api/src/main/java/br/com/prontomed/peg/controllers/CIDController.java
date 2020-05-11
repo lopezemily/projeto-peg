@@ -26,13 +26,13 @@ public class CIDController {
     }
     
     @GetMapping(path = "/{id}")
-    public @ResponseBody CID obterTodos(@PathVariable String id) {
+    public @ResponseBody CID obterPorId(@PathVariable String id) {
         Optional<CID> cid = cidService.obterPorId(id);
+        
         if (cid.isPresent()) {
             return cid.get();
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "cid nao encontrado");
         }
-        
     }
 }
