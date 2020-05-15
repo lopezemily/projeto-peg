@@ -15,6 +15,10 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long numAtendimento;
     
+    private String tipoAtendimento;
+    
+    private String convenio;
+    
     @OneToOne
     private Medico medico;
     
@@ -97,6 +101,22 @@ public class Consulta {
 
     public void setProntuario(Prontuario prontuario) {
         this.prontuario = prontuario;
+    }
+
+    public String getTipoAtendimento() {
+        return tipoAtendimento;
+    }
+
+    public void setTipoAtendimento(String tipoAtendimento) {
+        this.tipoAtendimento = tipoAtendimento;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(String convenio) {
+        this.convenio = convenio;
     }
     
     

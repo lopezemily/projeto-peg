@@ -26,7 +26,7 @@ public class Prontuario {
     
     private float fr;
     
-    private String medicamentos;
+    //private String medicamentos;
     
     private String avalMedica;
     
@@ -81,13 +81,13 @@ public class Prontuario {
         this.fr = fr;
     }
 
-    public String getMedicamentos() {
-        return medicamentos;
-    }
-
-    public void setMedicamentos(String medicamentos) {
-        this.medicamentos = medicamentos;
-    }
+//    public String getMedicamentos() {
+//        return medicamentos;
+//    }
+//
+//    public void setMedicamentos(String medicamentos) {
+//        this.medicamentos = medicamentos;
+//    }
 
     public String getAvalMedica() {
         return avalMedica;
