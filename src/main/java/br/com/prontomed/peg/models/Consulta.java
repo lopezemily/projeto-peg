@@ -1,11 +1,14 @@
 package br.com.prontomed.peg.models;
 
 import java.time.LocalDateTime;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,18 +22,18 @@ public class Consulta {
     
     private String convenio;
     
-    @OneToOne
+    @ManyToOne
     private Medico medico;
     
-    @OneToOne
+    @ManyToOne
     private Paciente paciente;
     
-    @OneToOne
+    @ManyToOne
     private Unidade unidade;
     
     private LocalDateTime dtHrConsulta;
     
-    @OneToOne
+    @ManyToOne
     private Especialidade especialidade;
     
     @Embedded
