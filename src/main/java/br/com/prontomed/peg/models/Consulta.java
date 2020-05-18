@@ -39,8 +39,10 @@ public class Consulta {
     @Embedded
     private Receita receita;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Prontuario prontuario;
+    
+    private boolean realizada;
 
     public long getNumAtendimento() {
         return numAtendimento;
@@ -121,6 +123,13 @@ public class Consulta {
     public void setConvenio(String convenio) {
         this.convenio = convenio;
     }
-    
+
+    public boolean isRealizada() {
+        return realizada;
+    }
+
+    public void setRealizada(boolean realizada) {
+        this.realizada = realizada;
+    }
     
 }
