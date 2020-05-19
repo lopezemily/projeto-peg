@@ -43,6 +43,8 @@ public class Consulta {
     private Prontuario prontuario;
     
     private boolean realizada;
+    
+    private boolean confirmar;
 
     public long getNumAtendimento() {
         return numAtendimento;
@@ -131,5 +133,12 @@ public class Consulta {
     public void setRealizada(boolean realizada) {
         this.realizada = realizada;
     }
-    
+
+    public boolean isConfirmar() {
+        return confirmar;
+    }
+
+    public void setConfirmar(boolean confirmar) {
+        this.confirmar = confirmar;
+    }    
 }
