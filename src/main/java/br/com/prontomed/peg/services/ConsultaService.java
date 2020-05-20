@@ -10,38 +10,46 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ConsultaService {
-    
+
     @Autowired
     private ConsultaRepository consultaRepository;
-    
-    public void criarConsulta(Consulta consulta){
+
+    public void criarConsulta(Consulta consulta) {
         consultaRepository.save(consulta);
     }
-    
-    public List<Consulta> obterConsultasAnterioresPaciente(String cpf){
+
+    public List<Consulta> obterConsultasAnterioresPaciente(String cpf) {
         return consultaRepository.findByRealizadaAndPacienteCpf(true, cpf);
     }
-    
-    public List<Consulta> obterConsultasProximasPaciente(String cpf){
+
+    public List<Consulta> obterConsultasProximasPaciente(String cpf) {
         return consultaRepository.findByRealizadaAndPacienteCpf(false, cpf);
     }
-    
-    public List<Consulta> obterConsultasAnterioresMedico(String cpf){
+
+    public List<Consulta> obterConsultasAnterioresMedico(String cpf) {
         return consultaRepository.findByRealizadaAndMedicoCpf(true, cpf);
     }
-    
-    public List<Consulta> obterConsultasProximasMedico(String cpf){
+
+    public List<Consulta> obterConsultasProximasMedico(String cpf) {
         return consultaRepository.findByRealizadaAndMedicoCpf(false, cpf);
     }
-    
-    public void registrarProntuario(long numAtendimento, Prontuario prontuario){
+
+    public void registrarProntuario(long numAtendimento, Prontuario prontuario) {
         Optional<Consulta> consulta = consultaRepository.findById(numAtendimento);
-        
-        if(consulta.isPresent()){
+
+        if (consulta.isPresent()) {
             consulta.get().setProntuario(prontuario);
             consultaRepository.save(consulta.get());
-        }else{
+        } else {
             throw new RuntimeException("Consulta não cadastrada!");
+        }
+    }
+
+    public void confirmarConsulta(Consulta consulta) {
+        if (!consulta.isConfirmada()) {
+            consulta.setConfirmada(true);
+        } else {
+            throw new RuntimeException("Consulta já confirmada!");
         }
     }
 }
