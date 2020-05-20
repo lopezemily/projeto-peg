@@ -44,7 +44,7 @@ public class Consulta {
     
     private boolean realizada;
     
-    private boolean confirmar;
+    private boolean confirmada;
 
     public long getNumAtendimento() {
         return numAtendimento;
@@ -134,11 +134,11 @@ public class Consulta {
         this.realizada = realizada;
     }
 
-    public boolean isConfirmar() {
-        return confirmar;
+    public boolean isConfirmada() {
+        return confirmada;
     }
 
-    public void setConfirmar(boolean confirmar) {
-        this.confirmar = confirmar;
+    public void setConfirmada(boolean confirmada) {
+        this.confirmada = confirmada;
     }    
 }
