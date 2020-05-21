@@ -18,3 +18,6 @@ INSERT INTO medico_especialidades VALUES
 
 INSERT INTO unidade VALUES
     ("999", "99999-9999","unidadeclinica@unidade.com",NULL,"1234-5678","08870-000","São Paulo","Centro","Avenida abc","Clinica PEG");
+
+
+INSERT INTO roles VALUES (1,'ADMIN');
