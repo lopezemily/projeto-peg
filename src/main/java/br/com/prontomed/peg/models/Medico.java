@@ -3,7 +3,7 @@ package br.com.prontomed.peg.models;
 import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Medico extends Pessoa {
@@ -14,7 +14,7 @@ public class Medico extends Pessoa {
     @Embedded
     private Disponibilidade disponibilidade;
     
-    @OneToMany
+    @ManyToMany
     private List<Especialidade> especialidades;
 
     public RegistroMedico getCrm() {

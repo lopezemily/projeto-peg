@@ -10,7 +10,6 @@ import javax.persistence.Id;
 public class Especialidade {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private long id;
     
     private String descricao;
