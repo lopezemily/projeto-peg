@@ -12,10 +12,13 @@
     <title>Cadastro</title>
   </head>
   <body id="fundocadastro">
+    <nav class="navbar navbar-dark bg-primary">
+    </br>
+    </nav>
     <form>
         <h2>Novo Paciente</h2>
         <br>
-        <h5>Dados pessoais</h5>
+        <h5 class="text-primary">Dados pessoais</h5>
         <div class="form-row">
           <div class="col-5">
             <label for="exampleFormControlInput1">Nome</label>
@@ -27,11 +30,11 @@
           </div>
           <div class="col">
             <label for="exampleFormControlInput1">Data de Nascimento</label>
-            <input type="text" class="form-control" placeholder="">
+            <input type="date" class="form-control" placeholder="">
           </div>
           <div class="col">
             <label for="exampleFormControlInput1">Idade</label>
-            <input type="text" class="form-control" placeholder="">
+            <input type="number" class="form-control" placeholder="" readonly>
           </div>
           <div class="col">
             <label for="exampleFormControlInput1">Estado Civil</label>
@@ -41,39 +44,39 @@
         <div class="form-row">
             <div class="col-5">
               <label for="exampleFormControlInput1">CPF</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">RG</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">E-mail</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="email" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">Telefone</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">Celular</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
           </div>
         </br>
-          <h5>Dados complementares</h5>
+          <h5 class="text-primary">Dados complementares</h5>
           <div class="form-row">
             <div class="col-5">
               <label for="exampleFormControlInput1">CEP</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">Logradouro</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">Número</label>
-              <input type="text" class="form-control" placeholder="">
+              <input type="number" class="form-control" placeholder="">
             </div>
             <div class="col">
               <label for="exampleFormControlInput1">Bairro</label>
@@ -85,42 +88,41 @@
             </div>
           </div>
         </br>
-        <h5>Dados observações</h5>
+        <h5 class="text-primary">Dados observações</h5>
         <div class="form-row">
           <div class="col-5">
             <label for="exampleFormControlInput1">Alergias</label>
             <input type="text" class="form-control" placeholder="Quais">
           </div>
-          <!--<div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">DM</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="DM">
+            <label class="form-check-label" for="inlineCheckbox1">DM</label>
           </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">HAS</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="HAS">
+            <label class="form-check-label" for="inlineCheckbox2">HAS</label>
           </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">IC</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="IC">
+            <label class="form-check-label" for="inlineCheckbox3">IC</label>
           </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">DPOC</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="DPOC">
+            <label class="form-check-label" for="inlineCheckbox4">DPOC</label>
           </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">CA</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="CA">
+            <label class="form-check-label" for="inlineCheckbox5">CA</label>
           </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">Etilismo</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="Etilismo">
+            <label class="form-check-label" for="inlineCheckbox6">Etilismo</label>
           </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="">
-            <label class="custom-control-label" for="">Tabagismo</label>
-          </div>-->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="Tabagismo">
+            <label class="form-check-label" for="inlineCheckbox7">Tabagismo</label>
+          </div>
         </div>
-
       </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
