@@ -20,4 +20,15 @@ INSERT INTO unidade VALUES
     ("999", "99999-9999","unidadeclinica@unidade.com",NULL,"1234-5678","08870-000","São Paulo","Centro","Avenida abc","Clinica PEG");
 
 
-INSERT INTO roles VALUES (1,'ADMIN');
+INSERT INTO roles VALUES
+    (1,"ADMIN");
+
+-- user: user1
+-- senha: senha
+INSERT INTO users VALUES
+    (1, 1, "user@hotmail.com", "user", "user", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6", "user1");
+
+INSERT INTO user_role VALUES
+    (1, 1);
+
+UPDATE hibernate_sequence SET next_val=5
