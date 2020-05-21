@@ -1,85 +1,73 @@
 <!doctype html>
 <html lang="pt-br">
-    <head>
-        <title>Nova Consulta</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.min.css">
-        <link rel="stylesheet" href="css/css.css">
-
-    </head>
-    <body id="fundocadastro">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/css.css">
+    <title>Consulta</title>
+  </head>
+  <body id="fundoconsulta">
+    <nav class="navbar navbar-dark bg-primary">
+    </br>
+    </nav>
+        <h2>Consulta</h2>
+        <br>
         <form>
-            <nav class="navbar navbar-dark" style="background-color: #58ACFA;">
-                <span class="navbar-brand mb-0 h1">logo</span>
-            </nav>
-            <h3>+ Novo agendamento​</h3>
-            <br>
-            <div class="form-row" id='dados1'>
-                <div class="col-md-4">
-                    <label for="example-atendimento-input" class="col-2 col-form-label">Atendimento</label>
-                    <div class="col-10">
-                        <select class="form-control">
-                            <option selected disabled>Escolha uma opção</option>
-                            <option>Consulta</option>
-                            <option>Retorno</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="example-convenio-input" class="col-2 col-form-label">Convênio</label>
-                    <div class="col-10">
-                        <select class="form-control">
-                            <option selected disabled>Escolha uma opção</option>
-                            <option>Particular</option>
-                            <option>Convênio</option>
-                        </select>
-                    </div>
-                </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Número de atendimento</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" readonly>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Queixa principal</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="exampleFormControlInput1">Buscar CID</label>
+                <input type="number" class="form-control" placeholder="Código">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" readonly> 
+              </div>
             </div>
-            <div class="form-row" id='dados2'>
-                <div class="col-md-4">
-                    <label for="example-tel-input" class="col-2 col-form-label">Celular</label>
-                    <div class="col-10">
-                        <input class="form-control" type="tel" id="example-tel-input" placeholder="(55)95555-5555">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="example-email-input" class="col-2 col-form-label">E-mail</label>
-                    <div class="col-10">
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nome@exemplo.com">
-                    </div>
-                </div>
-            </div>   
-            <div class="form-row" id='dados3'>
-                <div class="col-md-4">
-                    <label for="example-date-input" class="col-2 col-form-label">Data</label>
-                    <div class="col-8">
-                        <input class="form-control" type="date" value="dd-mm-aaaa" id="example-date-input">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="example-time-input" class="col-3 col-form-label">Horário Inicio</label>
-                    <div class="col-8">
-                        <input class="form-control" type="time" value="00:00:00" id="example-time-input">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="example-time-input" class="col-3 col-form-label">Horário Final</label>
-                    <div class="col-8">
-                        <input class="form-control" type="time" value="00:00:00" id="example-time-input">
-                    </div>
-                </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="exampleFormControlInput1">PA</label>
+                <input type="number" class="form-control">
+              </div>
+              <div class="col">
+                <label for="exampleFormControlInput1">FR</label>
+                <input type="number" class="form-control">
+              </div>
+              <div class="col">
+                <label for="exampleFormControlInput1">Temperatura</label>
+                <input type="number" class="form-control">
+              </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="exampleFormControlTextarea1">Avaliação</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1">Exames</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
         </form>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-    </body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
 </html>
