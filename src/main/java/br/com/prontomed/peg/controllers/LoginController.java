@@ -1,5 +1,6 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.promomed.peg.dto.CadastroPaciente;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,19 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value="/registration", method = RequestMethod.GET)
-    public ModelAndView registration(){
+    @RequestMapping(value="/cadastro", method = RequestMethod.GET)
+    public ModelAndView cadastro(){
         ModelAndView modelAndView = new ModelAndView();
         Usuario user = new Usuario();
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("registration");
+        modelAndView.setViewName("cadastro");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid Usuario user, BindingResult bindingResult) {
+    @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
+    public ModelAndView createNewUser(@Valid CadastroPaciente cadastroPaciente, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Usuario userExists = userService.findUserByUserName(user.getUserName());
+        Usuario userExists = userService.findUserByUserName(cadastroPaciente.getCpf());
         if (userExists != null) {
             bindingResult
                     .rejectValue("userName", "error.user",

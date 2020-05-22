@@ -5,16 +5,16 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RegistroMedico {
 
-    private int numero;
+    private int numeroRegistro;
 
     private String uf;
 
-    public int getNumero() {
-        return numero;
+    public int getNumeroRegistro() {
+        return numeroRegistro;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumeroRegistro(int numeroRegistro) {
+        this.numeroRegistro = numeroRegistro;
     }
 
     public String getUf() {
