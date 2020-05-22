@@ -21,6 +21,8 @@ public abstract class Pessoa {
     
     private char sexo;
     
+    private String estadoCivil;
+        
     private Endereco endereco;
     
     private Contato contato;
@@ -79,8 +81,15 @@ public abstract class Pessoa {
 
     public void setContato(Contato contato) {
         this.contato = contato;
+    }    
+
+    public String getEstadoCivil() {
+        return estadoCivil;
     }
-    
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
     
     
 }
