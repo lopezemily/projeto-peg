@@ -11,6 +11,7 @@ import br.com.prontomed.peg.repositories.UsuarioRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -29,20 +30,15 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public Usuario findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Optional<Usuario> findUserByCpf(String cpf) {
+        return userRepository.findById(cpf);
     }
 
-    public Usuario findUserByUserName(String userName) {
-        return userRepository.findByUserName(userName);
-    }
-
-    public Usuario saveUser(Usuario user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(true);
-        Funcao userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Funcao>(Arrays.asList(userRole)));
-        return userRepository.save(user);
+    public Usuario salvarPaciente(Usuario usuario) {
+        usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+        Funcao userRole = roleRepository.findByRole("PACIENTE");
+        usuario.setRoles(new HashSet<Funcao>(Arrays.asList(userRole)));
+        return userRepository.save(usuario);
     }
 
 }

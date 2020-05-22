@@ -21,14 +21,17 @@ INSERT INTO unidade VALUES
 
 
 INSERT INTO roles VALUES
-    (1,"ADMIN");
+    (1,"ADMIN"),
+    (2,"PACIENTE"),
+    (3,"MEDICO"),
+    (4,"RECEPCIONISTA");
 
 -- user: user1
 -- senha: senha
-INSERT INTO users VALUES
-    (1, 1, "user@hotmail.com", "user", "user", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6", "user1");
+-- INSERT INTO users VALUES
+--    (1, 1, "user@hotmail.com", "user", "user", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6", "user1");
 
-INSERT INTO user_role VALUES
-    (1, 1);
+--INSERT INTO user_role VALUES
+--    (1, 1);
 
-UPDATE hibernate_sequence SET next_val=5
+-- UPDATE hibernate_sequence SET next_val=5

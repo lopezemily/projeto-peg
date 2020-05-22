@@ -16,7 +16,7 @@ import br.com.prontomed.peg.services.MyUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -24,15 +24,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private MyUserDetailsService userDetailsService;
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-                auth
-                    .userDetailsService(userDetailsService)
-                    .passwordEncoder(bCryptPasswordEncoder);
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -43,10 +43,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/cadastro").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/paciente/**").hasAuthority("PACIENTE").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home", true)
+                .defaultSuccessUrl("/paciente/principal", true)
                 .usernameParameter("user_name")
                 .passwordParameter("password")
                 .and().logout()

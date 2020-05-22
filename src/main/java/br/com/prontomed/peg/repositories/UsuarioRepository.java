@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.prontomed.peg.models.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    Usuario findByEmail(String email);
-    Usuario findByUserName(String userName);
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+
 }
