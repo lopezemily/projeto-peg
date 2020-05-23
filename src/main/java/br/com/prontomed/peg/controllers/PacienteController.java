@@ -16,11 +16,6 @@ public class PacienteController {
     
 //    @Autowired
 //    private PacienteService pacienteService;
-//    
-//    @PostMapping
-//    public void criarPaciente(@RequestBody Paciente paciente){
-//        pacienteService.inserirPaciente(paciente);
-//    }
     
     @RequestMapping(value={"/principal"}, method = RequestMethod.GET)
     public ModelAndView principal(){
@@ -30,3 +25,4 @@ public class PacienteController {
     }
     
 }
+
