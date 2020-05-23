@@ -1,7 +1,6 @@
 package br.com.prontomed.peg.controllers;
 
-import br.com.promomed.peg.dto.CadastroPaciente;
-import br.com.prontomed.peg.models.Funcoes;
+import br.com.prontomed.peg.dto.CadastroPaciente;
 import br.com.prontomed.peg.models.Paciente;
 import javax.validation.Valid;
 
@@ -33,10 +32,12 @@ public class LoginController {
     private PacienteService pacienteService;
 
     @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-    public ModelAndView login() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;
+    public String login(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            return "redirect:home";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
@@ -73,28 +74,10 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView sucesso(Authentication authentication) throws Exception {
+    public String sucesso(Authentication authentication) throws Exception {
         GrantedAuthority authority = authentication.getAuthorities().iterator().next();
-        Funcoes funcao = Funcoes.valueOf(authority.getAuthority());
-
-        ModelAndView modelAndView = new ModelAndView();
-        switch (funcao) {
-            case ADMIN:
-                modelAndView.setViewName("/admin/home");
-                break;
-            case MEDICO:
-                modelAndView.setViewName("/medico/home");
-                break;
-            case PACIENTE:
-                modelAndView.setViewName("/paciente/home");
-                break;
-            case RECEPCIONISTA:
-                modelAndView.setViewName("/recepcionista/home");
-                break;
-            default:
-                throw new RuntimeException("Funcao nao existe");
-        }
-        return modelAndView;
+        String funcao = authority.getAuthority();
+        return String.format("/%s/home", funcao);
     }
 
 }
