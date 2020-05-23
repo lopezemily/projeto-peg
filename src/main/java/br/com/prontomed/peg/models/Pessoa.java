@@ -49,14 +49,6 @@ public abstract class Pessoa {
         this.dtNascimento = dtNascimento;
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
     public char getSexo() {
         return sexo;
     }
