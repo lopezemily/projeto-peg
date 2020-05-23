@@ -28,5 +28,17 @@ public class PacienteController {
         modelAndView.setViewName("paciente/principal");
         return modelAndView;
     }
+
+    //    @RequestMapping(value="/admin/home", method = RequestMethod.GET)
+//    public ModelAndView home(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        Usuario user = userService.findUserByCpf(auth.getName());
+//        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+//        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+//        modelAndView.setViewName("admin/home");
+//        return modelAndView;
+//    }       
     
 }
+
