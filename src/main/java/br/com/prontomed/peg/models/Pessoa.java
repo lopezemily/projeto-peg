@@ -17,8 +17,6 @@ public abstract class Pessoa {
     
     private LocalDateTime dtNascimento;
     
-    private int idade;
-    
     private char sexo;
     
     private String estadoCivil;
