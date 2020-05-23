@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 public class Consulta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long numAtendimento;
     
     private String tipoAtendimento;

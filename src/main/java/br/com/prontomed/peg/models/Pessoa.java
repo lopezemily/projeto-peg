@@ -17,8 +17,6 @@ public abstract class Pessoa {
     
     private LocalDateTime dtNascimento;
     
-    private int idade;
-    
     private char sexo;
     
     private String estadoCivil;
@@ -49,14 +47,6 @@ public abstract class Pessoa {
 
     public void setDtNascimento(LocalDateTime dtNascimento) {
         this.dtNascimento = dtNascimento;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public char getSexo() {

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Funcao {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private int id;
 

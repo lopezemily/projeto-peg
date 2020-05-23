@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 public class Prontuario {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String queixa;
