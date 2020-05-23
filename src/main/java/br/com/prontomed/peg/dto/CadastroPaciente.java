@@ -1,4 +1,4 @@
-package br.com.promomed.peg.dto;
+package br.com.prontomed.peg.dto;
 
 import br.com.prontomed.peg.models.Paciente;
 
@@ -13,6 +13,5 @@ public class CadastroPaciente extends Paciente{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
     
 }
