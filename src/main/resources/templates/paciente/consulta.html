@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Consulta</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <h3>Detalhes da consulta</h3>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Número de atendimento</label>
+                    <input type="number" class="form-control" readonly th:value="${consulta.numAtendimento}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Medico</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.medico.nome}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Especialidade</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.especialidade.descricao}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Queixa</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.prontuario.queixa}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">CIDs</label>
+                    <ul>
+                        <li th:each="cid : ${consulta.prontuario.cids}">
+                            <span th:text="${cid.descricao}"></span></br>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">PA</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.prontuario.pa}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">FR</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.prontuario.fr}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Temperatura</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.prontuario.temperatura}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Avaliação médica</label>
+                    <input type="text" class="form-control" readonly th:value="${consulta.prontuario.avalMedico}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Exames</label>
+                    <p th:if="${consulta.prontuario.exames.empty}">Não há exames</p>
+                    <ul>
+                        <li th:each="exame : ${consulta.prontuario.exames}">
+                            <span th:text="${exame}"></span></br>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            <form th:action="@{/home}" method="get">
+                    <button type="submit" class="btn btn-secondary btn-block">Voltar</button>
+                </form>
+        </div>
+    </body>
+
+</html>

@@ -45,11 +45,19 @@ public class ConsultaService {
         }
     }
 
-    public void confirmarConsulta(Consulta consulta) {
+    public void confirmarConsulta(long numAtendimento) {
+        Consulta consulta = consultaRepository.findById(numAtendimento).get();
+
         if (!consulta.isConfirmada()) {
             consulta.setConfirmada(true);
+            consultaRepository.save(consulta);
         } else {
             throw new RuntimeException("Consulta já confirmada!");
         }
+    }
+
+    public Consulta obterConsulta(long numAtendimento) {
+        Consulta consulta = consultaRepository.findById(numAtendimento).get();
+        return consulta;
     }
 }
