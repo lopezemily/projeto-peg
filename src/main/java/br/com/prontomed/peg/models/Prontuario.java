@@ -28,7 +28,7 @@ public class Prontuario {
     
     //private String medicamentos;
     
-    private String avalMedica;
+    private String avalMedico;
     
     @ElementCollection
     private List<String> exames;
@@ -90,11 +90,11 @@ public class Prontuario {
 //    }
 
     public String getAvalMedica() {
-        return avalMedica;
+        return avalMedico;
     }
 
     public void setAvalMedica(String avalMedica) {
-        this.avalMedica = avalMedica;
+        this.avalMedico = avalMedica;
     }
 
     public List<String> getExames() {
