@@ -26,3 +26,23 @@
 #fundopaciente{
     background-color: gainsboro;
 }
+
+#blocobranco {
+    height: 330px;
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid #C0C0C0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+#div2 {
+    height: 150px;
+}
+
+#espacotitulo{
+    height: 10px;
+    margin-block-start: 1em;
+    margin-inline-start: 40px;
+}
