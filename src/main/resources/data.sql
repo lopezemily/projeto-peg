@@ -34,11 +34,11 @@ VALUES
     (1,"J15.9");
 
 INSERT INTO consulta
-    (paciente_cpf, medico_cpf, especialidade_id, unidade_cnpj, confirmada, realizada, dt_hr_consulta)
+    (paciente_cpf, medico_cpf, especialidade_id, unidade_cnpj, confirmada, realizada, dt_hr_consulta, prontuario_id)
 VALUES
-    ("12312312312", "12300012300", 1, "999", 0, 0,"2020-01-01"),
-    ("12312312312", "12300012300", 1, "999", 1, 0,"2020-02-01"),
-    ("12312312312", "12300012300", 1, "999", 1, 1,"2020-03-01");
+    ("12312312312", "12300012300", 1, "999", 0, 0,"2020-01-01", NULL),
+    ("12312312312", "12300012300", 1, "999", 1, 0,"2020-02-01", NULL),
+    ("12312312312", "12300012300", 1, "999", 1, 1,"2020-03-01", 1);
 
 INSERT INTO roles
     (role_id, role)
