@@ -74,10 +74,10 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String sucesso(Authentication authentication) throws Exception {
-        GrantedAuthority authority = authentication.getAuthorities().iterator().next();
+    public String sucesso(Authentication autenticacao) throws Exception {
+        GrantedAuthority authority = autenticacao.getAuthorities().iterator().next();
         String funcao = authority.getAuthority();
-        return String.format("/%s/home", funcao);
+        return String.format("redirect:/%s/home", funcao.toLowerCase());
     }
 
 }
