@@ -8,9 +8,9 @@
 
     <body>
         <div id="fundopaciente" layout:fragment="content">
-            <div>
-            <button type="button" class="btn btn-success">Nova consulta</button>
-            </div>
+            <form th:action="@{/paciente/novaConsulta}" method="get">
+                <button type="submit" class="btn btn-secondary btn-block">Nova Consulta</button>
+            </form>
             <h4>Próximas consultas agendadas</h4>
             <div class="tabela-consulta">
                 <table id="table-proximas-consultas">

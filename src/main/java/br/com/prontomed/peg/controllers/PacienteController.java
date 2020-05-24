@@ -46,6 +46,12 @@ public class PacienteController {
         modelAndView.setViewName("paciente/consulta");
         modelAndView.addObject("consulta", consultaService.obterConsulta(numAtendimento));
         return modelAndView;
-
+    }
+    
+    @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.GET)
+    public ModelAndView novaConsulta() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("paciente/novaConsulta");
+        return modelAndView;
     }
 }
