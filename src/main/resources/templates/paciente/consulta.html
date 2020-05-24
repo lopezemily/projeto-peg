@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Consulta</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <h3>Detalhes da consulta</h3>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Número de atendimento</label>
+                    <input type="number" class="form-control" readonly th:value="${consulta.numAtendimento}">
+                </div>
+            </form>
+        </div>
+    </body>
+
+</html>

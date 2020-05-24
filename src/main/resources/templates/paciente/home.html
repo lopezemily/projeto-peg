@@ -1,21 +1,66 @@
 <!doctype html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
-<head>
-    <title>Paciente</title>
-</head>
+    <head>
+        <title>Paciente</title>
+    </head>
 
-<body>
-    <div id="fundopaciente" layout:fragment="content">
-        <button type="button" class="btn btn-success">Nova consulta</button>
-        </br>
-        </br>
-        <h4>Próximas consultas agendadas</h4>
-        </br>
-        </br>
-        <h4>Consultas anteriores</h4>
-    </div>
-</body>
+    <body>
+        <div id="fundopaciente" layout:fragment="content">
+            <div>
+            <button type="button" class="btn btn-success">Nova consulta</button>
+            </div>
+            <h4>Próximas consultas agendadas</h4>
+            <div class="tabela-consulta">
+                <table id="table-proximas-consultas">
+                    <tbody>
+                        <tr th:if="${proximasConsultas.empty}">
+                            <td colspan="2">Não há consultas futuras</td>
+                        </tr>
+                        <tr th:each="consulta : ${proximasConsultas}">
+                            <td>
+                                <div>
+                                    <p>
+                                        Data: <span th:text="${consulta.dtHrConsulta}">Data</span></br>
+                                        Médico: <span th:text="${consulta.medico.nome}">Medico</span></br>
+                                        Especialidade: <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                                    </p>
+                                </div>
+                            </td>
+                            <td th:if="!${consulta.confirmada}">
+                                <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
+                                    <button type="submit" class="btn btn-secondary btn-block">Confirmar</button>
+                                </form>
+                            </td>
+                            <td th:if="${consulta.confirmada}">
+                                <button type="none" disabled class="btn btn-secondary btn-block">Confirmada</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </br>
+            <h4>Consultas anteriores</h4>
+            <div class="tabela-consulta">
+                <table id="table-consultas-anteriores">
+                    <tbody>
+                        <tr th:if="${consultasAnteriores.empty}">
+                            <td colspan="2">Não há consultas anteriores</td>
+                        </tr>
+                        <tr th:each="consulta : ${consultasAnteriores}">
+                            <td><span th:text="${consulta.numAtendimento}">Atendimento</span></td>
+                            <td><span th:text="${consulta.dtHrConsulta}">Data</span></td>
+                            <td th:if="${consulta.realizada}">
+                                <form th:action="@{/paciente/consulta/} + ${consulta.numAtendimento}" method="get">
+                                    <button type="submit" class="btn btn-secondary btn-block">Ver</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 
 </html>
