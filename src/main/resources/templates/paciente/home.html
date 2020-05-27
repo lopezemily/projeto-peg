@@ -15,28 +15,28 @@
                 <h4>Próximas consultas agendadas</h4>
             </div>
             <div class="tabela-consulta">
-                <table id="table-proximas-consultas">
+                <table id="table-proximas-consultas" width="100%">
                     <tbody>
                         <tr th:if="${proximasConsultas.empty}">
                             <td colspan="2">Não há consultas futuras</td>
                         </tr>
                         <tr th:each="consulta : ${proximasConsultas}">
-                            <td>
+                            <td width="50%">
                                 <div id="block">
                                     <p>
-                                        <b>Data:</b> <span th:text="${consulta.dtHrConsulta }">Data</span></br>
+                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
                                         <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
                                         <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
                                     </p>
                                 </div>
                             </td>
-                            <td th:if="!${consulta.confirmada}">
+                            <td th:if="!${consulta.confirmada}" width="50%" align="right" style="padding-right:50px;">
                                 <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
                                     <button type="submit" class="btn btn-success">Confirmar</button>
                                 </form>
                             </td>
-                            <td th:if="${consulta.confirmada}" >
-                                <button type="none" disabled class="btn btn-outline-secondary btn-block">Confirmado</button>
+                            <td th:if="${consulta.confirmada}" width="50%" align="right" style="padding-right:50px;" >
+                                <button type="none" disabled class="btn btn-outline-secondary">Confirmado</button>
                             </td>
                         </tr>
                     </tbody>
@@ -48,23 +48,23 @@
                 <h4>Consultas anteriores</h4>
             </div>
             <div class="tabela-consulta">
-                <table id="table-consultas-anteriores">
+                <table id="table-consultas-anteriores" width="100%">
                     <tbody>
                         <tr th:if="${consultasAnteriores.empty}">
                             <td colspan="2">Não há consultas anteriores</td>
                         </tr>
                         <tr th:each="consulta : ${consultasAnteriores}">
-                            <td>
-                                <div id="block2">
+                            <td width="50%">
+                                <div id="block">
                                     <p>
                                         <b>Atendimento:</b> <span th:text="${consulta.numAtendimento}">Atendimento</span></br>
-                                        <b>Data:</b> <span th:text="${consulta.dtHrConsulta}">Data</span></br>
+                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
                                     </p>
                                 </div>
                              </td>
-                            <td th:if="${consulta.realizada}">
+                            <td th:if="${consulta.realizada}" width="50%" align="right" style="padding-right:50px;">
                                 <form th:action="@{/paciente/consulta/} + ${consulta.numAtendimento}" method="get">
-                                    <button type="submit" class="btn btn-primary">Ver</button>
+                                    <button id="btnver" type="submit" class="btn btn-primary">Ver</button>
                                 </form>
                             </td>
                         </tr>
