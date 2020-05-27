@@ -1,5 +1,6 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Paciente;
 import br.com.prontomed.peg.services.ConsultaService;
 import br.com.prontomed.peg.services.PacienteService;
@@ -47,11 +48,19 @@ public class PacienteController {
         modelAndView.addObject("consulta", consultaService.obterConsulta(numAtendimento));
         return modelAndView;
     }
-    
+
     @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.GET)
     public ModelAndView novaConsulta() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("paciente/novaConsulta");
         return modelAndView;
+    }
+
+    @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
+    public String salvarNovaConsulta(Authentication autenticacao, Consulta consulta) {
+        String cpf = autenticacao.getName();
+        
+        consultaService.criarConsulta(cpf, consulta);
+        return "redirect:/paciente/home";
     }
 }

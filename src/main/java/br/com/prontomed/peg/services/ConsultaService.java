@@ -1,8 +1,12 @@
 package br.com.prontomed.peg.services;
 
 import br.com.prontomed.peg.models.Consulta;
+import br.com.prontomed.peg.models.Medico;
+import br.com.prontomed.peg.models.Paciente;
 import br.com.prontomed.peg.models.Prontuario;
 import br.com.prontomed.peg.repositories.ConsultaRepository;
+import br.com.prontomed.peg.repositories.MedicoRepository;
+import br.com.prontomed.peg.repositories.PacienteRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +17,20 @@ public class ConsultaService {
 
     @Autowired
     private ConsultaRepository consultaRepository;
+    
+    @Autowired
+    private PacienteRepository pacienteRepository;
+    
+    @Autowired
+    private MedicoRepository medicoRepository;
 
-    public void criarConsulta(Consulta consulta) {
+    public void criarConsulta(String cpf, Consulta consulta) {
+        Paciente paciente = pacienteRepository.getOne(cpf);
+        consulta.setPaciente(paciente);
+        
+        Medico medico = medicoRepository.getOne("12300012300");
+        consulta.setMedico(medico);
+        
         consultaRepository.save(consulta);
     }
 
