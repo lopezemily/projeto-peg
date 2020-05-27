@@ -9,77 +9,78 @@
     <body id="fundopaciente">
         <div layout:fragment="content">
             <div id="espacotitulo">
-                <!--form  th:action="@{/novaConsulta}" method="post"-->
-                <h4>+ Novo agendamento​</h4>
+                <form action="#" th:action="@{/paciente/novaConsulta}" method="post">
+                    <h4>+ Novo agendamento​</h4>
             </div>
             <br>
-            <div id="blockwhite">
-                <div class="form-row">
-                    <div class="col-md-4">
-                        <label for="example-atendimento-input" class="col-2 col-form-label">Atendimento</label>
-                        <div class="col-10">
-                            <select class="form-control" required name="tipoAtendimento">
-                                <option selected disabled>Escolha uma opção</option>
-                                <option>Consulta</option>
-                                <option>Retorno</option>
-                            </select>
+                <div id="blockwhite">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <label for="example-atendimento-input" class="col-2 col-form-label">Atendimento</label>
+                            <div class="col-10">
+                                <select class="form-control" required name="tipoAtendimento">
+                                    <option selected disabled>Escolha uma opção</option>
+                                    <option>Consulta</option>
+                                    <option>Retorno</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="example-convenio-input" class="col-2 col-form-label">Convênio</label>
+                            <div class="col-10">
+                                <select class="form-control" required name="convenio">
+                                    <option selected disabled>Escolha uma opção</option>
+                                    <option>Particular</option>
+                                    <option>Convênio</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="example-convenio-input" class="col-2 col-form-label">Especialidade</label>
+                            <div class="col-10">
+                                <select class="form-control" required name="especialidade.id">
+                                    <option selected disabled>Escolha uma opção</option>
+                                    <option value="1">Clínica Médica</option>
+                                    <option value="2">Ginecologia</option>
+                                    <option value="3">Endocrinologia</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="example-convenio-input" class="col-2 col-form-label">Convênio</label>
-                        <div class="col-10">
-                            <select class="form-control" required name="convenio">
-                                <option selected disabled>Escolha uma opção</option>
-                                <option>Particular</option>
-                                <option>Convênio</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="example-convenio-input" class="col-2 col-form-label">Especialidade</label>
-                        <div class="col-10">
-                            <select class="form-control" required name="especialidade.especialidade">
-                                <option selected disabled>Escolha uma opção</option>
-                                <option>Clínica Médica</option>
-                                <option>Ginecologia</option>
-                                <option>Endocrinologia</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <br><br>
-                <div class="form-row" id="div2">
-                    <div class="col-md-4">
-                        <label for="example-date-input" class="col-2 col-form-label">Data</label>
-                        <div class="col-8">
-                            <input class="form-control" type="date" value="dd-mm-aaaa" id="example-date-input" required name="dtHrConsulta">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="example-time-input" class="col-4 col-form-label">Horário Inicio</label>
-                        <div class="col-8">
-                            <input class="form-control" type="time" value="00:00:00" id="example-time-entrada" required>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="example-time-input" class="col-4 col-form-label">Horário Final</label>
-                        <div class="col-8">
-                            <input class="form-control" type="time" value="00:00:00" id="example-time-saida" required>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                    <form th:action="@{/home}" method="get">
-                <div class="col-lg-12" style="text-align: right;" id="button">
-                    <button type="submit" class="btn btn-danger">Voltar</button>
-                    <button type="submit" class="btn btn-success">Salvar</button>
-                </div>
-                    </form>
-                    <!--/form-->
-          </div>
-        
-        </div>
-   
-    </body>
+                    <br><br>
+                            <div class="form-row" id="div2">
+                                <div class="col-md-4">
+                                    <label for="example-date-input" class="col-2 col-form-label">Data</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="date" value="dd-mm-aaaa" id="example-date-input" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="example-time-input" class="col-4 col-form-label">Horário Inicio</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="time" value="00:00:00" id="example-time-entrada" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="example-time-input" class="col-4 col-form-label">Horário Final</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="time" value="00:00:00" id="example-time-saida" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                                <button type="submit" class="btn btn-success">Salvar</button>
 
-</html>
+                                </form>
+                                <form th:action="@{/home}" method="get">
+                                    <div class="col-lg-12" style="text-align: right;" id="button">
+                                        <button type="submit" class="btn btn-danger">Voltar</button>
+                                    </div>
+                                </form>
+                                </div>
+
+                                </div>
+
+                                </body>
+
+                                </html>
