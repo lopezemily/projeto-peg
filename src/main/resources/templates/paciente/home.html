@@ -30,12 +30,12 @@
                                     </p>
                                 </div>
                             </td>
-                            <td th:if="!${consulta.confirmada}" width="50%" align="right" style="padding-right:50px;">
+                            <td th:if="!${consulta.confirmada}" width="50%" align="right" style="padding-right:70px;">
                                 <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
                                     <button type="submit" class="btn btn-success">Confirmar</button>
                                 </form>
                             </td>
-                            <td th:if="${consulta.confirmada}" width="50%" align="right" style="padding-right:50px;" >
+                            <td th:if="${consulta.confirmada}" width="50%" align="right" style="padding-right:70px;" >
                                 <button type="none" disabled class="btn btn-outline-secondary">Confirmado</button>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
                                     </p>
                                 </div>
                              </td>
-                            <td th:if="${consulta.realizada}" width="50%" align="right" style="padding-right:50px;">
+                            <td th:if="${consulta.realizada}" width="50%" align="right" style="padding-right:70px;">
                                 <form th:action="@{/paciente/consulta/} + ${consulta.numAtendimento}" method="get">
                                     <button id="btnver" type="submit" class="btn btn-primary">Ver</button>
                                 </form>
