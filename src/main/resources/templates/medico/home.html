@@ -12,33 +12,32 @@
                 <h4>Próximas Consultas</h4>
             </div>
             <div class="tabela-consulta">
-                <table id="table-proximas-consultas">
+                <table id="table-proximas-consultas" width="100%">
                     <tbody>
                         <tr th:if="${proximasConsultas.empty}">
                             <td colspan="2">Não há consultas futuras</td>
                         </tr>
                         <tr th:each="consulta : ${proximasConsultas}">
-                            <td>
-                                <div>
+                            <td  width="50%">
+                                <div id="block">
                                     <p>
-                                        Data: <span th:text="${consulta.dtHrConsulta}">Data</span></br>
-                                        Paciente: <span th:text="${consulta.paciente.nome}">Paciente</span></br>
-                                        Especialidade: <span
-                                            th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
+                                        <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
+                                        <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
                                     </p>
                                 </div>
                             </td>
-                            <td>
+                            <td width="20%" >
                                 <div th:if="!${consulta.confirmada}">
-                                    <p>Aguardando confirmacao</p>
+                                    <p style="color: yellow"><b>Aguardando confirmacao</b></p>
                                 </div>
                                 <div th:if="${consulta.confirmada}">
-                                    <p>Confirmado</p>
+                                    <p style="color: #848484"><b>Confirmado</b></p>
                                 </div>
                             </td>
-                            <td>
+                            <td width="30%" align="right" style="padding-right:50px;">
                                 <form th:action="@{/medico/atender/} + ${consulta.numAtendimento}" method="post">
-                                    <button type="submit" class="btn btn-secondary btn-block">Iniciar Atendimento</button>
+                                    <button type="submit" class="btn btn-success">Iniciar Atendimento</button>
                                 </form>
                             </td>
                         </tr>
