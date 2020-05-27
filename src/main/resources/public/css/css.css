@@ -53,6 +53,20 @@
     line-height: 30px;
     padding: 10px;
 }
+#block2 {
+    height: 600px;
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid #C0C0C0;
+    /*margin-block-start: 1em;*/
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    line-height: 30px;
+    padding: 20px;
+}
+
+
 #espacotitulo{
     margin-inline-start: 40px;
     margin-block-start: 1em;
