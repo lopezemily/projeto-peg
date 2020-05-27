@@ -6,10 +6,76 @@
         <title>Nova Consulta</title>
     </head>
 
-    <body>
+    <body id="fundopaciente">
         <div layout:fragment="content">
-            <h1>Nova consulta</h1>
+            <div id="espacotitulo">
+                <h4>+ Novo agendamento​</h4>
+            </div>
+            <br>
+            <div id="blockwhite">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <label for="example-atendimento-input" class="col-2 col-form-label">Atendimento</label>
+                        <div class="col-10">
+                            <select class="form-control" required>
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Consulta</option>
+                                <option>Retorno</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="example-convenio-input" class="col-2 col-form-label">Convênio</label>
+                        <div class="col-10">
+                            <select class="form-control" required>
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Particular</option>
+                                <option>Convênio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="example-convenio-input" class="col-2 col-form-label">Especialidade</label>
+                        <div class="col-10">
+                            <select class="form-control" required>
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Clínica Médica</option>
+                                <option>Ginecologia</option>
+                                <option>Endocrinologia</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-row" id="div2">
+                    <div class="col-md-4">
+                        <label for="example-date-input" class="col-2 col-form-label">Data</label>
+                        <div class="col-8">
+                            <input class="form-control" type="date" value="dd-mm-aaaa" id="example-date-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="example-time-input" class="col-4 col-form-label">Horário Inicio</label>
+                        <div class="col-8">
+                            <input class="form-control" type="time" value="00:00:00" id="example-time-entrada" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="example-time-input" class="col-4 col-form-label">Horário Final</label>
+                        <div class="col-8">
+                            <input class="form-control" type="time" value="00:00:00" id="example-time-saida" required>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-lg-12" style="text-align: right;" id="button">
+                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+          </div>
+        
         </div>
+   
     </body>
 
 </html>
