@@ -27,37 +27,52 @@
                                         <div class="form-row">
                                             <div class="col-5">
                                                 <label for="exampleFormControlInput1">Nome</label>
-                                                <input type="text" class="form-control" name="nome" placeholder="">
+                                                <input type="text" class="form-control" name="nome" placeholder="" onkeypress="return ApenasLetras(event,this);" style="text-transform: uppercase;">
                                             </div>
+                                            <div class="col-auto my-1">
+                                                <label class="mr-sm-2" for="inlineFormCustomSelect">Sexo</label>
+                                                <select class="custom-select mr-sm-2">
+                                                  <option selected>Selecione...</option>
+                                                  <option value="1">Masculino</option>
+                                                  <option value="2">Feminino</option>
+                                                </select>
+                                              </div>
                                             <div class="col">
-                                                <label for="exampleFormControlInput1">Sexo</label>
-                                                <input type="text" name="sexo" maxlength="1" class="form-control" placeholder="">
-                                            </div>
-                                            <div class="col">
-                                                <label for="exampleFormControlInput1">Data de Nascimento</label>
+                                                <label for="exampleFormControlInput1">Data de nascimento</label>
                                                 <input type="date" class="form-control" name="dtNascimento" placeholder="">
                                             </div>
                                             <div class="col">
                                                 <label for="exampleFormControlInput1">Idade</label>
-                                                <input type="number" class="form-control" placeholder="" readonly>
+                                                <input type="number" class="form-control" placeholder="" readonly id="data_nascimento"
+                                                onBlur="getAge(this.value)"/>
                                             </div>
+                                            <div class="col-auto my-1">
+                                                <label class="mr-sm-2" for="inlineFormCustomSelect">Estado civil</label>
+                                                <select class="custom-select mr-sm-2">
+                                                  <option selected>Selecione...</option>
+                                                  <option value="1">Solteiro(a)</option>
+                                                  <option value="2">Casado(a)</option>
+                                                  <option value="3">Viúvo(a)</option>
+                                                  <option value="4">Divorciado(a)</option>
+                                                </select>
+                                              </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-5">
                                                 <label for="exampleFormControlInput1">CPF</label>
-                                                <input type="number" name="cpf" class="form-control" placeholder="">
+                                                <input type="text" name="cpf" class="form-control" placeholder="" oninput="mascaracpf(this)">
                                             </div>
                                             <div class="col">
                                                 <label for="exampleFormControlInput1">E-mail</label>
-                                                <input type="email" name="contato.email" class="form-control" placeholder="">
+                                                <input type="email" name="contato.email" class="form-control" placeholder="" style="text-transform:lowercase;">
                                             </div>
                                             <div class="col">
                                                 <label for="exampleFormControlInput1">Telefone</label>
-                                                <input type="number" name="contato.telefone" class="form-control" placeholder="">
+                                                <input type="text" name="contato.telefone" class="form-control" placeholder="" onkeyup="mascaratelefone( this, mtel );" maxlength="14">
                                             </div>
                                             <div class="col">
                                                 <label for="exampleFormControlInput1">Celular</label>
-                                                <input type="number" name="contato.celular" class="form-control" placeholder="">
+                                                <input type="text" name="contato.celular" class="form-control" placeholder="" onkeyup="mascaratelefone( this, mtel );" maxlength="15">
                                             </div>
                                         </div>
                                     </br>
@@ -65,11 +80,11 @@
                                     <div class="form-row">
                                         <div class="col-5">
                                             <label for="exampleFormControlInput1">CEP</label>
-                                            <input type="number" name="endereco.CEP" class="form-control" placeholder="">
+                                            <input type="text" name="endereco.CEP" class="form-control" placeholder="" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
                                         </div>
                                         <div class="col">
                                             <label for="exampleFormControlInput1">Logradouro</label>
-                                            <input type="text" name="endereco.logradouro" class="form-control" placeholder="">
+                                            <input type="text" name="endereco.logradouro" class="form-control" placeholder="" style="text-transform: uppercase;">
                                         </div>
                                         <div class="col">
                                             <label for="exampleFormControlInput1">Número</label>
@@ -77,11 +92,11 @@
                                         </div>
                                         <div class="col">
                                             <label for="exampleFormControlInput1">Bairro</label>
-                                            <input type="text" name="endereco.bairro" class="form-control" placeholder="">
+                                            <input type="text" name="endereco.bairro" class="form-control" placeholder="" style="text-transform: uppercase;">
                                         </div>
                                         <div class="col">
                                             <label for="exampleFormControlInput1">Cidade</label>
-                                            <input type="text" name="endereco.cidade" class="form-control" placeholder="">
+                                            <input type="text" name="endereco.cidade" class="form-control" placeholder="" style="text-transform: uppercase;">
                                         </div>
                                     </div>
                                     </br>
@@ -120,15 +135,13 @@
                                                 <label class="form-check-label" for="inlineCheckbox7">Tabagismo</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="password" 
-                                                   placeholder="Password" name="senha" class="form-control"/>
+                                            <label for="exampleFormControlInput1">Senha</label>
+                                            <input type="password" placeholder="Password" name="senha" class="form-control"/>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-primary btn-block">Register User</button>
-                                        </div>
-                                    </div>
+                                    </br>
+                                    <button type="button" class="btn btn-danger">Cancelar</button>
+                                    <button type="button" class="btn btn-success">Salvar</button>
                                 </form>
                                 <!-- Optional JavaScript -->
                                 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -141,6 +154,7 @@
                                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
                                         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
                                 crossorigin="anonymous"></script>
+                                <script src="script/script.js"></script>
                             </body>
 
                             </html>
