@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Consulta</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <h1>Consulta</h1>
+            <form th:action="@{/medico/atender/} + ${numeroAtendimento}" method="post">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Número de atendimento</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" readonly th:value="${numeroAtendimento}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Queixa principal</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" name="queixa">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleFormControlInput1">Buscar CID</label>
+                            <input type="number" class="form-control" placeholder="Código" name="cids.codigo">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control"> 
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleFormControlInput1">PA</label>
+                            <input type="text" class="form-control" name="pa">
+                        </div>
+                        <div class="col">
+                            <label for="exampleFormControlInput1">FR</label>
+                            <input type="number" class="form-control" name="fr">
+                        </div>
+                        <div class="col">
+                            <label for="exampleFormControlInput1">Temperatura</label>
+                            <input type="number" class="form-control" name="temperatura">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleFormControlTextarea1">Avaliação</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="avalMedico"></textarea>
+                    </div>
+                    <div class="col">
+                        <label for="exampleFormControlInput1">Exames</label>
+                        <input type="text" class="form-control" name="exames">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </form>
+        </div>
+    </body>
+
+</html>
