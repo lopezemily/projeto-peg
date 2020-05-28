@@ -32,6 +32,7 @@ public class MedicoController {
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.GET)
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("numeroAtendimento", numAtendimento);
         modelAndView.setViewName("medico/novaConsulta");
         return modelAndView;
     }

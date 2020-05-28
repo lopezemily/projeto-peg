@@ -39,6 +39,8 @@ public class ConsultaService {
 
         if (consulta.isPresent()) {
             consulta.get().setProntuario(prontuario);
+            consulta.get().setRealizada(true);
+            consulta.get().setConfirmada(true);
             consultaRepository.save(consulta.get());
         } else {
             throw new RuntimeException("Consulta não cadastrada!");

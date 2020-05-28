@@ -36,7 +36,7 @@
                                 </div>
                             </td>
                             <td width="30%" align="right" style="padding-right:70px;">
-                                <form th:action="@{/medico/atender/} + ${consulta.numAtendimento}" method="post">
+                                <form th:action="@{/medico/atender/} + ${consulta.numAtendimento}" method="get">
                                     <button type="submit" class="btn btn-success">Iniciar Atendimento</button>
                                 </form>
                             </td>
