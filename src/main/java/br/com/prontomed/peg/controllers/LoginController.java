@@ -24,6 +24,9 @@ import java.util.Optional;
 
 @Controller
 public class LoginController {
+    
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     private UserService userService;
@@ -62,7 +65,6 @@ public class LoginController {
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
 
-            ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Paciente paciente = objectMapper.readValue(objectMapper.writeValueAsString(cadastroPaciente), Paciente.class);
             pacienteService.inserirPaciente(paciente);

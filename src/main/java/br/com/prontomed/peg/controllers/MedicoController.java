@@ -33,7 +33,7 @@ public class MedicoController {
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("numeroAtendimento", numAtendimento);
-        modelAndView.setViewName("medico/novaConsulta");
+        modelAndView.setViewName("medico/registrarConsulta");
         return modelAndView;
     }
     

@@ -1,10 +1,12 @@
 package br.com.prontomed.peg.models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -15,7 +17,8 @@ public abstract class Pessoa {
     
     private String nome;
     
-    private LocalDateTime dtNascimento;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate dtNascimento;
     
     private char sexo;
     
@@ -41,11 +44,11 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public LocalDateTime getDtNascimento() {
+    public LocalDate getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(LocalDateTime dtNascimento) {
+    public void setDtNascimento(LocalDate dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 
