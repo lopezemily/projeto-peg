@@ -7,23 +7,21 @@
     </head>
 
     <body>
-        <div class="row justify-content-md-center" layout:fragment="content">
+        <div class="container" layout:fragment="content">
 
             <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
-                <div class="form-row col-sm-4 align-items-center">
+                <div class="form-row col-sm align-items-center">
                     <img th:src="@{/img/novoPaciente.png}"/>
-                    <h2>Novo Paciente</h2>
-                    <h6 style="text-align:right"> <i><small>*Campos obrigatórios</small></i></h6>
+                    <h2>Novo Paciente</h2><br>
                 </div>
-
-                <div class="container">
-
+                <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
+                <div>
                     <div class="blockwhite" id="dadosPessoais">
                         <h5 class="text-primary">Dados pessoais</h5>
                         <div class="form-row align-items-center">
                             <div class="col-sm-5">
                                 <label for="nome">Nome completo*</label>
-                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" onkeypress="return ApenasLetras(event,this);" required>
+                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" onkeypress="return ApenasLetras(event, this);" required>
                             </div>
                             <div class="col-sm">
                                 <label class="mr-sm-2" for="sexo">Sexo*</label>
@@ -59,11 +57,11 @@
                             </div>
                             <div class="col-sm">
                                 <label for="tel">Telefone</label>
-                                <input id="tel" type="text" name="contato.telefone" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone( this, mtel );" maxlength="14">
+                                <input id="tel" type="text" name="contato.telefone" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="14">
                             </div>
                             <div class="col-sm">
                                 <label for="cel">Celular</label>
-                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone( this, mtel );" maxlength="15">
+                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15">
                             </div>
                         </div>
                     </div>
@@ -146,8 +144,6 @@
                 </div>
             </form>
         </div>
-        </div>
-
     </body>
 
 </html>
