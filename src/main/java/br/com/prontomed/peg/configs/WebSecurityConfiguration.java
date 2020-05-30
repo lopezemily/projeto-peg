@@ -43,7 +43,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/cadastro").permitAll()
-            .antMatchers("/debug/**").permitAll()
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/paciente/**").hasAuthority("PACIENTE")
             .anyRequest().authenticated().and().rememberMe()
