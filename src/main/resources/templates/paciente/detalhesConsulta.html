@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-sm-3">
                         <label for="dataHora">Data</label>
-                        <input id="dataHora" type="number" class="form-control" readonly th:value="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">
+                        <input id="dataHora" type="text" class="form-control" readonly th:value="${#temporals.format(consulta.data,'dd/MM/yy ')} + ${consulta.horaInicio}">
                     </div>
                     <div class="col-sm-4">
                         <label for="nomeMedico">Médico</label>

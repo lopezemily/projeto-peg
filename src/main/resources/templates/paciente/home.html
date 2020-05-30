@@ -11,7 +11,7 @@
 
             <div class="form-row col-sm align-items-center">
                 <img th:src="@{/img/logoPEG.png}"/>
-                <h2>Olá! <!--span th:text="${consulta.paciente.nome}"></span--></h2><br>
+                <h2>Olá! <span th:text="${nome}"></span</h2><br>
                     <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
                         <button type="submit" class="btn" id="btnNovaConsulta">Nova Consulta</button>
                     </form>

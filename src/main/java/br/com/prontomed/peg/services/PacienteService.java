@@ -39,5 +39,9 @@ public class PacienteService {
             paciente.setAlergias(alergias);
             repository.save(paciente);
     }
+
+	public Paciente obterPaciente(String cpf) {
+		return repository.getOne(cpf);
+	}
     
 }

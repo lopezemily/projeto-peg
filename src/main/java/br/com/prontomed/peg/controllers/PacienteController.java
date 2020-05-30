@@ -3,6 +3,7 @@ package br.com.prontomed.peg.controllers;
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.services.ConsultaService;
 import br.com.prontomed.peg.services.EspecialidadeService;
+import br.com.prontomed.peg.services.PacienteService;
 
 import java.time.LocalDate;
 
@@ -24,6 +25,9 @@ public class PacienteController {
     private ConsultaService consultaService;
     
     @Autowired
+    private PacienteService pacienteService;
+
+    @Autowired
     private EspecialidadeService especialidadeService;
 
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
@@ -34,8 +38,8 @@ public class PacienteController {
         modelAndView.setViewName("paciente/home");
 
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasPaciente(cpf));
-
         modelAndView.addObject("consultasAnteriores", consultaService.obterConsultasAnterioresPaciente(cpf));
+        modelAndView.addObject("nome", pacienteService.obterPaciente(cpf).getNome());
 
         return modelAndView;
     }
