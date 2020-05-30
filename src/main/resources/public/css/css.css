@@ -16,15 +16,29 @@
     background-size: cover;
 }
 .container {
-    align-content: center;
     margin-top: 10px;
+}
+
+.btn {
+    color: white;
+    padding: 10px 60px;
+    font-size: 15px;
+    border-radius: 6px;
+    display: block;
+    margin-left: auto;
+}
+.btnAlt {
+    padding: 10px 40px;
 }
 
 #btnSair {
     background-color: #A6A6A6;
-    color: #F7F7F7;
     border-color: #A6A6A6;
     padding: 8px 30px;
+}
+
+#btnNovaConsulta {
+    background-color: #FFD333;
 }
 /*CADASTRO*/
 .blockwhite {
@@ -38,19 +52,26 @@
 }
 
 
+
 #block {
-    height: 130px;
     width: 190%;
     background-color: white;
     border-radius: 5px;
-    border:1px solid;
+    border:1px solid #C0C0C0;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 40px;
-    margin-inline-end: 40px;
-    line-height: 30px;
-    padding: 10px;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    padding: 20px;
 }
+
+#blockAlt {
+    background-color: gainsboro;
+    border-radius: 5px;
+    padding: 20px;
+   box-sizing: border-box;
+}
+
 #block2 {
     height: 600px;
     background-color: white;
@@ -66,30 +87,13 @@
 
 
 #espacotitulo{
-    margin-inline-start: 40px;
+    margin-inline-start: 10px;
     margin-block-start: 1em;
 }
-#espacobotao{
-    line-height: 100px;
-    margin-inline-start: 40px;
 
-}
 #espacobotaoform {
     line-height: 80%;
 
-}
-.btn {
-    padding: 10px 60px;
-    font-size: 15px;
-    border-radius: 6px;
-    display: block;
-    margin-left: auto;
-    margin-top: 20px;
-}
-#btnver {
-    padding: 10px 90px;
-    font-size: 15px;
-    border-radius: 10px;  
 }
 
 body
