@@ -37,9 +37,7 @@
                             <label for="especialidade">Especialidade</label>
                             <select id="especialidade" class="form-control" required name="especialidade.id">
                                 <option selected disabled>Escolha uma opção</option>
-                                <option value="1">Clínica Médica</option>
-                                <option value="2">Ginecologia</option>
-                                <option value="3">Endocrinologia</option>
+                                <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
                             </select>
                         </div>
                     </div>
@@ -47,15 +45,12 @@
                     <div class="row align-items-center">
                         <div class="col-sm-4">
                             <label for="data">Data</label>
-                            <input id="data" class="form-control" type="date" value="dd-mm-aaaa" required>
+                            <input id="data" class="form-control" type="date" value="dd-mm-aaaa" name="data" required disabled>
                         </div>
-                        <div class="col-sm-4">
-                            <label for="hrInicio">Horário início</label>
-                            <input id="hrInicio" class="form-control" type="time" value="00:00:00" required>
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="hrFim">Horário final</label>
-                            <input id="hrFim" class="form-control" type="time" value="00:00:00" required>
+                        <div class="col-sm-8">
+                            <label for="horario">Horário</label>
+                            <select id="horario" class="form-control" required name="horaInicio" disabled>
+                            </select>
                         </div>
                     </div>
                     <p></p>
@@ -73,6 +68,57 @@
         </form>
         </div>
 
+        </div>
+
+        <div layout:fragment="scripts">
+            <script>
+                $(document).ready(function () {
+                    $('#especialidade').change(habilitarData);
+                    $('#data').change(obterHorariosDisponiveis);
+
+                    setMinData();
+
+                    function setMinData(){
+                        var today = new Date();
+
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1;
+                        var yyyy = today.getFullYear();
+
+                        if (dd < 10) {
+                            dd = '0' + dd
+                        }
+                        if (mm < 10) {
+                            mm = '0' + mm
+                        } 
+                        today = yyyy+'-'+mm+'-'+dd;
+                        $('#data').attr("min", today);
+                    }
+
+                    function habilitarData() {
+                        $('#data').prop('disabled', false);
+                        $('#horario').empty();
+                    }
+
+                    function obterHorariosDisponiveis() {
+                        $('#horario').prop('disabled', true);
+
+                        var data = $('#data').val();
+                        var especialidade = $('#especialidade').val();
+                        var url = `/paciente/novaConsulta/horariosDisponiveis?data=${data}&especialidadeId=${especialidade}`;
+
+                        $('#horario').load(url, function (responseTxt, statusTxt, xhr) {
+                            if (statusTxt == "success"){
+                                $('#horario').prop('disabled', false);
+                            }
+                            if (statusTxt == "error"){
+                                $('#horario').empty();
+                                alert("Não há médicos disponíveis neste dia da semana.");
+                            }
+                        });
+                    }
+                })
+            </script>
         </div>
 
     </body>
