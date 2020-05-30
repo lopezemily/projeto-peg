@@ -1,7 +1,8 @@
-package br.com.prontomed.peg.controllers;
+ package br.com.prontomed.peg.controllers;
 
 import br.com.prontomed.peg.models.Prontuario;
 import br.com.prontomed.peg.services.ConsultaService;
+import br.com.prontomed.peg.services.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class MedicoController {
     @Autowired
     private ConsultaService consultaService;
     
+    @Autowired
+    private MedicoService medicoService;
+    
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
         String cpf = autenticacao.getName();
@@ -25,6 +29,8 @@ public class MedicoController {
         modelAndView.setViewName("medico/home");
 
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasMedico(cpf));
+        
+        modelAndView.addObject("nome", medicoService.obterMedico(cpf).getNome());
 
         return modelAndView;
     }
