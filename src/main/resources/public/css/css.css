@@ -42,6 +42,14 @@
 #btnNovaConsulta {
     background-color: #FFD333;
 }
+
+#btnReceita {
+    background-color: #FFD333;
+}
+
+#btnAtestado {
+    background-color: #FFC3C3;
+}
 /*CADASTRO*/
 .blockwhite {
     background-color: white;
