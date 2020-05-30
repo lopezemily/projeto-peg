@@ -40,10 +40,4 @@ public class PacienteService {
             repository.save(paciente);
     }
     
-    
-    
-    // TODO: buscarPacientePorCPF
-    
-    // TODO: buscarPacientePorNome
-    
 }

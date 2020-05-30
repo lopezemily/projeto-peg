@@ -19,8 +19,8 @@ public class DebugController {
     @Autowired
     private ConsultaService consultaService;
 
-    @GetMapping("/")
-    public @ResponseBody List<Disponibilidade> debug() throws Exception {
-        return consultaService.obterHorariosDisponiveis(LocalDate.parse("2020-01-01"), "Clinica Medica");
-    }
+    // @GetMapping("/")
+    // public @ResponseBody List<Disponibilidade> debug() throws Exception {
+    //     return consultaService.obterHorariosDisponiveis(LocalDate.parse("2020-01-01"), "Clinica Medica");
+    // }
 }

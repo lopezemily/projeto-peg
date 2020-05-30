@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Consulta {
 
@@ -32,10 +34,13 @@ public class Consulta {
     @ManyToOne
     private Unidade unidade;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate data;
 
+    @DateTimeFormat(pattern="HH:mm")
     private LocalTime horaInicio;
 
+    @DateTimeFormat(pattern="HH:mm")
     private LocalTime horaFim;
 
     @ManyToOne

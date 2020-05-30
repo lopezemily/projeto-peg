@@ -1,7 +1,6 @@
 package br.com.prontomed.peg.models;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;

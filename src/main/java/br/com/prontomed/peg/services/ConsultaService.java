@@ -18,6 +18,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,15 +38,25 @@ public class ConsultaService {
     @Autowired
     private EspecialidadeRepository especialidadeRepository;
 
+    private final static LocalTime inicioAtendimento = LocalTime.of(8, 0);
+    private final static LocalTime fimAtendimento = LocalTime.of(18, 0);
+    private final static LocalTime inicioAlmoco = LocalTime.of(12, 0);
+    private final static LocalTime fimAlmoco = LocalTime.of(14, 0);
+    private final static int tempoConsultaMinutos = 30;
+
     public void criarConsulta(String cpf, Consulta consulta) {
         Paciente paciente = pacienteRepository.getOne(cpf);
         consulta.setPaciente(paciente);
-
-        Medico medico = medicoRepository.getOne("12300012300");
-        consulta.setMedico(medico);
-
-        Especialidade especialidade = especialidadeRepository.getOne(consulta.getEspecialidade().getId());
+        
+        Especialidade especialidade = especialidadeRepository.getOne((long) consulta.getEspecialidade().getId());
         consulta.setEspecialidade(especialidade);
+        
+        DayOfWeek diaSemana = consulta.getData().getDayOfWeek();
+        List<Medico> medicosDisponiveis = medicoRepository.findAllByEspecialidadesAndDisponibilidade(especialidade, diaSemana);
+        Medico medico = medicosDisponiveis.get(0);
+        consulta.setMedico(medico);
+        
+        consulta.setHoraFim(consulta.getHoraInicio().plusMinutes(tempoConsultaMinutos));
 
         consultaRepository.save(consulta);
     }
@@ -94,9 +106,9 @@ public class ConsultaService {
         return consulta;
     }
 
-    public List<Disponibilidade> obterHorariosDisponiveis(LocalDate data, String especialidadeDescricao) throws Exception {
+    public List<LocalTime> obterHorariosDisponiveis(LocalDate data, int especialidadeId) throws Exception {
         DayOfWeek diaSemana = data.getDayOfWeek();
-        Especialidade especialidade = especialidadeRepository.findOneByDescricao(especialidadeDescricao);
+        Especialidade especialidade = especialidadeRepository.getOne((long) especialidadeId);
         List<Medico> medicosDisponiveis = medicoRepository.findAllByEspecialidadesAndDisponibilidade(especialidade, diaSemana);
 
         if (medicosDisponiveis.isEmpty())
@@ -104,13 +116,7 @@ public class ConsultaService {
 
         List<Consulta> consultasNoDia = consultaRepository.findAllByDataAndMedicoIn(data, medicosDisponiveis);
 
-        LocalTime inicioAtendimento = LocalTime.of(8, 0);
-        LocalTime fimAtendimento = LocalTime.of(18, 0);
-        LocalTime inicioAlmoco = LocalTime.of(12, 0);
-        LocalTime fimAlmoco = LocalTime.of(14, 0);
-
         int tempoMinutosTotal = (int) Duration.between(inicioAtendimento, fimAtendimento).toMinutes();
-        int tempoConsultaMinutos = 30;
         int consultasTotaisDia = tempoMinutosTotal / tempoConsultaMinutos;
 
         List<Disponibilidade> horariosDisponiveis = new ArrayList<>();
@@ -130,6 +136,6 @@ public class ConsultaService {
             horariosDisponiveis.remove(disponibilidade);
         }
 
-        return horariosDisponiveis;
+        return horariosDisponiveis.stream().map(h -> h.getHorario()).distinct().collect(Collectors.toList());
     }
 }
