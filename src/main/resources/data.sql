@@ -5,7 +5,16 @@ INSERT INTO cid VALUES
     ('R51','Cefaléia');
 
 INSERT INTO medico VALUES
-    ("12300012300","931819191","medico1@medico.com","","","1999-01-01","01770-000","Lapa","Barueri","Rua abc","20","Casado","Medico1","F","100","SP",0,1,1,0,1,1,1);
+    ("12300012300","931819191","medico1@medico.com","","","1999-01-01","01770-000","Lapa","Barueri","Rua abc","20","Casado","Medico1","F","100","SP");
+
+INSERT INTO medico_disponibilidade
+    (medico_cpf, disponibilidade)
+VALUES
+    ("12300012300", 2),
+    ("12300012300", 3),
+    ("12300012300", 5),
+    ("12300012300", 6),
+    ("12300012300", 7);
 
 INSERT INTO especialidade VALUES
     (1,"Clinica Medica"),
@@ -34,11 +43,11 @@ VALUES
     (1,"J15.9");
 
 INSERT INTO consulta
-    (paciente_cpf, medico_cpf, especialidade_id, unidade_cnpj, confirmada, realizada, dt_hr_consulta, prontuario_id)
+    (paciente_cpf, medico_cpf, especialidade_id, unidade_cnpj, confirmada, realizada, data, hora_inicio, hora_fim, prontuario_id)
 VALUES
-    ("12312312312", "12300012300", 1, "999", 0, 0,"2020-01-01", NULL),
-    ("12312312312", "12300012300", 1, "999", 1, 0,"2020-02-01", NULL),
-    ("12312312312", "12300012300", 1, "999", 1, 1,"2020-03-01", 1);
+    ("12312312312", "12300012300", 1, "999", 0, 0,"2020-01-01", "09:00", "09:30", NULL),
+    ("12312312312", "12300012300", 1, "999", 1, 0,"2020-02-01", "09:00", "09:30", NULL),
+    ("12312312312", "12300012300", 1, "999", 1, 1,"2020-03-01", "09:00", "09:30", 1);
 
 INSERT INTO roles
     (role_id, role)

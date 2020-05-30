@@ -1,6 +1,8 @@
 package br.com.prontomed.peg.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -16,33 +18,37 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long numAtendimento;
-    
+
     private String tipoAtendimento;
-    
+
     private String convenio;
-    
+
     @ManyToOne
     private Medico medico;
-    
+
     @ManyToOne
     private Paciente paciente;
-    
+
     @ManyToOne
     private Unidade unidade;
-    
-    private LocalDateTime dtHrConsulta;
-    
+
+    private LocalDate data;
+
+    private LocalTime horaInicio;
+
+    private LocalTime horaFim;
+
     @ManyToOne
     private Especialidade especialidade;
-    
+
     @Embedded
     private Receita receita;
-    
+
     @OneToOne(cascade = CascadeType.ALL)
     private Prontuario prontuario;
-    
+
     private boolean realizada;
-    
+
     private boolean confirmada;
 
     public long getNumAtendimento() {
@@ -77,12 +83,28 @@ public class Consulta {
         this.unidade = unidade;
     }
 
-    public LocalDateTime getDtHrConsulta() {
-        return dtHrConsulta;
+    public LocalTime getHoraFim() {
+        return horaFim;
     }
 
-    public void setDtHrConsulta(LocalDateTime dtHrConsulta) {
-        this.dtHrConsulta = dtHrConsulta;
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public Especialidade getEspecialidade() {

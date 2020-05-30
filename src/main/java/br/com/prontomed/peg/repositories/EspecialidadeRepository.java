@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EspecialidadeRepository extends JpaRepository<Especialidade, Long> {
+
+	Especialidade findOneByDescricao(String especialidadeDescricao);
     
 }
