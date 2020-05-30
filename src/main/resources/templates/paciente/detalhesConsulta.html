@@ -6,74 +6,80 @@
         <title>Consulta</title>
     </head>
 
-    <body id="fundopaciente">
-        <div layout:fragment="content">
-            <div id="espacotitulo">
+    <body>
+        <div class="container" layout:fragment="content">
+
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/detalhesConsulta.png}"/>
                 <h4>Detalhes da consulta</h4>
             </div>
-            <br>
-                <div id="block2">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <label for="exampleFormControlInput1">Número de atendimento</label>
-                                <input type="number" class="form-control" readonly th:value="${consulta.numAtendimento}">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="exampleFormControlInput1">Medico</label>
-                                <input type="text" class="form-control" readonly th:value="${consulta.medico.nome}">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="exampleFormControlInput1">Especialidade</label>
-                                <input type="text" class="form-control" readonly th:value="${consulta.especialidade.descricao}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Queixa</label>
-                            <input type="text" class="form-control" readonly th:value="${consulta.prontuario.queixa}">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">CIDs</label>
-                            <ul>
-                                <li th:each="cid : ${consulta.prontuario.cids}">
-                                    <span th:text="${cid.descricao}"></span></br>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <label for="exampleFormControlInput1">PA</label>
-                                <input type="text" class="form-control" readonly th:value="${consulta.prontuario.pa}">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="exampleFormControlInput1">FR</label>
-                                <input type="text" class="form-control" readonly th:value="${consulta.prontuario.fr}">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="exampleFormControlInput1">Temperatura</label>
-                                <input type="text" class="form-control" readonly th:value="${consulta.prontuario.temperatura}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Avaliação médica</label>
-                            <input type="text" class="form-control" readonly th:value="${consulta.prontuario.avalMedico}">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Exames</label>
-                            <p th:if="${consulta.prontuario.exames.empty}">Não há exames</p>
-                            <ul>
-                                <li th:each="exame : ${consulta.prontuario.exames}">
-                                    <span th:text="${exame}"></span></br>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
-                    <div class="col-lg-12" style="text-align: right;" id="button">  
-                        <form th:action="@{/home}" method="get">
-                            <button type="submit" class="btn btn-primary">Voltar</button>
-                        </form>
+
+            <div class="blockwhite" id="espacotitulo">
+                <div class="form-row align-items-center">
+                    <div class="col-sm-2">
+                        <label for="numAtendimento">Nº atendimento</label>
+                        <input id="numAtendimento" type="number" class="form-control" readonly th:value="${consulta.numAtendimento}">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="dataHora">Data</label>
+                        <input id="dataHora" type="number" class="form-control" readonly th:value="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="nomeMedico">Médico</label>
+                        <input id="nomeMedico" type="text" class="form-control" readonly th:value="${consulta.medico.nome}">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="especilidade">Especialidade</label>
+                        <input id="especilidade" type="text" class="form-control" readonly th:value="${consulta.especialidade.descricao}">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="queixa">Queixa principal</label>
+                    <input id="queixa" type="text" class="form-control" readonly th:value="${consulta.prontuario.queixa}">
+                </div>
+                <div class="form-group">
+                    <label for="cids" readonly>CIDs</label>
+                    <ul>
+                        <li id="cids" th:each="cid : ${consulta.prontuario.cids}">
+                            <span th:text="${cid.descricao}"></span></br>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-row align-items-center">
+                    <div class="col-sm">
+                        <label for="pa">Pressão Arterial</label>
+                        <input id="pa" type="text" class="form-control" readonly th:value="${consulta.prontuario.pa}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="fr">Frequência Respiratória</label>
+                        <input id="fr" type="text" class="form-control" readonly th:value="${consulta.prontuario.fr}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="temperatura">Temperatura</label>
+                        <input id="temperatura" type="text" class="form-control" readonly th:value="${consulta.prontuario.temperatura}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm">
+                        <label for="avalMedica">Descrição da avaliação médica</label>
+                        <input id="avalMedica" type="text" class="form-control" readonly th:value="${consulta.prontuario.avalMedico}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exames" readonly>Exames</label>
+                    <p th:if="${consulta.prontuario.exames.empty}">Não há exames solicitados</p>
+                    <ul>
+                        <li id="exames" th:each="exame : ${consulta.prontuario.exames}">
+                            <span th:text="${exame}"></span></br>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-12" style="text-align: right;" id="button">  
+                    <form th:action="@{/home}" method="get">
+                        <button type="submit" class="btn btn-primary btnAlt">Voltar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 

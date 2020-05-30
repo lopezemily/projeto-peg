@@ -1,159 +1,150 @@
 <!doctype html>
-<html lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Novo cadastro</title>
+    </head>
 
-                <!-- Bootstrap CSS -->
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-                      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-                    <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.min.css">
-                        <link rel="stylesheet" href="css/css.css">
-                            <title>Cadastro</title>
-                            </head>
+    <body>
+        <div class="container" layout:fragment="content">
 
-                            <body>
-                                <nav class="navbar navbar-dark bg-primary">
-                                    </br>
-                                </nav>
-                                <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
-                                    <h2>Novo Paciente</h2>
-                                    <br>
-                                        <h5 class="text-primary">Dados pessoais</h5>
-                                        <div class="form-row">
-                                            <div class="col-5">
-                                                <label for="exampleFormControlInput1">Nome</label>
-                                                <input type="text" class="form-control" name="nome" placeholder="" onkeypress="return ApenasLetras(event,this);" style="text-transform: uppercase;">
-                                            </div>
-                                            <div class="col-auto my-1">
-                                                <label class="mr-sm-2" for="inlineFormCustomSelect">Sexo</label>
-                                                <select class="custom-select mr-sm-2" name="sexo">
-                                                  <option selected>Selecione...</option>
-                                                  <option value="M">Masculino</option>
-                                                  <option value="F">Feminino</option>
-                                                </select>
-                                              </div>
-                                            <div class="col">
-                                                <label for="exampleFormControlInput1">Data de nascimento</label>
-                                                <input type="date" class="form-control" name="dtNascimento" placeholder="">
-                                            </div>
-                                            <div class="col">
-                                                <label for="exampleFormControlInput1">Idade</label>
-                                                <input type="number" class="form-control" placeholder="" readonly id="data_nascimento"
-                                                onBlur="getAge(this.value)"/>
-                                            </div>
-                                            <div class="col-auto my-1">
-                                                <label class="mr-sm-2" for="inlineFormCustomSelect">Estado civil</label>
-                                                <select class="custom-select mr-sm-2">
-                                                  <option selected>Selecione...</option>
-                                                  <option value="1">Solteiro(a)</option>
-                                                  <option value="2">Casado(a)</option>
-                                                  <option value="3">Viúvo(a)</option>
-                                                  <option value="4">Divorciado(a)</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col-5">
-                                                <label for="exampleFormControlInput1">CPF</label>
-                                                <input type="text" name="cpf" class="form-control" placeholder="" oninput="mascaracpf(this)">
-                                            </div>
-                                            <div class="col">
-                                                <label for="exampleFormControlInput1">E-mail</label>
-                                                <input type="email" name="contato.email" class="form-control" placeholder="" style="text-transform:lowercase;">
-                                            </div>
-                                            <div class="col">
-                                                <label for="exampleFormControlInput1">Telefone</label>
-                                                <input type="text" name="contato.telefone" class="form-control" placeholder="" onkeyup="mascaratelefone( this, mtel );" maxlength="14">
-                                            </div>
-                                            <div class="col">
-                                                <label for="exampleFormControlInput1">Celular</label>
-                                                <input type="text" name="contato.celular" class="form-control" placeholder="" onkeyup="mascaratelefone( this, mtel );" maxlength="15">
-                                            </div>
-                                        </div>
-                                    </br>
-                                    <h5 class="text-primary">Dados complementares</h5>
-                                    <div class="form-row">
-                                        <div class="col-5">
-                                            <label for="exampleFormControlInput1">CEP</label>
-                                            <input type="text" name="endereco.CEP" class="form-control" placeholder="" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
-                                        </div>
-                                        <div class="col">
-                                            <label for="exampleFormControlInput1">Logradouro</label>
-                                            <input type="text" name="endereco.logradouro" class="form-control" placeholder="" style="text-transform: uppercase;">
-                                        </div>
-                                        <div class="col">
-                                            <label for="exampleFormControlInput1">Número</label>
-                                            <input type="number" name="endereco.numero" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col">
-                                            <label for="exampleFormControlInput1">Bairro</label>
-                                            <input type="text" name="endereco.bairro" class="form-control" placeholder="" style="text-transform: uppercase;">
-                                        </div>
-                                        <div class="col">
-                                            <label for="exampleFormControlInput1">Cidade</label>
-                                            <input type="text" name="endereco.cidade" class="form-control" placeholder="" style="text-transform: uppercase;">
-                                        </div>
-                                    </div>
-                                    </br>
-                                    <h5 class="text-primary">Dados observações</h5>
-                                    <div class="form-row">
-                                        <div class="col-5">
-                                            <label for="exampleFormControlInput1">Alergias</label>
-                                            <input type="text" class="form-control" name="alergias" placeholder="Quais">
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="dm" type="checkbox" id="DM">
-                                                <label class="form-check-label"  for="inlineCheckbox1">DM</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="has" type="checkbox" id="HAS">
-                                                <label class="form-check-label" for="inlineCheckbox2">HAS</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="ic" type="checkbox" id="IC">
-                                                <label class="form-check-label"  for="inlineCheckbox3">IC</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="dpoc" type="checkbox" id="DPOC">
-                                                <label class="form-check-label"  for="inlineCheckbox4">DPOC</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="ca" type="checkbox" id="CA">
-                                                <label class="form-check-label" for="inlineCheckbox5">CA</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="Etilismo">
-                                                <label class="form-check-label" name="etilista" for="inlineCheckbox6">Etilismo</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="tabagista" type="checkbox" id="Tabagismo">
-                                                <label class="form-check-label" for="inlineCheckbox7">Tabagismo</label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <label for="exampleFormControlInput1">Senha</label>
-                                            <input type="password" placeholder="Password" name="senha" class="form-control"/>
-                                        </div>
-                                    </div>
-                                    </br>
-                                    <button type="submit" class="btn btn-success">Salvar</button>
-                                </form>
-                                <!-- Optional JavaScript -->
-                                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                                        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                                crossorigin="anonymous"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                                        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                                crossorigin="anonymous"></script>
-                                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-                                        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-                                crossorigin="anonymous"></script>
-                                <script src="script/script.js"></script>
-                            </body>
+            <div id="espacotitulo" class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novoPaciente.png}"/>
+                <h2>Novo Paciente</h2><br>
+            </div>
 
-                            </html>
+            <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
+                <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
+                <div>
+                    <div class="blockwhite" id="dadosPessoais">
+                        <h5 class="text-primary">Dados pessoais</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-5">
+                                <label for="nome">Nome completo*</label>
+                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" onkeypress="return ApenasLetras(event, this);" required>
+                            </div>
+                            <div class="col-sm">
+                                <label class="mr-sm-2" for="sexo">Sexo*</label>
+                                <select id="sexo" class="custom-select mr-sm-2" name="sexo" required>
+                                    <option selected>Selecione...</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="dtNascimento">Data de nascimento*</label>
+                                <input id="dtNascimento" type="date" class="form-control" name="dtNascimento" required>
+                            </div>
+                            <div class="col-sm">
+                                <label class="mr-sm-2" for="estadoCivil">Estado civil*</label>
+                                <select id="estadoCivil" class="custom-select mr-sm-2" required>
+                                    <option selected>Selecione...</option>
+                                    <option value="1">Solteiro(a)</option>
+                                    <option value="2">Casado(a)</option>
+                                    <option value="3">Viúvo(a)</option>
+                                    <option value="4">Divorciado(a)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cpf">CPF*</label>
+                                <input id="cpf" type="text" name="cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)" required>
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="email">E-mail</label>
+                                <input id="email" type="email" name="contato.email" class="form-control" style="text-transform:lowercase;">
+                            </div>
+                            <div class="col-sm">
+                                <label for="tel">Telefone</label>
+                                <input id="tel" type="text" name="contato.telefone" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="14">
+                            </div>
+                            <div class="col-sm">
+                                <label for="cel">Celular</label>
+                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="dadosComplementares">
+                        <h5 class="text-primary">Dados complementares</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cep">CEP</label>
+                                <input id="cep" type="text" name="endereco.CEP" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="endereco">Endereço</label>
+                                <input id="endereco" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm">
+                                <label for="numEndereco">Número</label>
+                                <input id="numEndereco" type="number" name="endereco.numero" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="bairro">Bairro</label>
+                                <input id="bairro" type="text" name="endereco.bairro" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="cidade">Cidade</label>
+                                <input id="cidade" type="text" name="endereco.cidade" class="form-control" style="text-transform: uppercase">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="Observações">
+                        <h5 class="text-primary">Observações</h5>
+                        <div class="align-items-center">
+                            <div class="col-sm">
+                                <label for="alergias">Alergias</label>
+                                <input id="alergias" type="text" class="form-control" name="alergias" placeholder="Ex.: Dipirona, AAS...">
+                            </div>
+                            <label class="col-sm">Doenças pré existentes:</label>
+                            <div class="form-row col-sm">
+                                <div class="form-check form-check-inline">
+                                    <input id="dm" class="form-check-input" name="dm" type="checkbox">
+                                        <label for="dm" class="form-check-label">Diabetes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="has" class="form-check-input" name="has" type="checkbox">
+                                        <label for="has" class="form-check-label">Hipertensão</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="ic" class="form-check-input" name="ic" type="checkbox">
+                                        <label for="ic" class="form-check-label">Insuficiência cardíaca</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="dpoc" class="form-check-input" name="dpoc" type="checkbox">
+                                        <label for="dpoc" class="form-check-label">DPOC</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="ca" class="form-check-input" name="ca" type="checkbox">
+                                        <label for="ca" class="form-check-label">Câncer</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="etilismo" class="form-check-input" type="checkbox">
+                                        <label for="etilismo" class="form-check-label" name="etilista">Etilismo</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="tabagismo" class="form-check-input" name="tabagista" type="checkbox">
+                                        <label for="tabagismo" class="form-check-label">Tabagismo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row blockwhite align-items-center" id="labelSenha" style="padding-right:70px">
+                        <div class="col-sm-3">
+                            <label for="senha">Senha*</label>
+                            <input id="senha" type="password" placeholder="Senha minima de 6 digitos" name="senha" class="form-control" required/>
+                        </div>
+                        <div class="col-sm">
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+</html>

@@ -6,43 +6,54 @@
         <title>Médico</title>
     </head>
 
-    <body id="fundocadastro">
-        <div layout:fragment="content"> 
-            <div id="espacotitulo">
-                <h4>Próximas Consultas</h4>
+    <body>
+        <div class="container-md" layout:fragment="content"> 
+
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/logoPEG.png}"/>
+                <h2>Olá! <!--span th:text="${medico.nome}"></span--></h2><br>
             </div>
-            <div class="tabela-consulta">
-                <table id="table-proximas-consultas" width="100%">
-                    <tbody>
-                        <tr th:if="${proximasConsultas.empty}">
-                            <td colspan="2">Não há consultas futuras</td>
-                        </tr>
-                        <tr th:each="consulta : ${proximasConsultas}">
-                            <td  width="50%">
-                                <div id="block">
-                                    <p>
-                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
-                                        <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
-                                        <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
-                                    </p>
-                                </div>
-                            </td>
-                            <td width="20%" >
-                                <div th:if="!${consulta.confirmada}">
-                                    <p style="color: #FFD333"><b>Aguardando confirmação</b></p>
-                                </div>
-                                <div th:if="${consulta.confirmada}">
-                                    <p style="color: #A6A6A6"><b>Confirmado</b></p>
-                                </div>
-                            </td>
-                            <td width="30%" align="right" style="padding-right:70px;">
+            <div class="row">
+                <div id="ladoEsquerdo" class="col-sm-6">
+
+                    <div id="espacotitulo">
+                        <h4>Próximas consultas agendadas</h4>
+                    </div>
+
+                    <div id="proximasConsultas">
+                        <div  class="blockwhite col-sm-md row align-items-center" th:if="${proximasConsultas.empty}">
+                            <p>
+                                <b>Não há consultas futuras</b>
+                            </p>
+                        </div>
+                        <div class="form-row blockwhite align-items-center" th:each="consulta : ${proximasConsultas}">
+                            <div class="col-sm-md">
+                                <p>
+                                    <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
+                                    <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
+                                    <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                                </p>
+                            </div>
+                            <div class="col-sm-md" th:if="!${consulta.confirmada}">
+                                <p style="color: #FFD333"><b>Aguardando confirmação</b></p>
+                            </div>
+                            <div class="col-sm-md" th:if="${consulta.confirmada}">
+                                <p style="color: #A6A6A6"><b>Confirmado</b></p>
+                            </div>
+                            <div class="col-sm-md">
                                 <form th:action="@{/medico/atender/} + ${consulta.numAtendimento}" method="get">
-                                    <button type="submit" class="btn btn-success">Iniciar Atendimento</button>
+                                    <button type="submit" class="btn btn-success btnAlt">Iniciar Atendimento</button>
                                 </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ladoDireito"  class="col-sm-6">
+                    <div class="form-row">
+                        <label for="avaliacao">Avaliação</label>
+                        <textarea id="avaliacao" class="form-control" rows="3" name="avalMedico"></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
