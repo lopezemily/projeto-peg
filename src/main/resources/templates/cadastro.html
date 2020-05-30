@@ -9,11 +9,12 @@
     <body>
         <div class="container" layout:fragment="content">
 
+            <div id="espacotitulo" class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novoPaciente.png}"/>
+                <h2>Novo Paciente</h2><br>
+            </div>
+
             <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
-                <div id="espacotitulo" class="form-row col-sm align-items-center">
-                    <img th:src="@{/img/novoPaciente.png}"/>
-                    <h2>Novo Paciente</h2><br>
-                </div>
                 <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
                 <div>
                     <div class="blockwhite" id="dadosPessoais">
