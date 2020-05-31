@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-row">
                         <label for="queixaPront">Queixa principal</label>
-                        <input id="queixaPront" type="text" class="form-control" name="queixa">
+                        <input id="queixaPront" type="text" class="form-control" required name="queixa">
                     </div>
                     <div class="form-row align-items-end">
                         <div class="col-sm-2">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-row">
                         <label for="avaliacao">Avaliação</label>
-                        <textarea id="avaliacao" class="form-control" rows="3" name="avalMedico"></textarea>
+                        <textarea id="avaliacao" class="form-control" rows="3" required name="avalMedico"></textarea>
                     </div>
                     <div class="form-row">
                         <label for="examesPront">Exames</label>
@@ -65,10 +65,14 @@
                             <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit"id="btnReceita" class="btn btnAlt">Receita</button>
+                            <form th:action="@{/medico/receita/} + ${numAtendimento}" method="get">
+                                <button type="submit"id="btnReceita" class="btn btnAlt">Receita</button>
+                            </form>
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit" id="btnAtestado" class="btn btnAlt">Atestado</button>
+                            <form th:action="@{/medico/atestado/} + ${numAtendimento}" method="get">
+                                <button type="submit" id="btnAtestado" class="btn btnAlt">Atestado</button>
+                            </form>
                         </div>
                     </div>
                 </div>
