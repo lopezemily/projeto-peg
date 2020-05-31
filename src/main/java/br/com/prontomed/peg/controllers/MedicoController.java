@@ -73,11 +73,10 @@ public class MedicoController {
         return modelAndView;
     }
 
-    // @RequestMapping(value = {"/novaReceita/{numAtendimento}"}, method =
-    // RequestMethod.GET)
-    // public ModelAndView novaReceita(@PathVariable long numAtendimento) {
-    // ModelAndView modelAndView = new ModelAndView();
-    // modelAndView.setViewName("medico/novaReceita");
-    // return modelAndView;
-    // }
+     @RequestMapping(value = {"/novaReceita/{numAtendimento}"}, method = RequestMethod.GET)
+     public ModelAndView novaReceita(@PathVariable long numAtendimento) {
+     ModelAndView modelAndView = new ModelAndView();
+     modelAndView.setViewName("medico/novaReceita");
+     return modelAndView;
+     }
 }
