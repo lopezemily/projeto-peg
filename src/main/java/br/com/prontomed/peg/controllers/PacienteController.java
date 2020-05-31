@@ -82,4 +82,10 @@ public class PacienteController {
         consultaService.criarConsulta(cpf, consulta);
         return "redirect:/paciente/home";
     }
+    
+    @RequestMapping(value = {"/cancelarConsulta/{numAtendimento}"}, method = RequestMethod.POST)
+    public String cancelarConsulta(@PathVariable long numAtendimento) {
+        consultaService.cancelarConsulta(numAtendimento);
+        return "redirect:/paciente/home";
+    }
 }
