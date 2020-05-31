@@ -66,15 +66,11 @@ public class ConsultaService {
     }
 
     public List<Consulta> obterConsultasProximasPaciente(String cpf) {
-        return consultaRepository.findByRealizadaAndPacienteCpf(false, cpf);
-    }
-
-    public List<Consulta> obterConsultasAnterioresMedico(String cpf) {
-        return consultaRepository.findByRealizadaAndMedicoCpf(true, cpf);
+        return consultaRepository.findConsultasProximasByPacienteCpf(cpf);
     }
 
     public List<Consulta> obterConsultasProximasMedico(String cpf) {
-        return consultaRepository.findByRealizadaAndMedicoCpf(false, cpf);
+        return consultaRepository.findConsultasDoDiaByMedicoCpf(cpf);
     }
 
     public void registrarProntuario(long numAtendimento, Prontuario prontuario) {

@@ -28,9 +28,14 @@ public class MedicoController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("medico/home");
 
+        modelAndView.addObject("nome", medicoService.obterMedico(cpf).getNome());
+        
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasMedico(cpf));
         
-        modelAndView.addObject("nome", medicoService.obterMedico(cpf).getNome());
+        modelAndView.addObject("pacientesAgendados", medicoService.obterContagemPacientesAgendadosMes(cpf));
+        modelAndView.addObject("pacientesAtendidos", medicoService.obterContagemPacientesAtendidosMes(cpf));
+        modelAndView.addObject("pacientesConfirmados", medicoService.obterContagemPacientesConfirmadosMes(cpf));
+        modelAndView.addObject("pacientesAusentes", medicoService.obterContagemPacientesAusentesMes(cpf));
 
         return modelAndView;
     }
