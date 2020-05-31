@@ -1,7 +1,12 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Prontuario;
 import br.com.prontomed.peg.services.ConsultaService;
+import br.com.prontomed.peg.services.MedicoService;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import javax.swing.text.MaskFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,19 +22,29 @@ public class MedicoController {
     @Autowired
     private ConsultaService consultaService;
 
-    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    @Autowired
+    private MedicoService medicoService;
+
+    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
         String cpf = autenticacao.getName();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("medico/home");
 
+        modelAndView.addObject("nome", medicoService.obterMedico(cpf).getNome());
+
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasMedico(cpf));
+
+        modelAndView.addObject("pacientesAgendados", medicoService.obterContagemPacientesAgendadosMes(cpf));
+        modelAndView.addObject("pacientesAtendidos", medicoService.obterContagemPacientesAtendidosMes(cpf));
+        modelAndView.addObject("pacientesConfirmados", medicoService.obterContagemPacientesConfirmadosMes(cpf));
+        modelAndView.addObject("pacientesAusentes", medicoService.obterContagemPacientesAusentesMes(cpf));
 
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/atender/{numAtendimento}" }, method = RequestMethod.GET)
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("numeroAtendimento", numAtendimento);
@@ -37,16 +52,32 @@ public class MedicoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.POST)
+    @RequestMapping(value = { "/atender/{numAtendimento}" }, method = RequestMethod.POST)
     public String salvarConsulta(@PathVariable long numAtendimento, Prontuario prontuario) {
         consultaService.registrarProntuario(numAtendimento, prontuario);
-        return "redirect:/medico/home";
+        return "redirect:/medico/home?mensagem=Prontuario salvo com sucesso.";
     }
 
-//    @RequestMapping(value = {"/novaReceita/{numAtendimento}"}, method = RequestMethod.GET)
-//    public ModelAndView novaReceita(@PathVariable long numAtendimento) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("medico/novaReceita");
-//        return modelAndView;
-//    }
+    @RequestMapping(value = { "/atestado/{numAtendimento}" }, method = RequestMethod.GET)
+    public ModelAndView atestar(@PathVariable long numAtendimento) throws ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("medico/atestado");
+
+        Consulta consulta = consultaService.obterConsulta(numAtendimento);
+
+        MaskFormatter mask = new MaskFormatter("###.###.###-##");
+        mask.setValueContainsLiteralCharacters(false);
+
+        modelAndView.addObject("cpf", mask.valueToString(consulta.getPaciente().getCpf()));
+        modelAndView.addObject("consulta", consulta);
+        return modelAndView;
+    }
+
+    // @RequestMapping(value = {"/novaReceita/{numAtendimento}"}, method =
+    // RequestMethod.GET)
+    // public ModelAndView novaReceita(@PathVariable long numAtendimento) {
+    // ModelAndView modelAndView = new ModelAndView();
+    // modelAndView.setViewName("medico/novaReceita");
+    // return modelAndView;
+    // }
 }

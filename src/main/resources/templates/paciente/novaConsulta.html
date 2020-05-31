@@ -6,81 +6,119 @@
         <title>Nova Consulta</title>
     </head>
 
-    <body id="fundopaciente">
-        <div layout:fragment="content">
-            <div id="espacotitulo">
-                <form action="#" th:action="@{/paciente/novaConsulta}" method="post">
-                    <h4>+ Novo agendamento​</h4>
+    <body>
+        <div class="container" layout:fragment="content">
+
+            <div  class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novaConsulta.png}"/>
+                <h4>+ Novo agendamento​</h4>
             </div>
-            <br>
-                <div id="blockwhite">
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <label for="example-atendimento-input" class="col-2 col-form-label">Atendimento</label>
-                            <div class="col-10">
-                                <select class="form-control" required name="tipoAtendimento">
-                                    <option selected disabled>Escolha uma opção</option>
-                                    <option>Consulta</option>
-                                    <option>Retorno</option>
-                                </select>
-                            </div>
+
+            <form action="#" th:action="@{/paciente/novaConsulta}" method="post">
+                <div class="blockwhite" id="espacotitulo">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <label for="tipoAtendimento">Tipo de atendimento</label>
+                            <select id="tipoAtendimento" class="form-control" required name="tipoAtendimento">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Consulta</option>
+                                <option>Retorno</option>
+                            </select>
                         </div>
-                        <div class="col-md-4">
-                            <label for="example-convenio-input" class="col-2 col-form-label">Convênio</label>
-                            <div class="col-10">
-                                <select class="form-control" required name="convenio">
-                                    <option selected disabled>Escolha uma opção</option>
-                                    <option>Particular</option>
-                                    <option>Convênio</option>
-                                </select>
-                            </div>
+                        <div class="col-sm-4">
+                            <label for="tipoConvenio">Convênio</label>
+                            <select id="tipoConvenio" class="form-control" required name="convenio">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Particular</option>
+                                <option>Convênio</option>
+                            </select>
                         </div>
-                        <div class="col-md-4">
-                            <label for="example-convenio-input" class="col-2 col-form-label">Especialidade</label>
-                            <div class="col-10">
-                                <select class="form-control" required name="especialidade.id">
-                                    <option selected disabled>Escolha uma opção</option>
-                                    <option value="1">Clínica Médica</option>
-                                    <option value="2">Ginecologia</option>
-                                    <option value="3">Endocrinologia</option>
-                                </select>
-                            </div>
+                        <div class="col-sm-4">
+                            <label for="especialidade">Especialidade</label>
+                            <select id="especialidade" class="form-control" required name="especialidade.id">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
+                            </select>
                         </div>
                     </div>
-                    <br><br>
-                            <div class="form-row" id="div2">
-                                <div class="col-md-4">
-                                    <label for="example-date-input" class="col-2 col-form-label">Data</label>
-                                    <div class="col-8">
-                                        <input class="form-control" type="date" value="dd-mm-aaaa" id="example-date-input" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="example-time-input" class="col-4 col-form-label">Horário Inicio</label>
-                                    <div class="col-8">
-                                        <input class="form-control" type="time" value="00:00:00" id="example-time-entrada" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="example-time-input" class="col-4 col-form-label">Horário Final</label>
-                                    <div class="col-8">
-                                        <input class="form-control" type="time" value="00:00:00" id="example-time-saida" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                                <button type="submit" class="btn btn-success">Salvar</button>
+                    <p></p>
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <label for="data">Data</label>
+                            <input id="data" class="form-control" type="date" value="dd-mm-aaaa" name="data" required disabled>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="horario">Horário</label>
+                            <select id="horario" class="form-control" required name="horaInicio" disabled>
+                            </select>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row col-sm align-items-center">
+                        <div class="col-sm-2 offset-sm-8">
+                            <a class="btn-primary btnAlt" href="/home">Voltar</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-                                </form>
-                                <form th:action="@{/home}" method="get">
-                                    <div class="col-lg-12" style="text-align: right;" id="button">
-                                        <button type="submit" class="btn btn-danger">Voltar</button>
-                                    </div>
-                                </form>
-                                </div>
 
-                                </div>
 
-                                </body>
+        <div layout:fragment="scripts">
+            <script>
+                $(document).ready(function () {
+                    $('#especialidade').change(habilitarData);
+                    $('#data').change(obterHorariosDisponiveis);
 
-                                </html>
+                    setMinData();
+
+                    function setMinData() {
+                        var today = new Date();
+
+                        var dd = today.getDate();
+                        var mm = today.getMonth() + 1;
+                        var yyyy = today.getFullYear();
+
+                        if (dd < 10) {
+                            dd = '0' + dd
+                        }
+                        if (mm < 10) {
+                            mm = '0' + mm
+                        }
+                        today = yyyy + '-' + mm + '-' + dd;
+                        $('#data').attr("min", today);
+                    }
+
+                    function habilitarData() {
+                        $('#data').prop('disabled', false);
+                        $('#horario').empty();
+                    }
+
+                    function obterHorariosDisponiveis() {
+                        $('#horario').prop('disabled', true);
+
+                        var data = $('#data').val();
+                        var especialidade = $('#especialidade').val();
+                        var url = `/paciente/novaConsulta/horariosDisponiveis?data=${data}&especialidadeId=${especialidade}`;
+
+                        $('#horario').load(url, function (responseTxt, statusTxt, xhr) {
+                            if (statusTxt == "success") {
+                                $('#horario').prop('disabled', false);
+                            }
+                            if (statusTxt == "error") {
+                                $('#horario').empty();
+                                alert("Não há médicos disponíveis neste dia da semana.");
+                            }
+                        });
+                    }
+                })
+            </script>
+        </div>
+
+    </body>
+
+</html>

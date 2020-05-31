@@ -7,73 +7,84 @@
     </head>
 
     <body>
-        <div id="fundopaciente" layout:fragment="content">
-            <form th:action="@{/paciente/novaConsulta}" method="get" id="espacobotao">
-                <button type="submit" class="btn btn-warning text-white">Nova Consulta</button>
-            </form>
+        <div class="container" layout:fragment="content">
+
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/logoPEG.png}"/>
+                <h2>Olá, <span th:text="${nome}"></span>!</h2><br>
+                    <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
+                        <button type="submit" class="btn" id="btnNovaConsulta">Nova Consulta</button>
+                    </form>
+            </div>
+
             <div id="espacotitulo">
                 <h4>Próximas consultas agendadas</h4>
             </div>
-            <div class="tabela-consulta">
-                <table id="table-proximas-consultas" width="100%">
-                    <tbody>
-                        <tr th:if="${proximasConsultas.empty}">
-                            <td colspan="2">Não há consultas futuras</td>
-                        </tr>
-                        <tr th:each="consulta : ${proximasConsultas}">
-                            <td width="50%">
-                                <div id="block">
-                                    <p>
-                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
-                                        <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
-                                        <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
-                                    </p>
-                                </div>
-                            </td>
-                            <td th:if="!${consulta.confirmada}" width="50%" align="right" style="padding-right:70px;">
-                                <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
-                                    <button type="submit" class="btn btn-success">Confirmar</button>
-                                </form>
-                            </td>
-                            <td th:if="${consulta.confirmada}" width="50%" align="right" style="padding-right:70px;" >
-                                <button type="none" disabled class="btn btn-outline-secondary">Confirmado</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="proximasConsultas">
+                <div  class="blockwhite col-sm row  align-items-center" th:if="${proximasConsultas.empty}">
+                    <p>
+                        <b>Não há consultas futuras</b>
+                    </p>
+                </div>
+                <div  class="form-row blockwhite" th:each="consulta : ${proximasConsultas}">
+                    <div class="col-sm-6 align-items-center">
+                        <p>
+                            <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                            <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
+                            <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                        </p>
+                    </div>
+                    <div class="col-sm" style="padding-right:70px;">
+                        <form th:action="@{/paciente/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
+                            <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
+                        </form>
+                    </div>
+                    <div class="col-sm" th:if="!${consulta.confirmada}" style="padding-right:70px">
+                        <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
+                            <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
+                        </form>
+                    </div>
+                    <div class="col-sm" th:if="${consulta.confirmada}" style="padding-right:70px">
+                        <button type="none" disabled class="btn btn-outline-primary btnAlt">Confirmado</button>
+                    </div>
+                </div>
             </div>
             <!--Linha separadora-->
-            <hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));"><b><span align="center"><font color="#7e838d"></font></span></b></hr>
+            <hr style="border: 0; 
+                height: 1px; 
+                background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+                background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+                background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+                background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));">
+                <b>
+                    <span align="center">
+                        <font color="#7e838d"></font>
+                    </span>
+                </b>
+            </hr>
             <div id="espacotitulo">
                 <h4>Consultas anteriores</h4>
             </div>
-            <div class="tabela-consulta">
-                <table id="table-consultas-anteriores" width="100%">
-                    <tbody>
-                        <tr th:if="${consultasAnteriores.empty}">
-                            <td colspan="2">Não há consultas anteriores</td>
-                        </tr>
-                        <tr th:each="consulta : ${consultasAnteriores}">
-                            <td width="50%">
-                                <div id="block">
-                                    <p>
-                                        <b>Atendimento:</b> <span th:text="${consulta.numAtendimento}">Atendimento</span></br>
-                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
-                                    </p>
-                                </div>
-                             </td>
-                            <td th:if="${consulta.realizada}" width="50%" align="right" style="padding-right:70px;">
-                                <form th:action="@{/paciente/consulta/} + ${consulta.numAtendimento}" method="get">
-                                    <button id="btnver" type="submit" class="btn btn-primary">Ver</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="consultasAnteriores">
+                <div  class="blockwhite col-sm row align-items-center" th:if="${consultasAnteriores.empty}">
+                    <td colspan="2">Não há consultas anteriores</td>
+                </div>
+                <div  class="blockwhite col-sm row align-items-center" th:each="consulta : ${consultasAnteriores}">
+                    <div class="col-sm">
+                        <p>
+                            <b>Atendimento:</b> <span th:text="${consulta.numAtendimento}">Atendimento</span></br>
+                            <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                        </p>
+                    </div>
+                    <div class="col-sm" th:if="${consulta.realizada}" style="padding-right:70px">
+                        <form th:action="@{/paciente/consulta/} + ${consulta.numAtendimento}" method="get">
+                            <button type="submit" class="btn btnAlt btn-primary">Detalhes</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
-
 </html>
 
 

@@ -39,11 +39,9 @@ public class PacienteService {
             paciente.setAlergias(alergias);
             repository.save(paciente);
     }
-    
-    
-    
-    // TODO: buscarPacientePorCPF
-    
-    // TODO: buscarPacientePorNome
+
+	public Paciente obterPaciente(String cpf) {
+		return repository.getOne(cpf);
+	}
     
 }

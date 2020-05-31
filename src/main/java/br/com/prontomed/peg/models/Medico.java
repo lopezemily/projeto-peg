@@ -1,6 +1,9 @@
 package br.com.prontomed.peg.models;
 
+import java.time.DayOfWeek;
 import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -11,8 +14,8 @@ public class Medico extends Pessoa {
     @Embedded
     private RegistroMedico crm;
     
-    @Embedded
-    private Disponibilidade disponibilidade;
+    @ElementCollection(targetClass=DayOfWeek.class)
+    private List<DayOfWeek> disponibilidade;
     
     @ManyToMany
     private List<Especialidade> especialidades;
@@ -25,11 +28,11 @@ public class Medico extends Pessoa {
         this.crm = crm;
     }
 
-    public Disponibilidade getDisponibilidade() {
+    public List<DayOfWeek> getDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(Disponibilidade disponibilidade) {
+    public void setDisponibilidade(List<DayOfWeek> disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
 
@@ -40,6 +43,5 @@ public class Medico extends Pessoa {
     public void setEspecialidades(List<Especialidade> especialidades) {
         this.especialidades = especialidades;
     }
-    
     
 }

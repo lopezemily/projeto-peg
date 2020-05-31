@@ -6,43 +6,105 @@
         <title>Médico</title>
     </head>
 
-    <body id="fundocadastro">
-        <div layout:fragment="content"> 
-            <div id="espacotitulo">
-                <h4>Próximas Consultas</h4>
+    <body>
+        <div class="container-md" layout:fragment="content"> 
+
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/logoPEG.png}"/>
+                <h2>Olá, Dr(a) <span th:text="${nome}"></span>! </h2><br>
             </div>
-            <div class="tabela-consulta">
-                <table id="table-proximas-consultas" width="100%">
-                    <tbody>
-                        <tr th:if="${proximasConsultas.empty}">
-                            <td colspan="2">Não há consultas futuras</td>
-                        </tr>
-                        <tr th:each="consulta : ${proximasConsultas}">
-                            <td  width="50%">
-                                <div id="block">
-                                    <p>
-                                        <b>Data:</b> <span th:text="${#temporals.format(consulta.dtHrConsulta,'dd/MM/yyyy HH:mm')}">Data</span></br>
-                                        <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
-                                        <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
-                                    </p>
-                                </div>
-                            </td>
-                            <td width="20%" >
+            <div class="row">
+                <div id="ladoEsquerdo" class="col-sm-6">
+
+                    <div id="espacotitulo">
+                        <h4>Próximas consultas agendadas</h4>
+                    </div>
+
+                    <div id="proximasConsultas">
+                        <div  class="blockwhite col-sm-md row align-items-center" th:if="${proximasConsultas.empty}">
+                            <p>
+                                <b>Não há consultas futuras</b>
+                            </p>
+                        </div>
+                        <div class="row blockwhite align-items-center" th:each="consulta : ${proximasConsultas}">
+                            <div class="col-sm-md">
+                                <p>
+                                    <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                                    <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
+                                    <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                                </p>
+                            </div>
+                            <div  class="col-sm-md mx-auto">
                                 <div th:if="!${consulta.confirmada}">
-                                    <p style="color: #FFD333"><b>Aguardando confirmação</b></p>
+                                    <span style="color: #FFD333"><b>Aguardando confirmação</b></span>
                                 </div>
                                 <div th:if="${consulta.confirmada}">
                                     <p style="color: #A6A6A6"><b>Confirmado</b></p>
                                 </div>
-                            </td>
-                            <td width="30%" align="right" style="padding-right:70px;">
+                            </div>
+                            <div class="col-sm-md mx-auto">
                                 <form th:action="@{/medico/atender/} + ${consulta.numAtendimento}" method="get">
-                                    <button type="submit" class="btn btn-success">Iniciar Atendimento</button>
+                                    <button type="submit" class="btn btn-success btnAlt">Iniciar Atendimento</button>
                                 </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ladoDireito"  class="col-sm-6">
+                    <div id="espacotitulo">
+                        <h4>Estatísticas do mês</h4>
+                    </div>
+                    <div class="blockwhite">
+                        <div class="row col-sm justify-content-around">
+                            <div id="pacientesAgendados" class="kpi">
+                                <div class="row mx-auto">
+                                    <h2 th:text="${pacientesAgendados}"></h2>
+                                </div>
+                                <div class="row mx-auto">
+                                    <span>Pacientes agendados</span>
+                                </div>
+                                <div class="row mx-auto">
+                                    <img th:src="@{/img/pacientesAgendados.png}"/>
+                                </div>
+                            </div>
+                            <div id="pacientesAtendidos" class="kpi">
+                                <div class="row mx-auto">
+                                    <h2 th:text="${pacientesAtendidos}"></h2>
+                                </div>
+                                <div class="row mx-auto">
+                                    <span>Pacientes atendidos</span>
+                                </div>
+                                <div class="row mx-auto">
+                                    <img th:src="@{/img/pacientesAtendidos.png}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-sm justify-content-around">
+                            <div id="pacientesConfirmados" class="kpi">
+                                <div class="row mx-auto">
+                                    <h2 th:text="${pacientesConfirmados}"></h2>
+                                </div>
+                                <div class="row mx-auto">
+                                    <span>Pacientes confimados</span>
+                                </div>
+                                <div class="row mx-auto">
+                                    <img th:src="@{/img/pacientesConfirmados.png}"/>
+                                </div>
+                            </div>
+                            <div id="pacientesAusentes" class="kpi">
+                                <div class="row mx-auto">
+                                    <h2 th:text="${pacientesAusentes}"></h2>
+                                </div>
+                                <div class="row mx-auto">
+                                    <span>Pacientes ausentes</span>
+                                </div>
+                                <div class="row mx-auto">
+                                    <img th:src="@{/img/pacientesAusentes.png}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

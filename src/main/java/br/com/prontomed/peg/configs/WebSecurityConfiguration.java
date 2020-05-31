@@ -45,7 +45,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/cadastro").permitAll()
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/paciente/**").hasAuthority("PACIENTE")
-            .anyRequest().authenticated()
+            .anyRequest().authenticated().and().rememberMe()
             .and().csrf().disable().formLogin()
             .loginPage("/login").failureUrl("/login?error=true")
             .defaultSuccessUrl("/home", true)
@@ -61,7 +61,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
-            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**");
     }
 
 }
