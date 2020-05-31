@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @Controller
 public class LoginController {
-    
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -34,7 +34,7 @@ public class LoginController {
     @Autowired
     private PacienteService pacienteService;
 
-    @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String login(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             return "redirect:home";
@@ -51,16 +51,15 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid CadastroPaciente cadastroPaciente, BindingResult bindingResult)
+    public String createNewUser(@Valid CadastroPaciente cadastroPaciente, BindingResult bindingResult)
             throws JsonProcessingException {
-        ModelAndView modelAndView = new ModelAndView();
         Optional<Usuario> userExists = userService.findUserByCpf(cadastroPaciente.getCpf());
         if (userExists.isPresent()) {
             bindingResult.rejectValue("userName", "error.user",
                     "There is already a user registered with the user name provided");
         }
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("cadastro");
+            return "cadastro";
         } else {
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
@@ -69,10 +68,8 @@ public class LoginController {
             Paciente paciente = objectMapper.readValue(objectMapper.writeValueAsString(cadastroPaciente), Paciente.class);
             pacienteService.inserirPaciente(paciente);
 
-            modelAndView.addObject("successMessage", "Usuario foi cadastrado com sucesso");
-            modelAndView.setViewName("login");
+            return "redirect:/login?mensagem=Usuario foi cadastrado com sucesso. Acesse sua conta com o login cadastrado.";
         }
-        return modelAndView;
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)

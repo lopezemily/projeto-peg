@@ -50,7 +50,7 @@ public class MedicoController {
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.POST)
     public String salvarConsulta(@PathVariable long numAtendimento, Prontuario prontuario) {
         consultaService.registrarProntuario(numAtendimento, prontuario);
-        return "redirect:/medico/home";
+        return "redirect:/medico/home?mensagem=Prontuario salvo com sucesso.";
     }
     
     @RequestMapping(value = {"/atestado/{numAtendimento}"}, method = RequestMethod.GET)
