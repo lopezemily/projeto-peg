@@ -16,10 +16,12 @@
 <body>
     <div>
         <nav class="navbar navbar-dark" style="background-color: #1395d3;">
-            <a class="navbar-brand">Logo</a>
+            <div  class="container">
+            <img th:src="@{/img/logoP.png}"/>
             <form class="form-inline" th:action="@{/logout}" method="get">
                 <button class="btn btn-outline-success my-2 my-sm-0" id="btnSair" type="submit">Sair</button>
             </form>
+            </div>
         </nav>
 
         <div layout:fragment="content"></div>
