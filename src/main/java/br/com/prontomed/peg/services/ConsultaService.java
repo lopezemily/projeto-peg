@@ -112,18 +112,25 @@ public class ConsultaService {
 
         List<Consulta> consultasNoDia = consultaRepository.findAllByDataAndMedicoIn(data, medicosDisponiveis);
 
-        int tempoMinutosTotal = (int) Duration.between(inicioAtendimento, fimAtendimento).toMinutes();
+        LocalTime inicioAtendimentoDia = inicioAtendimento;
+        if (data.compareTo(LocalDate.now()) == 0) {
+            inicioAtendimentoDia = LocalTime.of(LocalTime.now().plusHours(1).getHour(), 0);
+            if(inicioAtendimentoDia.compareTo(fimAtendimento) >= 0)
+                throw new Exception("Não há mais horários disponíveis para hoje.");
+        }
+
+        int tempoMinutosTotal = (int) Duration.between(inicioAtendimentoDia, fimAtendimento).toMinutes();
         int consultasTotaisDia = tempoMinutosTotal / tempoConsultaMinutos;
 
         List<Disponibilidade> horariosDisponiveis = new ArrayList<>();
         for (Medico medico : medicosDisponiveis) {
-            LocalTime atual = inicioAtendimento;
+            LocalTime atual = inicioAtendimentoDia;
             
             for (int i = 0; i < consultasTotaisDia - 1; i++) {
-                atual = atual.plusMinutes(tempoConsultaMinutos);
                 if(atual.compareTo(inicioAlmoco) < 0 || atual.compareTo(fimAlmoco) >= 0){
                     horariosDisponiveis.add(new Disponibilidade(medico.getCpf(), medico.getNome(), atual));
                 }
+                atual = atual.plusMinutes(tempoConsultaMinutos);
             }
         }
 
