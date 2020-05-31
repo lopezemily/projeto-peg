@@ -1,8 +1,12 @@
  package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Prontuario;
 import br.com.prontomed.peg.services.ConsultaService;
 import br.com.prontomed.peg.services.MedicoService;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import javax.swing.text.MaskFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -51,7 +55,22 @@ public class MedicoController {
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.POST)
     public String salvarConsulta(@PathVariable long numAtendimento, Prontuario prontuario) {
         consultaService.registrarProntuario(numAtendimento, prontuario);
-        return "redirect:/medico/home";
+        return "redirect:/medico/home?mensagem=Prontuario salvo com sucesso.";
+    }
+    
+    @RequestMapping(value = {"/atestado/{numAtendimento}"}, method = RequestMethod.GET)
+    public ModelAndView atestar(@PathVariable long numAtendimento) throws ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("medico/atestado");
+        
+        Consulta consulta = consultaService.obterConsulta(numAtendimento);
+        
+        MaskFormatter mask = new MaskFormatter("###.###.###-##");
+        mask.setValueContainsLiteralCharacters(false);
+        
+        modelAndView.addObject("cpf", mask.valueToString(consulta.getPaciente().getCpf()));
+        modelAndView.addObject("consulta", consulta);
+        return modelAndView;
     }
 
 }

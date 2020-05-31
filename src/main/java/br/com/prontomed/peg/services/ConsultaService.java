@@ -134,4 +134,8 @@ public class ConsultaService {
 
         return horariosDisponiveis.stream().map(h -> h.getHorario()).distinct().collect(Collectors.toList());
     }
+
+    public void cancelarConsulta(long numAtendimento) {
+        consultaRepository.deleteById(numAtendimento);
+    }
 }

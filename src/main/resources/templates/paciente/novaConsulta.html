@@ -47,28 +47,26 @@
                             <label for="data">Data</label>
                             <input id="data" class="form-control" type="date" value="dd-mm-aaaa" name="data" required disabled>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-4">
                             <label for="horario">Horário</label>
                             <select id="horario" class="form-control" required name="horaInicio" disabled>
                             </select>
                         </div>
                     </div>
                     <p></p>
-                    <div class="col-sm">
-                        <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                    <div class="row col-sm align-items-center">
+                        <div class="col-sm-2 offset-sm-8">
+                            <a class="btn-primary btnAlt" href="/home">Voltar</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
 
-        <form th:action="@{/home}" method="get">
-            <div class="col-lg-12" style="text-align: right;" id="button">
-                <button type="submit" class="btn btn-danger">Voltar</button>
-            </div>
-        </form>
-        </div>
 
-        </div>
 
         <div layout:fragment="scripts">
             <script>
@@ -78,11 +76,11 @@
 
                     setMinData();
 
-                    function setMinData(){
+                    function setMinData() {
                         var today = new Date();
 
                         var dd = today.getDate();
-                        var mm = today.getMonth()+1;
+                        var mm = today.getMonth() + 1;
                         var yyyy = today.getFullYear();
 
                         if (dd < 10) {
@@ -90,8 +88,8 @@
                         }
                         if (mm < 10) {
                             mm = '0' + mm
-                        } 
-                        today = yyyy+'-'+mm+'-'+dd;
+                        }
+                        today = yyyy + '-' + mm + '-' + dd;
                         $('#data').attr("min", today);
                     }
 
@@ -108,10 +106,10 @@
                         var url = `/paciente/novaConsulta/horariosDisponiveis?data=${data}&especialidadeId=${especialidade}`;
 
                         $('#horario').load(url, function (responseTxt, statusTxt, xhr) {
-                            if (statusTxt == "success"){
+                            if (statusTxt == "success") {
                                 $('#horario').prop('disabled', false);
                             }
-                            if (statusTxt == "error"){
+                            if (statusTxt == "error") {
                                 $('#horario').empty();
                                 alert("Não há médicos disponíveis neste dia da semana.");
                             }

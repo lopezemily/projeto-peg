@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Atestado</title>
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="blockwhite">
+                <div id="cabecalhoAtestado">
+                    <p>
+                        <img th:src="@{/img/logoPEG.png}"/></br>
+                        <h4><span th:text="${consulta.unidade.nome}"></span></h4>
+                        <span th:text="${consulta.unidade.endereco.logradouro}"></span>, 
+                        <span th:text="${consulta.unidade.endereco.numero}"></span> - 
+                        <span th:text="${consulta.unidade.endereco.bairro}"></span> - 
+                        <span th:text="${consulta.unidade.endereco.cidade}"></span> - 
+                        <span th:text="${consulta.unidade.endereco.CEP}"></span></br>
+                        Telefone: <span th:text="${consulta.unidade.contato.telefone}"></span> / Celular: <span th:text="${consulta.unidade.contato.celular}"></span></br>
+                        E-mail: <span th:text="${consulta.unidade.contato.email}"></span></br>
+                    </p>
+                </div>
+                <h3 style="text-align: center">Atestado</h3>
+                <div id="textoAtestado">
+                    <p >
+                        Atesto para os devidos fins que <span th:text="${consulta.paciente.nome}"></span>, 
+                        portador do CPF <span th:text="${cpf}"></span>, esteve sob tratamento médico neste consultório,
+                        no período de <span th:text="${consulta.horaInicio}"></span> às <span th:text="${consulta.horaFim}"></span>, do dia <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}"></span>,
+                        necessitando o(a) mesmo(a) de ______________________ de convalescença.
+                    </p>
+                </div>
+                <div id="cidadeData">
+                    <span th:text="${consulta.unidade.endereco.cidade}"></span>, <span th:text="${consulta.horaInicio}"></span>
+                </div>
+                <div id="textoAssinatura" class="row">
+                    <div>
+                        <div>
+                            ___________________________________</br>
+                            <span th:text="${consulta.medico.nome}"></span></br>
+                            CRM: <span th:text="${consulta.medico.crm.numeroRegistro}"></span> - <span th:text="${consulta.medico.crm.uf}"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="offset-2">
+                            ___________________________________</br>
+                            <span th:text="${consulta.paciente.nome}"></span></br>
+                            CPF: <span th:text="${cpf}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row noprint">
+                <div class="col-sm-4 offset-5">
+                    <input type="button" value="Voltar" class="btn btn-primary btnAlt" onClick="history.back()"/>
+                </div>
+                <div>
+                    <input type="button" value="Imprimir" class="btn btn-success btnAlt" onClick="window.print()"/>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

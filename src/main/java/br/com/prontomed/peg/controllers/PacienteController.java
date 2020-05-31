@@ -47,7 +47,7 @@ public class PacienteController {
     @RequestMapping(value = {"/confirmar/{numAtendimento}"}, method = RequestMethod.POST)
     public String confirmar(@PathVariable long numAtendimento) {
         consultaService.confirmarConsulta(numAtendimento);
-        return "redirect:/paciente/home";
+        return "redirect:/paciente/home?mensagem=Consulta confirmada com sucesso.";
     }
 
     @RequestMapping(value = {"/consulta/{numAtendimento}"}, method = RequestMethod.GET)
@@ -80,6 +80,12 @@ public class PacienteController {
     public String salvarNovaConsulta(Authentication autenticacao, Consulta consulta) {
         String cpf = autenticacao.getName();
         consultaService.criarConsulta(cpf, consulta);
-        return "redirect:/paciente/home";
+        return "redirect:/paciente/home?mensagem=Consulta criada com sucesso.";
+    }
+    
+    @RequestMapping(value = {"/cancelarConsulta/{numAtendimento}"}, method = RequestMethod.POST)
+    public String cancelarConsulta(@PathVariable long numAtendimento) {
+        consultaService.cancelarConsulta(numAtendimento);
+        return "redirect:/paciente/home?mensagem=Consulta cancelada com sucesso.";
     }
 }
