@@ -10,28 +10,27 @@
                 <h4>Nova Receita</h4>
             </div>
             <br>
-                <div id="block2">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Paciente</label>
-                            <ul>
-                                <span th:text="${consulta.paciente.nome}"></span>
-                            </ul>
-                        </div>
-                    </form>
-                    <div class="col">
-                        <label for="exampleFormControlTextarea1">Descrição</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="descReceita"></textarea>
+            <div id="block2">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Paciente</label>
+                        <ul>
+                            <span th:text="${consulta.paciente.nome}"></span>
+                        </ul>
                     </div>
+                </form>
+                <div class="col">
+                    <label for="exampleFormControlTextarea1">Descrição</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="descReceita"></textarea>
+                </div>
+                <br>
                     <div class="col-lg-12" style="text-align: right;" id="button">  
                         <form th:action="@{/home}" method="get">
                             <button type="submit" class="btn btn-primary">Salvar</button>
-                        </form>
-                        <form>
                             <button type="submit" class="btn btn-primary" onClick="window.print()">Imprimir</button>
                         </form>
                     </div>
-                </div>
+            </div>
         </div>
     </body>
 </html>

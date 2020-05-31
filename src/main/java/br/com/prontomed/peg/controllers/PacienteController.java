@@ -59,8 +59,9 @@ public class PacienteController {
     @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
     public String salvarNovaConsulta(Authentication autenticacao, Consulta consulta) {
         String cpf = autenticacao.getName();
-        
+
         consultaService.criarConsulta(cpf, consulta);
         return "redirect:/paciente/home";
     }
+
 }

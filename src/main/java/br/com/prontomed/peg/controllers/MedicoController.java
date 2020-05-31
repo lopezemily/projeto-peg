@@ -16,7 +16,7 @@ public class MedicoController {
 
     @Autowired
     private ConsultaService consultaService;
-    
+
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
         String cpf = autenticacao.getName();
@@ -28,7 +28,7 @@ public class MedicoController {
 
         return modelAndView;
     }
-    
+
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.GET)
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
@@ -36,11 +36,17 @@ public class MedicoController {
         modelAndView.setViewName("medico/registrarConsulta");
         return modelAndView;
     }
-    
+
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.POST)
     public String salvarConsulta(@PathVariable long numAtendimento, Prontuario prontuario) {
         consultaService.registrarProntuario(numAtendimento, prontuario);
         return "redirect:/medico/home";
     }
 
+//    @RequestMapping(value = {"/novaReceita/{numAtendimento}"}, method = RequestMethod.GET)
+//    public ModelAndView novaReceita(@PathVariable long numAtendimento) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("medico/novaReceita");
+//        return modelAndView;
+//    }
 }
