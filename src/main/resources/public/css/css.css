@@ -114,6 +114,10 @@
     box-sizing: border-box;
 }
 
+@media print { 
+    .noprint { display:none; } 
+}
+
 #block2 {
     height: 600px;
     background-color: white;
