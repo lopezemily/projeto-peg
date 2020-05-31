@@ -77,6 +77,7 @@ public class MedicoController {
      public ModelAndView novaReceita(@PathVariable long numAtendimento) {
      ModelAndView modelAndView = new ModelAndView();
      modelAndView.addObject("numeroAtendimento", numAtendimento);
+     modelAndView.addObject("consulta", consultaService.obterConsulta(numAtendimento));
      modelAndView.setViewName("medico/novaReceita");
      return modelAndView;
      }

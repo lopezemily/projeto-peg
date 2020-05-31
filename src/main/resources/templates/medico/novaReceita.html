@@ -13,10 +13,8 @@
             <div id="block2">
                 <form>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Paciente</label>
-                        <ul>
-                            <span th:text="${consulta.paciente.nome}"></span>
-                        </ul>
+                        <label for="nomePaciente">Paciente</label>
+                        <input id="nomePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.nome}">
                     </div>
                 </form>
                 <div class="col">

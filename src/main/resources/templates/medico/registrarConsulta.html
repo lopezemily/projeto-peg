@@ -65,14 +65,10 @@
                             <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
                         </div>
                         <div class="col-sm-3">
-                            <form th:action="@{/medico/novaReceita/} + ${numAtendimento}" method="get">
-                                <button type="submit"id="btnReceita" class="btn btnAlt">Receita</button>
-                            </form>
+                            <a class="btn btnAlt" id="btnReceita" th:href="@{/medico/novaReceita/} + ${numAtendimento}">Receita</a>
                         </div>
                         <div class="col-sm-3">
-                            <form th:action="@{/medico/atestado/} + ${numAtendimento}" method="get">
-                                <button type="submit" id="btnAtestado" class="btn btnAlt">Atestado</button>
-                            </form>
+                            <a class="btn btnAlt" id="btnAtestado" th:href="@{/medico/atestado/} + ${numAtendimento}">Atestado</a>
                         </div>
                     </div>
                 </div>
