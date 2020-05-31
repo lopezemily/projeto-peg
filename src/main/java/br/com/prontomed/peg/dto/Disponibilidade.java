@@ -30,7 +30,7 @@ public class Disponibilidade {
     public boolean equals(Object obj) {
         if (obj instanceof Disponibilidade) {
             Disponibilidade d = (Disponibilidade) obj;
-            return d.horario == this.horario && d.idMedico == this.idMedico;
+            return d.horario.compareTo(this.horario) == 0 && d.idMedico.equals(this.idMedico);
         }
         return false;
     }
