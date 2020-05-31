@@ -29,9 +29,9 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW()) AND c.medico.cpf = :medicoCpf AND c.realizada = :realizada AND c.confirmada = :confirmada")
     int countConsultaMesByMedicoCpfAndRealizadaAndConfirmada(@Param("medicoCpf") String medicoCpf, @Param("realizada") Boolean realizada, @Param("confirmada") Boolean confirmada);
 
-    @Query("SELECT COUNT(c) FROM Consulta c WHERE c.data >= CURDATE() AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE AND c.confirmada = TRUE")
+    @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN CURDATE() AND LAST_DAY(CURDATE())) AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE AND c.confirmada = TRUE")
     int countConsultaMesConfirmadosByMedicoCpf(@Param("medicoCpf") String medicoCpf);
 
-    @Query("SELECT COUNT(c) FROM Consulta c WHERE c.data < CURDATE() AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE")
+    @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01') AND CURDATE()-1) AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE")
     int countConsultaMesAusenteByMedicoCpf(@Param("medicoCpf") String medicoCpf);
 }
