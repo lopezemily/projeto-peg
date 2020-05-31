@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,13 +69,15 @@ public class PacienteController {
     }
 
     @RequestMapping(value = {"/novaConsulta/horariosDisponiveis"}, method = RequestMethod.GET)
-    public ModelAndView horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate data, @RequestParam("especialidadeId") int especialidadeId) throws Exception {
-        ModelAndView modelAndView = new ModelAndView();
-
-        modelAndView.setViewName("paciente/fragments/horariosDisponiveis :: horariosSelect");
-        modelAndView.addObject("disponibilidades", consultaService.obterHorariosDisponiveis(data, especialidadeId));
-
-        return modelAndView;
+    public Object horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate data, @RequestParam("especialidadeId") int especialidadeId) throws Exception {
+        try {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("paciente/fragments/horariosDisponiveis :: horariosSelect");
+            modelAndView.addObject("disponibilidades", consultaService.obterHorariosDisponiveis(data, especialidadeId));
+            return modelAndView;
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
