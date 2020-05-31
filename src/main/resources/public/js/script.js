@@ -1,3 +1,10 @@
+url = new URL(window.location.href);
+status = url.searchParams.get('mensagem');
+
+if (status !== "null") {
+    alert(status);
+}
+
 // Validação para permitir apenas letras
 function ApenasLetras(e, t) {
     try {
