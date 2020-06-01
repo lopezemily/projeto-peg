@@ -14,7 +14,7 @@
                 <h4>Registro de Prontuário</h4>
             </div>
 
-            <form th:action="@{/medico/atender/} + ${numeroAtendimento}" method="post">
+            <form th:action="@{/medico/atender/} + ${numeroAtendimento}" method="post" id="formProntuario">
                 <div class="blockwhite" id="espacotitulo">
                     <div class="form-row">
                         <div class="col-sm-3">
@@ -26,18 +26,29 @@
                         <label for="queixaPront">Queixa principal</label>
                         <input id="queixaPront" type="text" class="form-control" required name="queixa">
                     </div>
+
+
                     <div class="form-row align-items-end">
-                        <div class="col-sm-2">
-                            <label for="exampleFormControlInput1">Buscar CID</label>
-                            <input type="number" class="form-control" placeholder="ex: J15.9" name="cids.codigo">
-                        </div>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control"> 
-                        </div>
-                        <div class="1">
-                            <button type="button" id="addInput">add</button>
-                        </div>
+
+                        <input name="cids" type="hidden">
+
+                            <div id="cids" class="form-row align-items-end col-sm">
+                                <div class="col-sm-3">
+                                    <label for="cid">Buscar CID</label>
+                                    <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9">
+                                </div>
+                                <div class="col-sm-9">
+                                    <input id="cidDescricao" type="text" readonly class="form-control"> 
+                                </div>
+                            </div>
+
+                            <div class="col-sm-auto">
+                                <button class="btn btn-primary" type="button" id="adicionar_cid" name="cids.descricao">ADD</button>
+                            </div>
+
                     </div>
+
+
                     <div class="form-row align-items-center">
                         <div class="col-sm-4">
                             <label for="paPront">PA</label>
@@ -77,6 +88,42 @@
                     </div>
                 </div>
             </form>
+
+        </div>
+        <div layout:fragment="scripts">
+            <script>
+                //adicionar cid
+                $("#adicionar_cid").click(function () {
+                    var campos_novos = "<div class='cid_fc row'>\n\
+                                        <div class='col-sm' style='margin-top: 5px;'>\n\
+                                        <input type='text' class='form-control cid' id='cid'>\n\
+                                        </div>\n\
+                                        <div class='col-sm' style='margin-top: 5px;'>\n\
+                                        <input type='text' class='form-control' id='cidDescricao' name='cids.descricao' readonly type='button'>\n\
+                                        </div>\n\
+                                        <div class='col-sm-4' id='cid_fc' style='margin-top: 5px;'>\n\
+                                        <button class='btn btn-primary remove' type='button' >Remove</button>\n\
+                                        </div></div>";
+                    $("#cids").append(campos_novos);
+                });
+
+                $(document).on('click', 'button.remove', function () {
+                    $(this).closest('div.cid_fc').remove();
+                });
+
+                function processarForm(e) {
+                    e.preventDefault();
+                    
+                    var cids="";
+                    $(".cid").each(function (i, e) {
+                        cids = cids + $(this).val() + ",";
+                    });
+                    console.log(cids);
+                }
+
+                $("#formProntuario").on("submit", processarForm);
+
+            </script>
         </div>
     </body>
 
