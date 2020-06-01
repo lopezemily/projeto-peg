@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Dados do Paciente</title>
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/detalhesConsulta.png}"/>
+                <h4>Detalhes da Paciente</h4>
+            </div>
+
+            <div class="blockwhite" id="espacotitulo">
+                <h5 class="text-primary">Dados pessoais</h5>
+                <div class="form-row col-sm align-items-center">
+                    <div class="col-sm-5">
+                        <label for="nomePaciente">Nome</label>
+                        <input id="nomePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.nome}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="sexoPaciente">Sexo</label>
+                        <input id="sexoPaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.nome}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="dtNascimento">Data Nascimento</label>
+                        <input id="dtNascimento" type="text" class="form-control" readonly th:value="${#temporals.format(consulta.data,'dd/MM/yyyy')}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="estadoCvil">Estado civil</label>
+                        <input id="estadoCvil" type="text" class="form-control" readonly th:value="${consulta.paciente.estadoCivil}">
+                    </div>
+                </div>
+                <div class="form-row col-sm align-items-center">
+                    <div class="col-sm-4">
+                        <label for="emailPaciente">E-mail</label>
+                        <input id="emailPaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.contato.email}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="telPaciente">Telefone</label>
+                        <input id="telPaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.contato.telefone}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="celPaciente">Celular</label>
+                        <input id="celPaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.contato.celular}">
+                    </div>
+                    <div class="col-sm">
+                        <label for="cidadePaciente">Cidade</label>
+                        <input id="cidadePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.endereco.cidade}">
+                    </div>
+                </div>
+            </div>
+            <div class="blockwhite" id="Observações">
+                <h5 class="text-primary">Observações</h5>
+                <div class="col-sm">
+                    <label for="alergiasPaciente">Alergias</label>
+                    <textArea id="alergiasPaciente" type="text" class="form-control" readonly th:if="${consulta.paciente.alergias.empty}">Não registrou alergias</textArea>
+                    <ul>
+                        <li id="exames" th:each="alergias : ${consulta.paciente.alergias}">
+                            <span th:text="${alergias}"></span></br>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <label for="doencasPaciente">Doenças pré-existentes</label>
+                    <ul>
+                        <li>DM:
+                            <span th:if="${consulta.paciente.dm}">sim</span>
+                            <span th:if="${!consulta.paciente.dm}">não</span>
+                        </li>
+                        <li>HAS:
+                            <span th:if="${consulta.paciente.has}">sim</span>
+                            <span th:if="${!consulta.paciente.has}">não</span>
+                        </li>
+                        <li>IC:
+                            <span th:if="${consulta.paciente.ic}">sim</span>
+                            <span th:if="${!consulta.paciente.ic}">não</span>
+                        </li>
+                        <li>DPOC:
+                            <span th:if="${consulta.paciente.dpoc}">sim</span>
+                            <span th:if="${!consulta.paciente.dpoc}">não</span>
+                        </li>
+                        <li>CA:
+                            <span th:if="${consulta.paciente.ca}">sim</span>
+                            <span th:if="${!consulta.paciente.ca}">não</span>
+                        </li>
+                        <li>Etilista:
+                            <span th:if="${consulta.paciente.etilista}">sim</span>
+                            <span th:if="${!consulta.paciente.etilista}">não</span>
+                        </li>
+                        <li>Tabagista:
+                            <span th:if="${consulta.paciente.tabagista}">sim</span>
+                            <span th:if="${!consulta.paciente.tabagista}">não</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3 offset-sm-9">
+                    <input type="button" value="Voltar" class="btn btn-primary btnAlt" onClick="history.back()"/>
+                </div>
+        </div>
+    </body>
+</html>

@@ -1,4 +1,4 @@
- package br.com.prontomed.peg.controllers;
+package br.com.prontomed.peg.controllers;
 
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Prontuario;
@@ -21,10 +21,10 @@ public class MedicoController {
 
     @Autowired
     private ConsultaService consultaService;
-    
+
     @Autowired
     private MedicoService medicoService;
-    
+
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
         String cpf = autenticacao.getName();
@@ -33,9 +33,9 @@ public class MedicoController {
         modelAndView.setViewName("medico/home");
 
         modelAndView.addObject("nome", medicoService.obterMedico(cpf).getNome());
-        
+
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasMedico(cpf));
-        
+
         modelAndView.addObject("pacientesAgendados", medicoService.obterContagemPacientesAgendadosMes(cpf));
         modelAndView.addObject("pacientesAtendidos", medicoService.obterContagemPacientesAtendidosMes(cpf));
         modelAndView.addObject("pacientesConfirmados", medicoService.obterContagemPacientesConfirmadosMes(cpf));
@@ -43,32 +43,50 @@ public class MedicoController {
 
         return modelAndView;
     }
-    
+
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.GET)
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("numeroAtendimento", numAtendimento);
         modelAndView.setViewName("medico/registrarConsulta");
+        Consulta consulta = consultaService.obterConsulta(numAtendimento);
+
+        modelAndView.addObject("numeroAtendimento", numAtendimento);
+
+        modelAndView.addObject("consulta", consulta);
+
         return modelAndView;
     }
-    
+
     @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.POST)
     public String salvarConsulta(@PathVariable long numAtendimento, Prontuario prontuario) {
         consultaService.registrarProntuario(numAtendimento, prontuario);
         return "redirect:/medico/home?mensagem=Prontuario salvo com sucesso.";
     }
-    
+
     @RequestMapping(value = {"/atestado/{numAtendimento}"}, method = RequestMethod.GET)
     public ModelAndView atestar(@PathVariable long numAtendimento) throws ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("medico/atestado");
-        
+
         Consulta consulta = consultaService.obterConsulta(numAtendimento);
-        
+
         MaskFormatter mask = new MaskFormatter("###.###.###-##");
         mask.setValueContainsLiteralCharacters(false);
-        
+
         modelAndView.addObject("cpf", mask.valueToString(consulta.getPaciente().getCpf()));
+        modelAndView.addObject("consulta", consulta);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/dadosPaciente/{numAtendimento}"}, method = RequestMethod.GET)
+    public ModelAndView visualizarPaciente(@PathVariable long numAtendimento) throws ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("medico/dadosPaciente");
+
+        Consulta consulta = consultaService.obterConsulta(numAtendimento);
+
+        modelAndView.addObject("nome", consulta.getPaciente());
+        modelAndView.addObject("contato", consulta.getPaciente().getContato());
         modelAndView.addObject("consulta", consulta);
         return modelAndView;
     }
