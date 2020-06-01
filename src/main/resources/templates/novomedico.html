@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Novo cadastro</title>
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+
+            <div id="espacotitulo" class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novoPaciente.png}"/>
+                <h2>Novo Médico</h2><br>
+            </div>
+
+            <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
+                <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
+                <div>
+                    <div class="blockwhite" id="dadosPessoais">
+                        <h5 class="text-primary">Dados pessoais</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-5">
+                                <label for="nome">Nome completo*</label>
+                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" onkeypress="return ApenasLetras(event, this);" required>
+                            </div>
+                            <div class="col-sm">
+                                <label class="mr-sm-2" for="sexo">Sexo*</label>
+                                <select id="sexo" class="custom-select mr-sm-2" name="sexo" required>
+                                    <option selected>Selecione...</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="dtNascimento">Data de nascimento*</label>
+                                <input id="dtNascimento" type="date" class="form-control" name="dtNascimento" required>
+                            </div>
+                            <div class="col-sm">
+                                <label class="mr-sm-2" for="estadoCivil">Estado civil*</label>
+                                <select id="estadoCivil" class="custom-select mr-sm-2" required>
+                                    <option selected>Selecione...</option>
+                                    <option value="1">Solteiro(a)</option>
+                                    <option value="2">Casado(a)</option>
+                                    <option value="3">Viúvo(a)</option>
+                                    <option value="4">Divorciado(a)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cpf">CPF*</label>
+                                <input id="cpf" type="text" name="cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)" required>
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="email">E-mail*</label>
+                                <input id="email" type="email" name="contato.email" class="form-control" style="text-transform:lowercase;" required>
+                            </div>
+                            <div class="col-sm">
+                                <label for="tel">Telefone</label>
+                                <input id="tel" type="text" name="contato.telefone" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="14">
+                            </div>
+                            <div class="col-sm">
+                                <label for="cel">Celular</label>
+                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="dadosComplementares">
+                        <h5 class="text-primary">Dados complementares</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cep">CEP</label>
+                                <input id="cep" type="text" name="endereco.CEP" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="rua">Rua</label>
+                                <input id="rua" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm">
+                                <label for="numEndereco">Número</label>
+                                <input id="numEndereco" type="number" name="endereco.numero" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="bairro">Bairro</label>
+                                <input id="bairro" type="text" name="endereco.bairro" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="cidade">Cidade</label>
+                                <input id="cidade" type="text" name="endereco.cidade" class="form-control" style="text-transform: uppercase">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="profissionais">
+                        <h5 class="text-primary">Dados Profissionais</h5>
+                        
+                        <div class="align-items-center">
+                            <div class="col-sm">
+                                <label for="numcrm">Número CRM</label>
+                                <input id="numcrm" type="text" name="numcrm" class="form-control"  placeholder="Quais">
+                                <label class="mr-sm-2" for="ufcrm">UF CRM</label>
+                                <select id="ufcrm" class="custom-select mr-sm-2" name="ufcrm">
+                                    <option selected>Estados</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                                <label class="mr-sm-2" for="especialidade">Especialidade</label>
+                                <select id="especialidade" class="custom-select mr-sm-2" name="especialidade">
+                                    <option selected>Especialidades</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <label class="col-sm">Disponibilidade de atendimento:</label>
+                            <div class="form-row col-sm">
+                                <div class="form-check form-check-inline">
+                                    <input id="seg" class="form-check-input" name="seg" type="checkbox">
+                                        <label for="seg" class="form-check-label">Segunda</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="ter" class="form-check-input" name="ter" type="checkbox">
+                                        <label for="ter" class="form-check-label">Terça</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="qua" class="form-check-input" name="qua" type="checkbox">
+                                        <label for="qua" class="form-check-label">Quarta</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="qui" class="form-check-input" name="qui" type="checkbox">
+                                        <label for="qui" class="form-check-label">Quinta</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="sex" class="form-check-input" name="sex" type="checkbox">
+                                        <label for="sex" class="form-check-label">Sexta</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="sab" class="form-check-input" type="checkbox">
+                                        <label for="sab" class="form-check-label" name="sab">Sabádo</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="domingo" class="form-check-input" name="domingo" type="checkbox">
+                                        <label for="domingo" class="form-check-label">Domingo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row blockwhite align-items-center" id="labelSenha" style="padding-right:70px">
+                        <div class="col-sm-3">
+                            <label for="senha">Senha*</label>
+                            <input id="senha" type="password" placeholder="Senha minima de 6 digitos" name="senha" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+</html>

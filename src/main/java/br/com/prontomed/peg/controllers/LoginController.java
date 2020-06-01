@@ -89,4 +89,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/novomedico", method = RequestMethod.GET)
+    public ModelAndView novomedico() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("novomedico");
+        return modelAndView;
+    }
+
 }
