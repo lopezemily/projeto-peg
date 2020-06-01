@@ -1,0 +1,62 @@
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+
+        <title>Receita</title>
+
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/detalhesConsulta.png}"/>
+                <h4> Receita</h4>
+            </div>
+
+            <div class="blockwhite" id="espacotitulo">
+                <div id="cabecalhoAtestado" style="text-align: center">
+                    <p>
+                        <img th:src="@{/img/logoPEG.png}"/></br>
+                        <h4><span th:text="${consulta.unidade.nome}"></span></h4>
+                        <span th:text="${consulta.unidade.endereco.logradouro}"></span>, 
+                        <span th:text="${consulta.unidade.endereco.numero}"></span> - 
+                        <span th:text="${consulta.unidade.endereco.bairro}"></span> - 
+                        <span th:text="${consulta.unidade.endereco.cidade}"></span> - 
+                        <span th:text="${consulta.unidade.endereco.CEP}"></span></br>
+                        Telefone: <span th:text="${consulta.unidade.contato.telefone}"></span> / Celular: <span th:text="${consulta.unidade.contato.celular}"></span></br>
+                        E-mail: <span th:text="${consulta.unidade.contato.email}"></span></br>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <b>Nome:</b> <span th:text="${consulta.paciente.nome}"></span>
+                    </p>
+
+                </div>
+                <div class="form-row">
+                    <label for="exampleFormControlTextarea1">Descrição</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="descReceita"></textarea>
+                </div>
+                <div id="textoAssinaturaReceita" class="row">
+                    <div>
+                        <div>
+                            ___________________________________</br>
+                            <span th:text="${consulta.medico.nome}"></span></br>
+                            CRM: <span th:text="${consulta.medico.crm.numeroRegistro}"></span> - <span th:text="${consulta.medico.crm.uf}"></span><br>
+                            <span th:text="${#dates.format(#execInfo.now.time, 'dd/MM/yyyy')}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row noprint">
+                    <div class="col-sm-4 offset-5">
+                        <input type="button" value="Voltar" class="btn btn-primary btnAlt" onClick="history.back()"/>
+                    </div>
+                    <div>
+                        <input type="button" value="Imprimir" class="btn btn-success btnAlt" onClick="window.print()"/>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

@@ -25,14 +25,14 @@ public class PacienteController {
 
     @Autowired
     private ConsultaService consultaService;
-    
+
     @Autowired
     private PacienteService pacienteService;
 
     @Autowired
     private EspecialidadeService especialidadeService;
 
-    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
         String cpf = autenticacao.getName();
 
@@ -46,13 +46,13 @@ public class PacienteController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/confirmar/{numAtendimento}"}, method = RequestMethod.POST)
+    @RequestMapping(value = { "/confirmar/{numAtendimento}" }, method = RequestMethod.POST)
     public String confirmar(@PathVariable long numAtendimento) {
         consultaService.confirmarConsulta(numAtendimento);
         return "redirect:/paciente/home?mensagem=Consulta confirmada com sucesso.";
     }
 
-    @RequestMapping(value = {"/consulta/{numAtendimento}"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/consulta/{numAtendimento}" }, method = RequestMethod.GET)
     public ModelAndView visualizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("paciente/detalhesConsulta");
@@ -60,7 +60,7 @@ public class PacienteController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/novaConsulta" }, method = RequestMethod.GET)
     public ModelAndView novaConsulta() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("paciente/novaConsulta");
@@ -68,8 +68,9 @@ public class PacienteController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/novaConsulta/horariosDisponiveis"}, method = RequestMethod.GET)
-    public Object horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate data, @RequestParam("especialidadeId") int especialidadeId) throws Exception {
+    @RequestMapping(value = { "/novaConsulta/horariosDisponiveis" }, method = RequestMethod.GET)
+    public Object horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate data,
+            @RequestParam("especialidadeId") int especialidadeId) throws Exception {
         try {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("paciente/fragments/horariosDisponiveis :: horariosSelect");
@@ -80,14 +81,14 @@ public class PacienteController {
         }
     }
 
-    @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
+    @RequestMapping(value = { "/novaConsulta" }, method = RequestMethod.POST)
     public String salvarNovaConsulta(Authentication autenticacao, Consulta consulta) {
         String cpf = autenticacao.getName();
         consultaService.criarConsulta(cpf, consulta);
         return "redirect:/paciente/home?mensagem=Consulta criada com sucesso.";
     }
-    
-    @RequestMapping(value = {"/cancelarConsulta/{numAtendimento}"}, method = RequestMethod.POST)
+
+    @RequestMapping(value = { "/cancelarConsulta/{numAtendimento}" }, method = RequestMethod.POST)
     public String cancelarConsulta(@PathVariable long numAtendimento) {
         consultaService.cancelarConsulta(numAtendimento);
         return "redirect:/paciente/home?mensagem=Consulta cancelada com sucesso.";
