@@ -33,9 +33,9 @@ VALUES
     ("12312312312", "Diego da Silva", "M", 0, 0, 0, 0, 0, 0, 0);
 
 INSERT INTO prontuario
-    (id,aval_medico,fr,pa,queixa,temperatura)
+    (id,aval_medico,fr,pa,peso,queixa,temperatura)
 VALUES
-    (1,"teste",70,"12x80","dor",36.5);
+    (1,"teste",70,"12x80",80,"dor",36.5);
 
 INSERT INTO prontuario_cids
     (prontuario_id,cids_codigo)

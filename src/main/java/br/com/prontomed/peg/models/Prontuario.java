@@ -10,26 +10,27 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Prontuario {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     private String queixa;
-    
+
     @OneToMany
     private List<CID> cids;
-    
+
     private String pa;
-    
+
     private float temperatura;
-    
+
     private float fr;
-    
+
+    private float peso;
+
     //private String medicamentos;
-    
     private String avalMedico;
-    
+
     @ElementCollection
     private List<String> exames;
 
@@ -88,7 +89,6 @@ public class Prontuario {
 //    public void setMedicamentos(String medicamentos) {
 //        this.medicamentos = medicamentos;
 //    }
-
     public String getAvalMedico() {
         return avalMedico;
     }
@@ -104,7 +104,13 @@ public class Prontuario {
     public void setExames(List<String> exames) {
         this.exames = exames;
     }
-    
-    
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
 
 }
