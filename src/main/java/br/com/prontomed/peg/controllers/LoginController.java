@@ -100,5 +100,4 @@ public class LoginController {
         return modelAndView;
     }
 
->>>>>>> master
 }
