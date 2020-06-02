@@ -32,6 +32,12 @@ INSERT INTO paciente
 VALUES
     ("12312312312", "Diego da Silva", "M", "diego@gmail.com", "99999-8888", 0, 0, 0, 0, 0, 0, 1,"Sao Paulo");
 
+INSERT INTO recepcionista
+    (cpf, nome, sexo)
+VALUES
+    ("12355510001", "Daniela Oliveira", "F");
+
+
 INSERT INTO prontuario
     (id,aval_medico,fr,pa,peso,queixa,temperatura)
 VALUES
@@ -63,10 +69,12 @@ INSERT INTO usuarios
     (cpf, senha)
 VALUES
    ("12312312312", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6"), -- user: 12312312312, senha: senha  (paciente)
-   ("12300012300", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6"); -- user: 12300012300, senha: senha  (medico)
+   ("12300012300", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6"), -- user: 12300012300, senha: senha  (medico)
+   ("12355510001", "$2a$10$447FMn5/uklcAESzwoeJoe2tebZQ4GAiqX8gw.SULdF.Cma/NcmT6"); -- user: 12355510001, senha: senha  (recepcionista)
 
 INSERT INTO user_role
     (cpf, role_id)
 VALUES
    ("12312312312", 2),
-   ("12300012300", 3);
+   ("12300012300", 3),
+   ("12355510001", 4);

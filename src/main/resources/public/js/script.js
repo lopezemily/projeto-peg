@@ -16,6 +16,7 @@ function ApenasLetras(e, t) {
             return true;
         }
         if (
+                (charCode == 32) ||
                 (charCode > 64 && charCode < 91) ||
                 (charCode > 96 && charCode < 123) ||
                 (charCode > 191 && charCode <= 255) // letras com acentos

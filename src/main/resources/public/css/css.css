@@ -39,6 +39,7 @@
 .btnAlt {
     padding: 10px 40px;
     border-radius: 6px;
+    margin: 3px;
 }
 
 #btnSair {
@@ -64,6 +65,13 @@
     font-size: 12px;
 }
 
+#btnCancelar{
+    padding: 10px 20px;
+}
+
+#btnConfirma{
+    padding: 10px 25px;
+}
 
 #textoAtestado {
     text-align: center;
@@ -170,4 +178,24 @@
 body
 {
     background-color: #f7f7f7;
+}
+
+#ladoEsquerdoRecep{
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid #C0C0C0;
+}
+
+#ladoDireitoRecep {
+    margin-top: 200px;
+}
+
+#titulorecep {
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+#botaoRecep{
+      margin-top: 50px;
+      padding-right:10px;
 }

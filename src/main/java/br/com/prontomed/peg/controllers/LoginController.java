@@ -61,6 +61,8 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "cadastro";
         } else {
+            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", ""));
+            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace("-", ""));
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
 
@@ -77,6 +79,13 @@ public class LoginController {
         GrantedAuthority authority = autenticacao.getAuthorities().iterator().next();
         String funcao = authority.getAuthority();
         return String.format("redirect:/%s/home", funcao.toLowerCase());
+    }
+    
+    @RequestMapping(value = "/recephome", method = RequestMethod.GET)
+    public ModelAndView recepcionista2() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recephome");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/recepcionista", method = RequestMethod.GET)
