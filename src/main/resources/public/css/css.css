@@ -153,3 +153,11 @@ body
 {
     background-color: #f7f7f7;
 }
+
+#ladoEsquerdoRecep{
+    background-color: white;
+}
+
+#ladoDireitoRecep {
+    margin-top: 200px;
+}
