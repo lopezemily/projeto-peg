@@ -47,8 +47,13 @@ public class MedicoController {
     @RequestMapping(value = { "/atender/{numAtendimento}" }, method = RequestMethod.GET)
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("numeroAtendimento", numAtendimento);
         modelAndView.setViewName("medico/registrarConsulta");
+        Consulta consulta = consultaService.obterConsulta(numAtendimento);
+
+        modelAndView.addObject("numeroAtendimento", numAtendimento);
+
+        modelAndView.addObject("consulta", consulta);
+
         return modelAndView;
     }
 
@@ -73,12 +78,25 @@ public class MedicoController {
         return modelAndView;
     }
 
-     @RequestMapping(value = {"/novaReceita/{numAtendimento}"}, method = RequestMethod.GET)
-     public ModelAndView novaReceita(@PathVariable long numAtendimento) {
-     ModelAndView modelAndView = new ModelAndView();
-     modelAndView.addObject("numeroAtendimento", numAtendimento);
-     modelAndView.addObject("consulta", consultaService.obterConsulta(numAtendimento));
-     modelAndView.setViewName("medico/novaReceita");
-     return modelAndView;
-     }
+    @RequestMapping(value = { "/dadosPaciente/{numAtendimento}" }, method = RequestMethod.GET)
+    public ModelAndView visualizarPaciente(@PathVariable long numAtendimento) throws ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("medico/dadosPaciente");
+
+        Consulta consulta = consultaService.obterConsulta(numAtendimento);
+
+        modelAndView.addObject("nome", consulta.getPaciente());
+        modelAndView.addObject("contato", consulta.getPaciente().getContato());
+        modelAndView.addObject("consulta", consulta);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "/novaReceita/{numAtendimento}" }, method = RequestMethod.GET)
+    public ModelAndView novaReceita(@PathVariable long numAtendimento) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("numeroAtendimento", numAtendimento);
+        modelAndView.addObject("consulta", consultaService.obterConsulta(numAtendimento));
+        modelAndView.setViewName("medico/novaReceita");
+        return modelAndView;
+    }
 }

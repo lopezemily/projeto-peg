@@ -12,51 +12,61 @@
             <div  class="form-row col-sm align-items-center">
                 <img th:src="@{/img/prontuario.png}"/>
                 <h4>Registro de Prontuário</h4>
+                <div class="col-sm-3 offset-sm-4">
+                    <a class="btn btn-primary" id="btnDadosPaciente" th:href="@{/medico/dadosPaciente/} + ${numeroAtendimento}">Dados do Paciente</a>
+                </div>
             </div>
 
-            <form th:action="@{/medico/atender/} + ${numeroAtendimento}" method="post">
+            <form th:action="@{/medico/atender/} + ${numeroAtendimento}" method="post" id="formProntuario">
                 <div class="blockwhite" id="espacotitulo">
-                    <div class="form-row">
+                    <div class="form-row col-sm">
                         <div class="col-sm-3">
                             <label for="numAtendimentoPront">Nº atendimento</label>
                             <input id="numAtendimentoPront" type="number" class="form-control" readonly th:value="${numeroAtendimento}">
                         </div>
+                        <div class="col-sm-9">
+                            <label for="nomePaciente">Paciente</label>
+                            <input id="nomePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.nome}">
+                        </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row col-sm">
                         <label for="queixaPront">Queixa principal</label>
                         <input id="queixaPront" type="text" class="form-control" required name="queixa">
                     </div>
-                    <div class="form-row align-items-end">
-                        <div class="col-sm-2">
-                            <label for="exampleFormControlInput1">Buscar CID</label>
-                            <input type="number" class="form-control" placeholder="ex: J15.9" name="cids.codigo">
-                        </div>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control"> 
-                        </div>
-                        <div class="1">
-                            <button type="button" id="addInput">add</button>
+                    <div class="form-row col-sm align-items-end">
+                        <div id="cids" class="form-row align-items-end col-sm">
+                            <div class="col-sm-3">
+                                <label for="cid">Buscar CID</label>
+                                <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9">
+                            </div>
+                            <div class="col-sm-9">
+                                <input id="cidDescricao" type="text" readonly class="form-control"> 
+                            </div>
                         </div>
                     </div>
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-4">
+                    <div class="form-row col-sm align-items-center">
+                        <div class="col-sm-3">
                             <label for="paPront">PA</label>
-                            <input id="paPront" type="text" placeholder="ex: 120x80" class="form-control" name="pa">
+                            <input id="paPront" type="text" placeholder="ex: 120x80" class="form-control" name="pa" required>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <label for="frPront">FR</label>
-                            <input id="frPront" type="number" class="form-control" name="fr">
+                            <input id="frPront" type="number" class="form-control" name="fr" required>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <label for="temperaturaPront">Temperatura</label>
-                            <input id="temperaturaPront" type="number" class="form-control" name="temperatura">
+                            <input id="temperaturaPront" type="number" class="form-control" name="temperatura" required>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="pesoPront">Peso</label>
+                            <input id="pesoPront" type="number" class="form-control" name="peso" required>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row col-sm">
                         <label for="avaliacao">Avaliação</label>
                         <textarea id="avaliacao" class="form-control" rows="3" required name="avalMedico"></textarea>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row col-sm">
                         <label for="examesPront">Exames</label>
                         <textarea id="examesPront" class="form-control" placeholder="Ex: Hemograma, Glicemia, Colesterol total" rows="2" name="exames"></textarea>
                     </div><p></p>
@@ -73,6 +83,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </body>
 
