@@ -28,9 +28,9 @@ INSERT INTO unidade VALUES
     ("999", "99999-9999","unidadeclinica@unidade.com",NULL,"1234-5678","08870-000","Barueri","Centro","Avenida abc","1111","Clinica PEG");
 
 INSERT INTO paciente
-    (cpf, nome, sexo, ca, dm, dpoc, etilista, has, ic, tabagista)
+    (cpf, nome, sexo,email,celular, ca, dm, dpoc, etilista, has, ic, tabagista,cidade)
 VALUES
-    ("12312312312", "Diego da Silva", "M", 0, 0, 0, 0, 0, 0, 0);
+    ("12312312312", "Diego da Silva", "M", "diego@gmail.com", "99999-8888", 0, 0, 0, 0, 0, 0, 1,"Sao Paulo");
 
 INSERT INTO recepcionista
     (cpf, nome, sexo)
@@ -39,9 +39,9 @@ VALUES
 
 
 INSERT INTO prontuario
-    (id,aval_medico,fr,pa,queixa,temperatura)
+    (id,aval_medico,fr,pa,peso,queixa,temperatura)
 VALUES
-    (1,"teste",70,"12x80","dor",36.5);
+    (1,"teste",70,"12x80",80,"dor",36.5);
 
 INSERT INTO prontuario_cids
     (prontuario_id,cids_codigo)

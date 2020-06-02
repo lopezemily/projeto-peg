@@ -53,6 +53,12 @@
     background-color: #FFC3C3;
 }
 
+#btnDadosPaciente{
+    padding: 10px;
+    font-size: 12px;
+}
+
+
 #textoAtestado {
     text-align: center;
     margin-bottom: 60px;

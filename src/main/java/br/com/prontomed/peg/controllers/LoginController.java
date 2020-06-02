@@ -78,6 +78,7 @@ public class LoginController {
         String funcao = authority.getAuthority();
         return String.format("redirect:/%s/home", funcao.toLowerCase());
     }
+<<<<<<< HEAD
     
     @RequestMapping(value = "/recephome", method = RequestMethod.GET)
     public ModelAndView recepcionista() {
@@ -85,4 +86,21 @@ public class LoginController {
         modelAndView.setViewName("recephome");
         return modelAndView;
     }
+=======
+
+    @RequestMapping(value = "/recepcionista", method = RequestMethod.GET)
+    public ModelAndView recepcionista() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recepcionista");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/novomedico", method = RequestMethod.GET)
+    public ModelAndView novomedico() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("novomedico");
+        return modelAndView;
+    }
+
+>>>>>>> master
 }
