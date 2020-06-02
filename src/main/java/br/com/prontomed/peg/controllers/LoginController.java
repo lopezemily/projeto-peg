@@ -79,4 +79,18 @@ public class LoginController {
         return String.format("redirect:/%s/home", funcao.toLowerCase());
     }
 
+    @RequestMapping(value = "/recepcionista", method = RequestMethod.GET)
+    public ModelAndView recepcionista() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recepcionista");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/novomedico", method = RequestMethod.GET)
+    public ModelAndView novomedico() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("novomedico");
+        return modelAndView;
+    }
+
 }
