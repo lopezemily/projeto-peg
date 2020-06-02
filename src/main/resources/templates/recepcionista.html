@@ -3,66 +3,76 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
     <head>
-        <title>Novo agendamento</title>
+        <title>Nova Consulta</title>
     </head>
     <body>
         <div class="container" layout:fragment="content">
+
+            <div  class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novaConsulta.png}"/>
+                <h4>Novo agendamento​</h4>
+            </div>
+
             <form autocomplete="off" action="#" th:action="@{/recepcionista}" method="post">
-                <div>
-                    <div class="blockwhite" id="dadosPessoais">
-                        <h5 class="text-secondary">+ Novo agendamento</h5>
-                        <div class="form-row align-items-center">
-                            <div class="col-sm-5">
-                                <label for="cpf">CPF:</label>
-                                <input id="cpf" type="text" name="cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
-                            </div>
+                <div class="blockwhite" id="espacotitulo">
+                    <div class="form-row align-items-sm-end">
+                        <div class="col-sm-3">
+                            <label for="cpf">CPF:</label>
+                            <input id="cpf" type="text" name="cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
                         </div>
-                        <div class="form-row align-items-center">
-                            <div class="col-sm">
-                                <label for="nome">Nome</label>
-                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" readonly>
-                            </div>
+                        <div>
+                            <button type="button" class="btn btn-info btnAlt" id="btnBuscar">Buscar</button>
                         </div>
-                        <div class="form-row align-items-center">
-                            <div class="col-sm">
-                                <label class="mr-sm-2" for="atendimento">Tipo de atendimento</label>
-                                <select id="atendimento" class="custom-select mr-sm-2" name="atendimento" required>
-                                    <option selected>Consulta/Retorno</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                            <div class="col-sm">
-                                <label class="mr-sm-2" for="convenio">Convênio</label>
-                                <select id="convenio" class="custom-select mr-sm-2" name="convenio" required>
-                                    <option selected>Particular/Convênio</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                            </div>
+                        <div class="col-sm">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" readonly>
                         </div>
-                        <div class="form-row align-items-center">
-                            <div class="col-sm-5">
-                                <label for="especialidade">Especialidade</label>
-                                <input id="especialidade" type="text" class="form-control" name="especialidade"  placeholder="Lista de especialidade">
-                            </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <label for="tipoAtendimento">Tipo de atendimento</label>
+                            <select id="tipoAtendimento" class="form-control" required name="tipoAtendimento">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Consulta</option>
+                                <option>Retorno</option>
+                            </select>
                         </div>
-                        <div class="form-row align-items-center">
-                            <div class="col-sm">
-                                <label for="dt">Data</label>
-                                <input id="dt" type="date" class="form-control" name="dt" required>
-                            </div>
-                            <div class="col-sm">
-                                <label for="dtNascimento">Horário Inicio</label>
-                                <input type="time" id="hrInicio" name="hrInicio">
-                            </div>
-                            <div class="col-sm">
-                                <label for="dtNascimento">Horário Final</label>
-                                <input type="time" id="hrFinal" name="hrFinal">
-                            </div>
+                        <div class="col-sm-4">
+                            <label for="tipoConvenio">Convênio</label>
+                            <select id="tipoConvenio" class="form-control" required name="convenio">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Particular</option>
+                                <option>Convênio</option>
+                            </select>
                         </div>
-                        <br>
-                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <div class="col-sm-4">
+                            <label for="especialidade">Especialidade</label>
+                            <select id="especialidade" class="form-control" required name="especialidade.id">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <label for="data">Data</label>
+                            <input id="data" class="form-control" type="date" value="dd-mm-aaaa" name="data" required disabled>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="horario">Horário</label>
+                            <select id="horario" class="form-control" required name="horaInicio" disabled>
+                            </select>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row col-sm align-items-center">
+                        <div class="col-sm-2 offset-sm-8">
+                            <a class="btn-primary btnAlt" href="/home">Voltar</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                        </div>
                     </div>
                 </div>
             </form>
