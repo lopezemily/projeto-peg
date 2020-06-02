@@ -9,9 +9,11 @@
         <div class="container-md" layout:fragment="content"> 
             <div class="form-row">
                 <div id="ladoEsquerdoRecep" class="col-sm-6">
-                    <div class="form-row col-sm align-items-center">
-                        <img th:src="@{/img/logoPEG.png}"/>
-                        <h4>Olá, Recepcionista! </h4><br>
+                    <div id="titulorecep">
+                        <div class="row align-items-center">
+                            <img th:src="@{/img/logoPEG.png}"/>
+                            <h4>Olá, Recepcionista! </h4><br>
+                        </div>
                     </div></br>
                     <div>
                         <div class="form-row col-sm align-items-center" style="padding-right:10px;">
@@ -20,13 +22,13 @@
                                 <button type="submit" class="btn" id="btnNovaConsulta">Nova Consulta</button>
                             </form>
                         </div></br>
-                        <div class="form-row col-sm align-items-center" style="padding-right:10px;">
+                        <div class="form-row col-sm align-items-center" id="botaoRecep">
                             <img th:src="@{/img/novoPacienteRecep.png}"/>
                             <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
                                 <button type="submit" class="btn" id="btnNovaConsulta">Novo Paciente</button>
                             </form>
                         </div></br>
-                        <div class="form-row col-sm align-items-center" style="padding-right:10px;">
+                        <div class="form-row col-sm align-items-center" id="botaoRecep" style="margin-bottom: 150px;">
                             <img th:src="@{/img/novoMedicoRecep.png}"/>
                             <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
                                 <button type="submit" class="btn" id="btnNovaConsulta">Novo Médico</button>

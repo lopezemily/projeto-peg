@@ -156,8 +156,20 @@ body
 
 #ladoEsquerdoRecep{
     background-color: white;
+    border-radius: 5px;
+    border:1px solid #C0C0C0;
 }
 
 #ladoDireitoRecep {
     margin-top: 200px;
+}
+
+#titulorecep {
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+#botaoRecep{
+      margin-top: 50px;
+      padding-right:10px;
 }
