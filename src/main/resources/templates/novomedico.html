@@ -20,14 +20,14 @@
                     <div class="blockwhite" id="dadosPessoais">
                         <h5 class="text-primary">Dados pessoais</h5>
                         <div class="form-row align-items-center">
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <label for="nome">Nome completo*</label>
                                 <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" onkeypress="return ApenasLetras(event, this);" required>
                             </div>
-                            <div class="col-sm">
+                            <div class="col-sm-2">
                                 <label class="mr-sm-2" for="sexo">Sexo*</label>
                                 <select id="sexo" class="custom-select mr-sm-2" name="sexo" required>
-                                    <option selected>Selecione...</option>
+                                    <option selected value="" disabled>Selecione...</option>
                                     <option value="M">Masculino</option>
                                     <option value="F">Feminino</option>
                                 </select>
@@ -74,13 +74,13 @@
                                 <label for="cep">CEP</label>
                                 <input id="cep" type="text" name="endereco.CEP" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
                             </div>
-                            <div class="col-sm-5">
-                                <label for="rua">Rua</label>
-                                <input id="rua" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
+                            <div class="col-sm-4">
+                                <label for="endereco">Endereço</label>
+                                <input id="endereco" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
                             </div>
-                            <div class="col-sm">
+                            <div class="col-sm-1">
                                 <label for="numEndereco">Número</label>
-                                <input id="numEndereco" type="number" name="endereco.numero" class="form-control">
+                                <input id="numEndereco" type="text" name="endereco.numero" class="form-control">
                             </div>
                             <div class="col-sm-2">
                                 <label for="bairro">Bairro</label>
@@ -93,28 +93,34 @@
                         </div>
                     </div>
 
-                    <div class="blockwhite" id="profissionais">
+                    <div class="blockwhite" id="dadosProfissionais">
                         <h5 class="text-primary">Dados Profissionais</h5>
-                        
+
                         <div class="align-items-center">
-                            <div class="col-sm">
-                                <label for="numcrm">Número CRM</label>
-                                <input id="numcrm" type="text" name="numcrm" class="form-control"  placeholder="Quais">
-                                <label class="mr-sm-2" for="ufcrm">UF CRM</label>
-                                <select id="ufcrm" class="custom-select mr-sm-2" name="ufcrm">
-                                    <option selected>Estados</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                                <label class="mr-sm-2" for="especialidade">Especialidade</label>
-                                <select id="especialidade" class="custom-select mr-sm-2" name="especialidade">
-                                    <option selected>Especialidades</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
+                            <div class="row col-sm">
+                                <div class="col-sm">
+                                    <label for="numcrm">Número CRM</label>
+                                    <input id="numcrm" type="number" name="numeroRegistro" class="form-control">
+                                </div>
+                                <div class="col-sm">
+                                    <label class="mr-sm-2" for="ufcrm">UF CRM</label>
+                                    <select id="ufcrm" class="custom-select mr-sm-2" name="ufcrm">
+                                        <option selected>Estados</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <label class="mr-sm-2" for="especialidade">Especialidade</label>
+                                    <select id="especialidade" class="custom-select mr-sm-2" name="especialidade">
+                                        <option selected>Especialidades</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
                             </div>
                             <label class="col-sm">Disponibilidade de atendimento:</label>
-                            <div class="form-row col-sm">
+                            <div class="row col-sm">
                                 <div class="form-check form-check-inline">
                                     <input id="seg" class="form-check-input" name="seg" type="checkbox">
                                         <label for="seg" class="form-check-label">Segunda</label>
@@ -152,8 +158,13 @@
                             <input id="senha" type="password" placeholder="Senha minima de 6 digitos" name="senha" class="form-control" required/>
                         </div>
                     </div>
-                    <div class="col-sm">
-                        <button type="submit" class="btn btn-success">Salvar</button>
+                    <div class="row col-sm justify-content-end align-content-center">
+                        <div>
+                            <button type="button" class="btn btn-danger btnAlt" onClick="history.back()">Cancelar</button>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                        </div>
                     </div>
                 </div>
             </form>
