@@ -33,6 +33,7 @@
 .btnAlt {
     padding: 10px 40px;
     border-radius: 6px;
+    margin: 3px;
 }
 
 #btnSair {
@@ -58,6 +59,13 @@
     font-size: 12px;
 }
 
+#btnCancelar{
+    padding: 10px 20px;
+}
+
+#btnConfirma{
+    padding: 10px 25px;
+}
 
 #textoAtestado {
     text-align: center;

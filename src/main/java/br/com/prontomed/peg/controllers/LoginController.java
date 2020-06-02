@@ -61,6 +61,8 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "cadastro";
         } else {
+            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", ""));
+            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace("-", ""));
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
 
