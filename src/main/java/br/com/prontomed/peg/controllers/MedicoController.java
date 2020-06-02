@@ -25,7 +25,7 @@ public class MedicoController {
     @Autowired
     private MedicoService medicoService;
 
-    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
         String cpf = autenticacao.getName();
 
@@ -44,7 +44,7 @@ public class MedicoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/atender/{numAtendimento}" }, method = RequestMethod.GET)
     public ModelAndView realizarConsulta(@PathVariable long numAtendimento) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("medico/registrarConsulta");
@@ -57,13 +57,13 @@ public class MedicoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/atender/{numAtendimento}"}, method = RequestMethod.POST)
+    @RequestMapping(value = { "/atender/{numAtendimento}" }, method = RequestMethod.POST)
     public String salvarConsulta(@PathVariable long numAtendimento, Prontuario prontuario) {
         consultaService.registrarProntuario(numAtendimento, prontuario);
         return "redirect:/medico/home?mensagem=Prontuario salvo com sucesso.";
     }
 
-    @RequestMapping(value = {"/atestado/{numAtendimento}"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/atestado/{numAtendimento}" }, method = RequestMethod.GET)
     public ModelAndView atestar(@PathVariable long numAtendimento) throws ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("medico/atestado");
@@ -78,7 +78,7 @@ public class MedicoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/dadosPaciente/{numAtendimento}"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/dadosPaciente/{numAtendimento}" }, method = RequestMethod.GET)
     public ModelAndView visualizarPaciente(@PathVariable long numAtendimento) throws ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("medico/dadosPaciente");
@@ -91,4 +91,12 @@ public class MedicoController {
         return modelAndView;
     }
 
+    @RequestMapping(value = { "/novaReceita/{numAtendimento}" }, method = RequestMethod.GET)
+    public ModelAndView novaReceita(@PathVariable long numAtendimento) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("numeroAtendimento", numAtendimento);
+        modelAndView.addObject("consulta", consultaService.obterConsulta(numAtendimento));
+        modelAndView.setViewName("medico/novaReceita");
+        return modelAndView;
+    }
 }
