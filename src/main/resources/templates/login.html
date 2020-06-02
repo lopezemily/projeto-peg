@@ -12,8 +12,11 @@
                 <div class="card-body">
                     <form th:action="@{/login}" method="POST">
                         <div class="form-group">
-                            <h3 class="text-primary">Bem-vindo</h3>
-                            <h4>Acesse sua conta</h4>
+                            <div id="tituloLogin">
+                                <h3 class="text-primary">Bem-vindo</h3>
+                                <img th:src="@{/img/logoPEG.png}"/>
+                                <h4>Acesse sua conta</h4>
+                            </div>
                             </br>
                             <label>CPF</label>
                             <input class="form-control" name="cpf" id="cpf" placeholder="Informe seu cpf">
@@ -23,8 +26,8 @@
                             <input class="form-control" type="password" name="senha" id="senha" placeholder="Insira sua senha">
                         </div>
                         <div class="form-group form-check">
-                        <input type="checkbox" id="remember-me" name="remember-me" />
-                        <label for="remember-me">Lembrar acesso?</label>
+                            <input type="checkbox" id="remember-me" name="remember-me" />
+                            <label for="remember-me">Lembrar acesso?</label>
                         </div>
                         <button type="submit" class="btn btn-success btn-block">Entrar</button>
                     </form>

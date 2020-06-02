@@ -8,6 +8,12 @@
     box-shadow: 1px 5px 30px  rgb(195,195,195);
 }
 
+#tituloLogin{
+    margin: auto;
+    text-align: center;
+}
+
+
 #fundologin{
     background-color: rgb(243,243,243);
     background-image: url("../img/fundo.jpg");
@@ -96,7 +102,7 @@
 }
 
 .kpi{
-    background-color: #FDFDFD;
+    background-color: white;
     border-radius: 5px;
     border:1px solid #C0C0C0;
     margin-bottom: 2px;
@@ -106,6 +112,12 @@
     padding: 15px;
     width: 210px;
     height: 130px;
+    box-shadow: 1px 5px 10px  rgb(195,195,195);
+}
+
+#contentKpi{
+    margin: auto;
+    text-align: center;
 }
 
 #block {
