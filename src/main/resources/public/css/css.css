@@ -22,7 +22,6 @@
     background-size: cover;
 }
 .container {
-    margin-top: 10px;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -74,9 +73,9 @@
 }
 
 #btnBuscar {
-padding: 10px 15px;
-font-size: 12px;
-margin: auto;
+    padding: 10px 15px;
+    font-size: 12px;
+    margin: auto;
 }
 
 #textoAtestado {
@@ -188,8 +187,8 @@ body
 
 #ladoEsquerdoRecep{
     background-color: white;
-    border-radius: 5px;
     border:1px solid #C0C0C0;
+    margin-top: auto;
 }
 
 #ladoDireitoRecep {
@@ -202,6 +201,20 @@ body
 }
 
 #botaoRecep{
-    margin-top: 50px;
-    padding-right:10px;
+    background-color: #FFD333; 
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#menuRecepcionista {
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 40px;
+
+}
+
+.itemMenuRecep {
+    margin: 10px;
 }

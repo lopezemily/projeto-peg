@@ -1,38 +1,45 @@
+<!doctype html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default.html}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado.html}">
 
     <head>
         <title>Recepcionista</title>
     </head>
 
     <body>
-        <div class="container-md" layout:fragment="content"> 
-            <div class="form-row">
+        <div class="container" layout:fragment="content"> 
+            <div class="row">
                 <div id="ladoEsquerdoRecep" class="col-sm-6">
-                    <div id="titulorecep">
+                    <div>
                         <div class="row align-items-center">
                             <img th:src="@{/img/logoPEG.png}"/>
                             <h4>Olá, Recepcionista! </h4><br>
                         </div>
                     </div></br>
-                    <div>
-                        <div class="form-row col-sm align-items-center" style="padding-right:10px;">
-                            <img th:src="@{/img/novaConsultaRecep.png}"/>
-                            <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
-                                <button type="submit" class="btn" id="btnNovaConsulta">Nova Consulta</button>
-                            </form>
-                        </div></br>
-                        <div class="form-row col-sm align-items-center" id="botaoRecep">
-                            <img th:src="@{/img/novoPacienteRecep.png}"/>
-                            <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
-                                <button type="submit" class="btn" id="btnNovaConsulta">Novo Paciente</button>
-                            </form>
-                        </div></br>
-                        <div class="form-row col-sm align-items-center" id="botaoRecep" style="margin-bottom: 150px;">
-                            <img th:src="@{/img/novoMedicoRecep.png}"/>
-                            <form class="col-sm" th:action="@{/paciente/novaConsulta}" method="get">
-                                <button type="submit" class="btn" id="btnNovaConsulta">Novo Médico</button>
-                            </form>
+                    <div id="menuRecepcionista">
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novaConsultaRecep.png}"/>
+                            </div>
+                            <div class="itemMenuRecep col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:action="@{/recepcionista/novaConsulta}">Nova consulta</a>
+                            </div>
+                        </div>
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novoPacienteRecep.png}"/>
+                            </div>
+                            <div class="itemMenuRecep  col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:action="@{/recepcionista/novoPaciente}">Nova paciente</a>
+                            </div>
+                        </div>
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novoMedicoRecep.png}"/>
+                            </div>
+                            <div class="itemMenuRecep  col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:action="@{/recepcionista/novoMedico}">Nova médico</a>
+                            </div>
                         </div>
                     </div>
                 </div>
