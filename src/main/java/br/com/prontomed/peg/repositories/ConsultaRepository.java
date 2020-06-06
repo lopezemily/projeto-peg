@@ -26,10 +26,10 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 
     List<Consulta> findAllByDataAndMedicoIn(LocalDate data, List<Medico> medicosDisponiveis);
 
-    @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW()) AND c.medico.cpf = :medicoCpf")
+    @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01') AND LAST_DAY(CURDATE())) AND c.medico.cpf = :medicoCpf")
     int countConsultaMesByMedicoCpf(@Param("medicoCpf") String medicoCpf);
 
-    @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01') AND NOW()) AND c.medico.cpf = :medicoCpf AND c.realizada = :realizada AND c.confirmada = :confirmada")
+    @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01') AND LAST_DAY(CURDATE())) AND c.medico.cpf = :medicoCpf AND c.realizada = :realizada AND c.confirmada = :confirmada")
     int countConsultaMesByMedicoCpfAndRealizadaAndConfirmada(@Param("medicoCpf") String medicoCpf, @Param("realizada") Boolean realizada, @Param("confirmada") Boolean confirmada);
 
     @Query("SELECT COUNT(c) FROM Consulta c WHERE (c.data BETWEEN CURDATE() AND LAST_DAY(CURDATE())) AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE AND c.confirmada = TRUE")
