@@ -72,6 +72,10 @@ public class ConsultaService {
     public List<Consulta> obterConsultasProximasMedico(String cpf) {
         return consultaRepository.findConsultasDoDiaByMedicoCpf(cpf);
     }
+    
+    public List<Consulta> obterConsultasDia(){
+        return consultaRepository.findConsultasDoDia();
+    }
 
     public void registrarProntuario(long numAtendimento, Prontuario prontuario) {
         Optional<Consulta> consulta = consultaRepository.findById(numAtendimento);
