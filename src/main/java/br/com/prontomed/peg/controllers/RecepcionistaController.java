@@ -117,7 +117,10 @@ public class RecepcionistaController {
     public ModelAndView novoMedico() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("recepcionista/novoMedico");
+        
         return modelAndView;
     }
+
+    // TODO: Post Medico
 
 }
