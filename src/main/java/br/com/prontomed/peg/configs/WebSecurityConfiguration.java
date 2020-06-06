@@ -45,6 +45,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/cadastro").permitAll()
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/paciente/**").hasAuthority("PACIENTE")
+            .antMatchers("/medico/**").hasAuthority("MEDICO")
+            .antMatchers("/recepcionista/**").hasAuthority("RECEPCIONISTA")
             .anyRequest().authenticated().and().rememberMe()
             .and().csrf().disable().formLogin()
             .loginPage("/login").failureUrl("/login?error=true")

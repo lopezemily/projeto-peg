@@ -55,9 +55,7 @@ public class RecepcionistaController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("recepcionista/home");
-
-        modelAndView.addObject("nome", recepcionistaService.obterRecepcionista(cpf));
-
+        modelAndView.addObject("nome", recepcionistaService.obterRecepcionista(cpf).getNome());
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasDia());
 
         return modelAndView;
@@ -87,7 +85,7 @@ public class RecepcionistaController {
     @RequestMapping(value = "/novoPaciente", method = RequestMethod.GET)
     public ModelAndView novoPaciente() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("novoPaciente");
+        modelAndView.setViewName("recepcionista/novoPaciente");
         return modelAndView;
     }
     
@@ -113,6 +111,13 @@ public class RecepcionistaController {
 
             return "redirect:/home?mensagem=Usuario foi cadastrado com sucesso.";
         }
+    }
+
+    @RequestMapping(value = "/novoMedico", method = RequestMethod.GET)
+    public ModelAndView novoMedico() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recepcionista/novoMedico");
+        return modelAndView;
     }
 
 }
