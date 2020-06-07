@@ -69,17 +69,20 @@
                     <div class="form-row col-sm">
                         <label for="examesPront">Exames</label>
                         <textarea id="examesPront" class="form-control" placeholder="Ex: Hemograma, Glicemia, Colesterol total" rows="2" name="exames"></textarea>
-                    </div><p></p>
-                    <div class="row justify-content-end">
-                        <div class="col-sm-3">
-                            <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
-                        </div>
-                        <div class="col-sm-3">
-                            <a class="btn btnAlt" id="btnReceita" th:href="@{/medico/novaReceita/} + ${numAtendimento}">Receita</a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a class="btn btnAlt" id="btnAtestado" th:href="@{/medico/atestado/} + ${numAtendimento}">Atestado</a>
-                        </div>
+                    </div>
+                </div>
+                <div class="row col-sm-10 offset-sm-1 align-items-center">
+                    <div class="col-sm">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                    </div>
+                    <div class="col-sm">
+                        <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
+                    </div>
+                    <div class="col-sm">
+                        <a class="btn btnAlt" id="btnReceita" th:href="@{/medico/novaReceita/} + ${numAtendimento}">Receita</a>
+                    </div>
+                    <div class="col-sm">
+                        <a class="btn btnAlt" id="btnAtestado" th:href="@{/medico/atestado/} + ${numAtendimento}">Atestado</a>
                     </div>
                 </div>
             </form>

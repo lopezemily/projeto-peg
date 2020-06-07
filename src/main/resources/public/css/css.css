@@ -53,10 +53,16 @@
 
 #btnReceita {
     background-color: #FFD333;
+    padding: 10px 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #btnAtestado {
     background-color: #FFC3C3;
+    padding: 10px 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #btnDadosPaciente{
