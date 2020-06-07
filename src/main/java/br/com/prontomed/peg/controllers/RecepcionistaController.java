@@ -70,9 +70,8 @@ public class RecepcionistaController {
     }
 
     @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
-    public String salvarNovaConsulta(Authentication autenticacao, Consulta consulta) {
-        String cpf = autenticacao.getName();
-        consultaService.criarConsulta(cpf, consulta);
+    public String salvarNovaConsulta(Consulta consulta) {
+        consultaService.criarConsulta(consulta);
         return "redirect:/recepcionista/home?mensagem=Consulta criada com sucesso.";
     }
 
@@ -90,8 +89,7 @@ public class RecepcionistaController {
     }
     
     @RequestMapping(value = "/novoPaciente", method = RequestMethod.POST)
-    public String criarNovoPaciente(@Valid CadastroPaciente cadastroPaciente, BindingResult bindingResult)
-            throws JsonProcessingException {
+    public String criarNovoPaciente(@Valid CadastroPaciente cadastroPaciente, BindingResult bindingResult) throws JsonProcessingException {
         Optional<Usuario> userExists = userService.findUserByCpf(cadastroPaciente.getCpf());
         if (userExists.isPresent()) {
             bindingResult.rejectValue("userName", "error.user",

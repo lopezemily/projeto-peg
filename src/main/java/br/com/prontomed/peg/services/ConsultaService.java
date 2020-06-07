@@ -60,6 +60,10 @@ public class ConsultaService {
 
         consultaRepository.save(consulta);
     }
+    
+    public void criarConsulta(Consulta consulta) {
+        criarConsulta(consulta.getPaciente().getCpf(), consulta);
+    }
 
     public List<Consulta> obterConsultasAnterioresPaciente(String cpf) {
         return consultaRepository.findByRealizadaAndPacienteCpf(true, cpf);
