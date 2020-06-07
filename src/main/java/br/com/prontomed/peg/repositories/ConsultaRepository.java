@@ -16,10 +16,16 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     List<Consulta> findByRealizadaAndPacienteCpf(boolean realizada, String pacienteCpf);
 
     @Query("SELECT c FROM Consulta c WHERE c.data >= CURDATE() AND c.paciente.cpf = :pacienteCpf AND c.realizada = FALSE")
-    List<Consulta> findConsultasProximasByPacienteCpf(String pacienteCpf);
+    List<Consulta> findConsultasProximasByPacienteCpf(@Param("pacienteCpf") String pacienteCpf);
 
     @Query("SELECT c FROM Consulta c WHERE c.data = CURDATE() AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE")
     List<Consulta> findConsultasDoDiaByMedicoCpf(@Param("medicoCpf") String medicoCpf);
+    
+    @Query("SELECT c FROM Consulta c WHERE c.data >= CURDATE() AND c.medico.cpf = :medicoCpf AND c.realizada = FALSE")
+    List<Consulta> findConsultasByMedicoCpf(@Param("medicoCpf") String medicoCpf);
+    
+    @Query("SELECT c FROM Consulta c WHERE c.data >= CURDATE() AND c.realizada = FALSE")
+    List<Consulta> findConsultas();
     
     @Query("SELECT c FROM Consulta c WHERE c.data = CURDATE() AND c.realizada = FALSE")
     List<Consulta> findConsultasDoDia();

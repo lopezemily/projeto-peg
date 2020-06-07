@@ -44,13 +44,18 @@
                     </div>
                 </div>
                 <div id="ladoDireitoRecep"  class="col-sm-6">
-                    <div id="espacotitulo">
-                        <h4>Próximas consultas agendadas</h4>
+                    <div class="row col-sm">
+                        <div class="col-sm" id="espacotitulo">
+                            <h4>Consultas do dia</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <a class="btn" id="btnAgenda" th:href="@{/recepcionista/agenda}">Agenda</a>
+                        </div>
                     </div>
                     <div id="proximasConsultas">
                         <div  class="blockwhite col-sm row  align-items-center" th:if="${proximasConsultas.empty}">
                             <p>
-                                <b>Não há consultas futuras</b>
+                                <b>Não há mais consultas para hoje</b>
                             </p>
                         </div>
                         <div  class="row blockwhite" th:each="consulta : ${proximasConsultas}">

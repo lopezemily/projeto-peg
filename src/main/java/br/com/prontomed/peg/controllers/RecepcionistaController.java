@@ -142,6 +142,16 @@ public class RecepcionistaController {
         
         return modelAndView;
     }
+    
+    @RequestMapping(value = { "/agenda" }, method = RequestMethod.GET)
+    public ModelAndView visualizarAgenda(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recepcionista/agenda");
+        
+        modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasTodas());
+
+        return modelAndView;
+    }
 
     // TODO: Post Medico
 

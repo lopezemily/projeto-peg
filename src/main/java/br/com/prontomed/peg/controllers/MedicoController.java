@@ -111,4 +111,16 @@ public class MedicoController {
         modelAndView.setViewName("medico/novaReceita");
         return modelAndView;
     }
+    
+    @RequestMapping(value = { "/agenda" }, method = RequestMethod.GET)
+    public ModelAndView visualizarAgenda(Authentication autenticacao){
+        String cpf = autenticacao.getName();
+        
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("medico/agenda");
+        
+        modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasTodasMedico(cpf));
+
+        return modelAndView;
+    }
 }

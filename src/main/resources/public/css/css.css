@@ -111,9 +111,13 @@
 
 #textoAssinaturaReceita {
     text-align: center;
-    margin-left: 260px;
     margin-top: 100px;
     margin-bottom: 60px;
+}
+
+#btnAgenda {
+    background-color: #9DDBF0;
+    padding: 10px 20px;
 }
 /*CADASTRO*/
 .blockwhite {
@@ -143,6 +147,9 @@
 #contentKpi{
     margin: auto;
     text-align: center;
+}
+a:link{
+    text-decoration:none;
 }
 
 #block {
