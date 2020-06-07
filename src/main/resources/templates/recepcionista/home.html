@@ -64,17 +64,17 @@
                             </div>
                             <div class="form-row col-sm-9 justify-content-end">
                                 <div class="col-sm">
-                                    <form th:action="@{/paciente/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
+                                    <form th:action="@{/recepcionista/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
                                         <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
                                     </form>
                                 </div>
                                 <div class="col-sm offset-md-3" th:if="!${consulta.confirmada}">
-                                    <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
+                                    <form th:action="@{/recepcionista/confirmar/} + ${consulta.numAtendimento}" method="post">
                                         <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
                                     </form>
                                 </div>
                                 <div class="col-sm offset-md-3" th:if="${consulta.confirmada}">
-                                    <button type="none" disabled class="btn btn-outline-primary btnAlt">Confirmado</button>
+                                    <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirmado">Confirmado</button>
                                 </div>
                             </div>
                         </div>

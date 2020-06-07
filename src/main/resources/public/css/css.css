@@ -72,6 +72,12 @@
     padding: 10px 25px;
 }
 
+#btnConfirmado {
+    padding: 10px 20px;
+    color: gray;
+    border-color: gray;
+}
+
 #btnBuscar {
     padding: 10px 15px;
     font-size: 12px;
