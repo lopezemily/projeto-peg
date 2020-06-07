@@ -140,7 +140,7 @@ public class RecepcionistaController {
             Paciente paciente = objectMapper.readValue(objectMapper.writeValueAsString(cadastroPaciente), Paciente.class);
             pacienteService.inserirPaciente(paciente);
 
-            return "redirect:/home?mensagem=Paciente cadastrado com sucesso.";
+            return "redirect:/recepcionista/home?mensagem=Paciente cadastrado com sucesso.";
         }
     }
     
