@@ -109,10 +109,22 @@ public class RecepcionistaController {
         return "redirect:/recepcionista/home?mensagem=Consulta confirmada com sucesso.";
     }
     
+    @RequestMapping(value = {"/confirmarAgenda/{numAtendimento}"}, method = RequestMethod.POST)
+    public String confirmarAgenda(@PathVariable long numAtendimento) {
+        consultaService.confirmarConsulta(numAtendimento);
+        return "redirect:/recepcionista/agenda?mensagem=Consulta confirmada com sucesso.";
+    }
+    
     @RequestMapping(value = { "/cancelarConsulta/{numAtendimento}" }, method = RequestMethod.POST)
     public String cancelarConsulta(@PathVariable long numAtendimento) {
         consultaService.cancelarConsulta(numAtendimento);
         return "redirect:/recepcionista/home?mensagem=Consulta cancelada com sucesso.";
+    }
+    
+    @RequestMapping(value = { "/cancelarConsultaAgenda/{numAtendimento}" }, method = RequestMethod.POST)
+    public String cancelarConsultaAgenda(@PathVariable long numAtendimento) {
+        consultaService.cancelarConsulta(numAtendimento);
+        return "redirect:/recepcionista/agenda?mensagem=Consulta cancelada com sucesso.";
     }
     
     @RequestMapping(value = "/novoPaciente", method = RequestMethod.GET)
