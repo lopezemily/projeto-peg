@@ -24,9 +24,13 @@
                             <label for="numAtendimentoPront">Nº atendimento</label>
                             <input id="numAtendimentoPront" type="number" class="form-control" readonly th:value="${numeroAtendimento}">
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-7">
                             <label for="nomePaciente">Paciente</label>
                             <input id="nomePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.nome}">
+                        </div>
+                        <div class="col-sm">
+                            <label for="idadePaciente">Idade</label>
+                            <input id="idadePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.idade} + ' anos'">
                         </div>
                     </div>
                     <div class="form-row col-sm">
