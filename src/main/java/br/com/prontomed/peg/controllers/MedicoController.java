@@ -1,10 +1,11 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.models.CID;
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Prontuario;
+import br.com.prontomed.peg.services.CIDService;
 import br.com.prontomed.peg.services.ConsultaService;
 import br.com.prontomed.peg.services.MedicoService;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import javax.swing.text.MaskFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class MedicoController {
 
     @Autowired
     private MedicoService medicoService;
+
+    @Autowired
+    private CIDService cidService;
 
     @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public ModelAndView home(Authentication autenticacao) {
@@ -54,6 +58,14 @@ public class MedicoController {
 
         modelAndView.addObject("consulta", consulta);
 
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "/cid/{cidId}" }, method = RequestMethod.GET)
+    public ModelAndView realizarConsulta(@PathVariable String cidId) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("fragments/cidDescricao :: cidDescricao");
+        modelAndView.addObject("cid", cidService.obterPorId(cidId).orElse(new CID("", "Não Encontrado")));
         return modelAndView;
     }
 

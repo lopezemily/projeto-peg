@@ -27,5 +27,11 @@ public class CID {
         this.descricao = descricao;
     }
 
+    public CID(String codigo, String descricao) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+    }
+
+    public CID() { }
     
 }

@@ -39,7 +39,7 @@
                                 <label for="cid">Buscar CID</label>
                                 <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9">
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9" id="cidPlaceholder">
                                 <input id="cidDescricao" type="text" readonly class="form-control"> 
                             </div>
                         </div>
@@ -83,7 +83,34 @@
                     </div>
                 </div>
             </form>
+        </div>
 
+        <div layout:fragment="scripts">
+            <script>
+                $(document).ready(function () {
+                    $('#cid').change(obterCidDescricao);
+
+                    function obterCidDescricao() {
+                        var cid = $('#cid').val();
+
+                        if (cid) {
+                            var url = `/medico/cid/${cid}`;
+
+                            $('#cidPlaceholder').load(url, function (responseTxt, statusTxt, xhr) {
+                                if (statusTxt == "success") {
+                                }
+                                if (statusTxt == "error") {
+                                    $('#cidDescricao').val("");
+                                    alert(responseTxt);
+                                }
+                            });
+                        }else{
+                            $('#cidDescricao').val("");
+                        }
+                    }
+
+                })
+            </script>
         </div>
     </body>
 
