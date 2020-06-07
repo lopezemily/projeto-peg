@@ -27,24 +27,26 @@
                         <p>
                             <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
                             <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
+                            <b>- Contato:</b> <span th:text="${consulta.paciente.contato.celular}"></span>/<span th:text="${consulta.paciente.contato.email}"></span>)</br>
+                            <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
                             <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
                         </p>
                     </div>
-                    <div class="form-row col-sm-6 justify-content-end">
-                                <div class="col-sm">
-                                    <form th:action="@{/recepcionista/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
-                                        <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
-                                    </form>
-                                </div>
-                                <div class="col-sm" th:if="!${consulta.confirmada}">
-                                    <form th:action="@{/recepcionista/confirmar/} + ${consulta.numAtendimento}" method="post">
-                                        <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
-                                    </form>
-                                </div>
-                                <div class="col-sm" th:if="${consulta.confirmada}">
-                                    <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirmado">Confirmado</button>
-                                </div>
-                            </div>
+                    <div class="form-row col-sm justify-content-end">
+                        <div class="col-sm">
+                            <form th:action="@{/recepcionista/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
+                                <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
+                            </form>
+                        </div>
+                        <div class="col-sm" th:if="!${consulta.confirmada}">
+                            <form th:action="@{/recepcionista/confirmar/} + ${consulta.numAtendimento}" method="post">
+                                <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
+                            </form>
+                        </div>
+                        <div class="col-sm" th:if="${consulta.confirmada}">
+                            <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirmado">Confirmado</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
