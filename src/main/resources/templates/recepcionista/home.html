@@ -8,7 +8,7 @@
 
     <body>
         <div class="container" layout:fragment="content"> 
-            <div class="row">
+            <div class="row" id="homeRecep">
                 <div id="ladoEsquerdoRecep" class="col-sm-6">
                     <div>
                         <div class="row align-items-center">
@@ -47,37 +47,39 @@
                     <div id="espacotitulo">
                         <h4>Próximas consultas agendadas</h4>
                     </div>
+                    <div id="proximasConsultas">
+                        <div  class="blockwhite col-sm row  align-items-center" th:if="${proximasConsultas.empty}">
+                            <p>
+                                <b>Não há consultas futuras</b>
+                            </p>
+                        </div>
+                        <div  class="row blockwhite" th:each="consulta : ${proximasConsultas}">
+                            <div class="col-sm-12 align-items-center">
+                                <p>
+                                    <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                                    <b>Paciente:</b> <span th:text="${consulta.paciente.nome}"></span></br>
+                                    <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
+                                    <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                                </p>
+                            </div>
+                            <div class="form-row col-sm-9 justify-content-end">
+                                <div class="col-sm">
+                                    <form th:action="@{/paciente/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
+                                        <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
+                                    </form>
+                                </div>
+                                <div class="col-sm offset-md-3" th:if="!${consulta.confirmada}">
+                                    <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
+                                        <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
+                                    </form>
+                                </div>
+                                <div class="col-sm offset-md-3" th:if="${consulta.confirmada}">
+                                    <button type="none" disabled class="btn btn-outline-primary btnAlt">Confirmado</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="proximasConsultas">
-                   <div  class="blockwhite col-sm row  align-items-center" th:if="${proximasConsultas.empty}">
-                       <p>
-                           <b>Não há consultas futuras</b>
-                       </p>
-                   </div>
-                   <div  class="form-row blockwhite" th:each="consulta : ${proximasConsultas}">
-                       <div class="col-sm-6 align-items-center">
-                           <p>
-                               <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
-                               <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
-                               <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
-                           </p>
-                       </div>
-                       <div class="col-sm" style="padding-right:70px;">
-                           <form th:action="@{/paciente/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
-                               <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
-                           </form>
-                       </div>
-                       <div class="col-sm" th:if="!${consulta.confirmada}" style="padding-right:70px">
-                           <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
-                               <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
-                           </form>
-                       </div>
-                       <div class="col-sm" th:if="${consulta.confirmada}" style="padding-right:70px">
-                           <button type="none" disabled class="btn btn-outline-primary btnAlt">Confirmado</button>
-                       </div>
-                   </div>
-               </div>
-
             </div>    
         </div>
     </body>

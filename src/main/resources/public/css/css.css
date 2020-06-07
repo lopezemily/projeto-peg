@@ -188,11 +188,11 @@ body
 #ladoEsquerdoRecep{
     background-color: white;
     border:1px solid #C0C0C0;
-    margin-top: auto;
+    margin-top: 0px;
 }
 
 #ladoDireitoRecep {
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 #titulorecep {
