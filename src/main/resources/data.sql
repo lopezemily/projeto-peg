@@ -33,9 +33,9 @@ VALUES
     ("12312312312", "Diego da Silva", "M", "diego@gmail.com", "99999-8888", 0, 0, 0, 0, 0, 0, 1,"Sao Paulo", "1999-01-01");
 
 INSERT INTO recepcionista
-    (cpf, nome, sexo)
+    (cpf, nome, sexo, dt_nascimento)
 VALUES
-    ("12355510001", "Daniela Oliveira", "F");
+    ("12355510001", "Daniela Oliveira", "F", "1940-01-01");
 
 
 INSERT INTO prontuario

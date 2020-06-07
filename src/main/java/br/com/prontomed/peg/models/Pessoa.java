@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +19,7 @@ public abstract class Pessoa {
     
     private String nome;
     
+    @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate dtNascimento;
 
