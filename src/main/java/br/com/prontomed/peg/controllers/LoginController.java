@@ -68,7 +68,7 @@ public class LoginController {
             Paciente paciente = objectMapper.readValue(objectMapper.writeValueAsString(cadastroPaciente), Paciente.class);
             pacienteService.inserirPaciente(paciente);
 
-            return "redirect:/login?mensagem=Usuario foi cadastrado com sucesso. Acesse sua conta com o login cadastrado.";
+            return "redirect:/login?mensagem=Usuario foi cadastrado com sucesso. Acesse sua conta com o login cadastrado.&cpf=" + cadastroPaciente.getCpf();
         }
     }
 
