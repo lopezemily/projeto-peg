@@ -73,6 +73,14 @@ public class RecepcionistaController {
         modelAndView.addObject("especialidades", especialidadeService.obterEspecialidadesComMedicosAssociados());
         return modelAndView;
     }
+
+    @RequestMapping(value = { "/paciente/{cpf}" }, method = RequestMethod.GET)
+    public ModelAndView realizarConsulta(@PathVariable String cpf) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("fragments/pacienteNome :: pacienteNome");
+        modelAndView.addObject("paciente", pacienteService.obterPacientePorCpf(cpf).orElse(new Paciente("Não Encontrado")));
+        return modelAndView;
+    }
     
     @RequestMapping(value = { "/novaConsulta/horariosDisponiveis" }, method = RequestMethod.GET)
     public Object horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate data,
@@ -122,8 +130,7 @@ public class RecepcionistaController {
         if (bindingResult.hasErrors()) {
             return "novoPaciente";
         } else {
-            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", ""));
-            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace("-", ""));
+            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", "").replace("-", ""));
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
 

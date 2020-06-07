@@ -20,12 +20,11 @@
                             <label for="cpf">CPF:</label>
                             <input id="cpf" type="text" name="consulta.paciente.cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
                         </div>
-                        <div>
-                            <button type="button" class="btn btn-info btnAlt" id="btnBuscar">Buscar</button>
-                        </div>
                         <div class="col-sm">
                             <label for="nome">Nome</label>
-                            <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" readonly>
+                            <div id="nomePacientePlaceholder">
+                                <input id="pacienteNome" type="text" class="form-control" style="text-transform: uppercase" readonly required>
+                            </div>
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -75,6 +74,33 @@
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div layout:fragment="scripts">
+            <script>
+                $(document).ready(function () {
+                    $('#cpf').change(obterNomePaciente);
+
+                    function obterNomePaciente() {
+                        var cpf = $('#cpf').val();
+
+                        if (cpf) {
+                            var url = `/recepcionista/paciente/${cpf}`;
+
+                            $('#nomePacientePlaceholder').load(url, function (responseTxt, statusTxt, xhr) {
+                                if (statusTxt == "success") {
+                                }
+                                if (statusTxt == "error") {
+                                    $('#pacienteNome').val("");
+                                    alert(responseTxt);
+                                }
+                            });
+                        }else{
+                            $('#pacienteNome').val("");
+                        }
+                    }
+                })
+            </script>
         </div>
     </body>
 
