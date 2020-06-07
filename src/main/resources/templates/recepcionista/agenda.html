@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="row blockwhite align-items-center" th:each="consulta : ${proximasConsultas}">
-                    <div class="col-sm-md">
+                    <div class="col-sm">
                         <p>
                             <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
                             <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
