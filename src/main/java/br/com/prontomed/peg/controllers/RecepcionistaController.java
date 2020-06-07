@@ -144,7 +144,6 @@ public class RecepcionistaController {
         if (bindingResult.hasErrors()) {
             return "novoPaciente";
         } else {
-            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", "").replace("-", ""));
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
 
@@ -184,7 +183,6 @@ public class RecepcionistaController {
         if (bindingResult.hasErrors()) {
             return "novoMedico";
         } else {
-            cadastroMedico.setCpf(cadastroMedico.getCpf().replace(".", "").replace("-", ""));
             Usuario usuario = new Usuario(cadastroMedico.getCpf(), cadastroMedico.getSenha(), null);
             userService.salvarMedico(usuario);
 

@@ -18,7 +18,7 @@
                     <div class="form-row align-items-sm-end">
                         <div class="col-sm-3">
                             <label for="cpf">CPF:</label>
-                            <input id="cpf" type="text" name="consulta.paciente.cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
+                            <input id="cpf" type="text" name="paciente.cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
                         </div>
                         <div class="col-sm">
                             <label for="nome">Nome</label>
@@ -77,30 +77,7 @@
         </div>
 
         <div layout:fragment="scripts">
-            <script>
-                $(document).ready(function () {
-                    $('#cpf').change(obterNomePaciente);
-
-                    function obterNomePaciente() {
-                        var cpf = $('#cpf').val();
-
-                        if (cpf) {
-                            var url = `/recepcionista/paciente/${cpf}`;
-
-                            $('#nomePacientePlaceholder').load(url, function (responseTxt, statusTxt, xhr) {
-                                if (statusTxt == "success") {
-                                }
-                                if (statusTxt == "error") {
-                                    $('#pacienteNome').val("");
-                                    alert(responseTxt);
-                                }
-                            });
-                        }else{
-                            $('#pacienteNome').val("");
-                        }
-                    }
-                })
-            </script>
+            <script type="text/javascript" th:src="@{/js/novaConsulta.js}"></script>
         </div>
     </body>
 
