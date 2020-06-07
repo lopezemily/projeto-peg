@@ -1,7 +1,9 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.dto.CadastroMedico;
 import br.com.prontomed.peg.dto.CadastroPaciente;
 import br.com.prontomed.peg.models.Consulta;
+import br.com.prontomed.peg.models.Medico;
 import br.com.prontomed.peg.models.Paciente;
 import br.com.prontomed.peg.models.Usuario;
 import br.com.prontomed.peg.services.ConsultaService;
@@ -73,6 +75,14 @@ public class RecepcionistaController {
         modelAndView.addObject("especialidades", especialidadeService.obterEspecialidadesComMedicosAssociados());
         return modelAndView;
     }
+
+    @RequestMapping(value = { "/paciente/{cpf}" }, method = RequestMethod.GET)
+    public ModelAndView realizarConsulta(@PathVariable String cpf) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("fragments/pacienteNome :: pacienteNome");
+        modelAndView.addObject("paciente", pacienteService.obterPacientePorCpf(cpf).orElse(new Paciente("Não Encontrado")));
+        return modelAndView;
+    }
     
     @RequestMapping(value = { "/novaConsulta/horariosDisponiveis" }, method = RequestMethod.GET)
     public Object horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate data,
@@ -122,8 +132,7 @@ public class RecepcionistaController {
         if (bindingResult.hasErrors()) {
             return "novoPaciente";
         } else {
-            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", ""));
-            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace("-", ""));
+            cadastroPaciente.setCpf(cadastroPaciente.getCpf().replace(".", "").replace("-", ""));
             Usuario usuario = new Usuario(cadastroPaciente.getCpf(), cadastroPaciente.getSenha(), null);
             userService.salvarPaciente(usuario);
 
@@ -131,7 +140,7 @@ public class RecepcionistaController {
             Paciente paciente = objectMapper.readValue(objectMapper.writeValueAsString(cadastroPaciente), Paciente.class);
             pacienteService.inserirPaciente(paciente);
 
-            return "redirect:/home?mensagem=Usuario foi cadastrado com sucesso.";
+            return "redirect:/home?mensagem=Paciente cadastrado com sucesso.";
         }
     }
     
@@ -139,7 +148,7 @@ public class RecepcionistaController {
     public ModelAndView novoMedico() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("recepcionista/novoMedico");
-        
+        modelAndView.addObject("especialidades", especialidadeService.obterTodasEspecialidades());
         return modelAndView;
     }
     
@@ -153,6 +162,27 @@ public class RecepcionistaController {
         return modelAndView;
     }
 
-    // TODO: Post Medico
+    @RequestMapping(value = "/novoMedico", method = RequestMethod.POST)
+    public String criarNovoPaciente(@Valid CadastroMedico cadastroMedico, BindingResult bindingResult) throws JsonProcessingException {
+        Optional<Usuario> userExists = userService.findUserByCpf(cadastroMedico.getCpf());
+        if (userExists.isPresent()) {
+            bindingResult.rejectValue("userName", "error.user",
+                    "There is already a user registered with the user name provided");
+        }
+        if (bindingResult.hasErrors()) {
+            return "novoMedico";
+        } else {
+            cadastroMedico.setCpf(cadastroMedico.getCpf().replace(".", "").replace("-", ""));
+            Usuario usuario = new Usuario(cadastroMedico.getCpf(), cadastroMedico.getSenha(), null);
+            userService.salvarMedico(usuario);
+
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Medico medico = objectMapper.readValue(objectMapper.writeValueAsString(cadastroMedico), Medico.class);
+            medico.setDisponibilidade(cadastroMedico.getDaysOfWeek());
+            medicoService.inserirMedico(medico);
+
+            return "redirect:/recepcionista/home?mensagem=Medico cadastrado com sucesso.";
+        }
+    }
 
 }

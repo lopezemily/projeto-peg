@@ -49,7 +49,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/recepcionista/**").hasAuthority("RECEPCIONISTA")
             .anyRequest().authenticated().and().rememberMe()
             .and().csrf().disable().formLogin()
-            .loginPage("/login").failureUrl("/login?error=true")
+            .loginPage("/login").failureUrl("/login?mensagem=Login ou Senha incorreta!")
             .defaultSuccessUrl("/home", true)
             .usernameParameter("cpf")
             .passwordParameter("senha")
