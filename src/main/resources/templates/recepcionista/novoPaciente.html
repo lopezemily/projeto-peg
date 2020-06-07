@@ -14,7 +14,7 @@
                 <h2>Novo Paciente</h2><br>
             </div>
 
-            <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
+            <form autocomplete="off" action="#" th:action="@{/recepcionista/novoPaciente}" method="post">
                 <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
                 <div>
                     <div class="blockwhite" id="dadosPessoais">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-sm">
                                 <label class="mr-sm-2" for="estadoCivil">Estado civil*</label>
-                                <select id="estadoCivil" class="custom-select mr-sm-2" required>
+                                <select id="estadoCivil" class="custom-select mr-sm-2" required name="estadoCivil">
                                     <option value="" disabled selected>Selecione...</option>
                                     <option value="Solteiro(a)">Solteiro(a)</option>
                                     <option value="Casado(a)">Casado(a)</option>
