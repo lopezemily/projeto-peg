@@ -37,10 +37,10 @@
                         <div id="cids" class="form-row align-items-end col-sm">
                             <div class="col-sm-3">
                                 <label for="cid">Buscar CID</label>
-                                <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9">
+                                <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9" required>
                             </div>
-                            <div class="col-sm-9">
-                                <input id="cidDescricao" type="text" readonly class="form-control"> 
+                            <div class="col-sm-9" id="cidPlaceholder">
+                                <input id="cidDescricao" type="text" readonly class="form-control" required> 
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,34 @@
                     </div>
                 </div>
             </form>
+        </div>
 
+        <div layout:fragment="scripts">
+            <script>
+                $(document).ready(function () {
+                    $('#cid').change(obterCidDescricao);
+
+                    function obterCidDescricao() {
+                        var cid = $('#cid').val();
+
+                        if (cid) {
+                            var url = `/medico/cid/${cid}`;
+
+                            $('#cidPlaceholder').load(url, function (responseTxt, statusTxt, xhr) {
+                                if (statusTxt == "success") {
+                                }
+                                if (statusTxt == "error") {
+                                    $('#cidDescricao').val("");
+                                    alert(responseTxt);
+                                }
+                            });
+                        }else{
+                            $('#cidDescricao').val("");
+                        }
+                    }
+
+                })
+            </script>
         </div>
     </body>
 
