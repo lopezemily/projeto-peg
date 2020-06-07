@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <div class="container-md" layout:fragment="content">
+        <div class="container" layout:fragment="content">
 
             <div id="espacotitulo" class="form-row col-sm align-items-center">
                 <img th:src="@{/img/novoPaciente.png}"/>
@@ -138,9 +138,14 @@
                             <label for="senha">Senha*</label>
                             <input id="senha" type="password" placeholder="Senha minima de 6 digitos" name="senha" class="form-control" required/>
                         </div>
-                        <div class="col-sm">
-                            <button type="submit" class="btn btn-success">Salvar</button>
-                        </div>
+                    </div>
+                </div>
+                <div class="row col-sm align-items-center">
+                    <div class="col-sm offset-sm-8">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-success btnAlt">Salvar</button>
                     </div>
                 </div>
             </form>

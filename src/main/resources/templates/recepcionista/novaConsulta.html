@@ -13,12 +13,12 @@
                 <h4>Novo agendamento​</h4>
             </div>
 
-            <form autocomplete="off" action="#" th:action="@{/recepcionista}" method="post">
+            <form autocomplete="off" action="#" th:action="@{/recepcionista/novaConsulta}" method="post">
                 <div class="blockwhite" id="espacotitulo">
                     <div class="form-row align-items-sm-end">
                         <div class="col-sm-3">
                             <label for="cpf">CPF:</label>
-                            <input id="cpf" type="text" name="cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
+                            <input id="cpf" type="text" name="consulta.paciente.cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
                         </div>
                         <div>
                             <button type="button" class="btn btn-info btnAlt" id="btnBuscar">Buscar</button>
@@ -65,14 +65,13 @@
                             </select>
                         </div>
                     </div>
-                    <p></p>
-                    <div class="row col-sm align-items-center">
-                        <div class="col-sm-2 offset-sm-8">
-                            <a class="btn-primary btnAlt" href="/home">Voltar</a>
-                        </div>
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-success btnAlt">Salvar</button>
-                        </div>
+                </div>
+                <div class="row col-sm align-items-center">
+                    <div class="col-sm offset-sm-8">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-success btnAlt">Salvar</button>
                     </div>
                 </div>
             </form>
