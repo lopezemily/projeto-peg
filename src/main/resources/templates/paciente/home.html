@@ -33,18 +33,18 @@
                         </p>
                     </div>
                     <div class="col-sm row justify-content-end">
-                        <div class="col-sm-3" style="padding-right:70px;">
+                        <div class="col-sm-3">
                             <form th:action="@{/paciente/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
                                 <button type="submit" class="btn btn-danger btnAlt" id="btnCancelar">Cancelar</button>
                             </form>
                         </div>
-                        <div class="col-sm-3" th:if="!${consulta.confirmada}" style="padding-right:70px">
+                        <div class="col-sm-3" th:if="!${consulta.confirmada}">
                             <form th:action="@{/paciente/confirmar/} + ${consulta.numAtendimento}" method="post">
                                 <button type="submit" class="btn btn-success btnAlt" id="btnConfirma">Confirmar</button>
                             </form>
                         </div>
-                        <div class="col-sm-3" th:if="${consulta.confirmada}" style="padding-right:70px">
-                            <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirma" id="btnConfirmado">Confirmado</button>
+                        <div class="col-sm-3" th:if="${consulta.confirmada}">
+                            <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirmado">Confirmado</button>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
                         </p>
                     </div>
-                    <div class="col-sm" th:if="${consulta.realizada}" style="padding-right:70px">
+                    <div class="col-sm-3 justify-content-end" th:if="${consulta.realizada}">
                         <form th:action="@{/paciente/consulta/} + ${consulta.numAtendimento}" method="get">
                             <button type="submit" class="btn btnAlt btn-primary">Detalhes</button>
                         </form>

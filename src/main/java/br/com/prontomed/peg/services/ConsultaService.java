@@ -77,6 +77,14 @@ public class ConsultaService {
         return consultaRepository.findConsultasDoDiaByMedicoCpf(cpf);
     }
     
+    public List<Consulta> obterConsultasProximasTodasMedico(String cpf) {
+        return consultaRepository.findConsultasByMedicoCpf(cpf);
+    }
+    
+    public List<Consulta> obterConsultasProximasTodas() {
+        return consultaRepository.findConsultas();
+    }
+    
     public List<Consulta> obterConsultasDia(){
         return consultaRepository.findConsultasDoDia();
     }

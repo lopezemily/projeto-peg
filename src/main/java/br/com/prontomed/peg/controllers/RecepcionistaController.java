@@ -151,6 +151,16 @@ public class RecepcionistaController {
         modelAndView.addObject("especialidades", especialidadeService.obterTodasEspecialidades());
         return modelAndView;
     }
+    
+    @RequestMapping(value = { "/agenda" }, method = RequestMethod.GET)
+    public ModelAndView visualizarAgenda(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recepcionista/agenda");
+        
+        modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasTodas());
+
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/novoMedico", method = RequestMethod.POST)
     public String criarNovoPaciente(@Valid CadastroMedico cadastroMedico, BindingResult bindingResult) throws JsonProcessingException {
