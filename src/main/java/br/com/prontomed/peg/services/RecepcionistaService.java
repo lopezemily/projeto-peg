@@ -14,4 +14,20 @@ public class RecepcionistaService {
     public Recepcionista obterRecepcionista(String recepcionistaId) {
         return recepcionistaRepository.getOne(recepcionistaId);
     }
+    
+    public void inserirRecepcionista(Recepcionista recepcionista){
+        if(recepcionistaRepository.existsById(recepcionista.getCpf())){
+            throw new RuntimeException("Recepcionista já cadastrado!");
+        }
+        
+        recepcionistaRepository.save(recepcionista);
+    }
+    
+    public void atualizarRecepcionista(Recepcionista recepcionista){
+        if(recepcionistaRepository.existsById(recepcionista.getCpf())){
+            recepcionistaRepository.save(recepcionista);
+        } else {
+            throw new RuntimeException("Paciente não cadastrado!");
+        }
+    }
 }

@@ -22,9 +22,9 @@ public class UserService {
 
     @Autowired
     public UserService(
-                       UsuarioRepository userRepository,
-                       FuncaoRepository roleRepository,
-                       BCryptPasswordEncoder bCryptPasswordEncoder) {
+            UsuarioRepository userRepository,
+            FuncaoRepository roleRepository,
+            BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -41,11 +41,18 @@ public class UserService {
         return userRepository.save(usuario);
     }
 
-	public Usuario salvarMedico(Usuario usuario) {
+    public Usuario salvarMedico(Usuario usuario) {
         usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
         Funcao userRole = roleRepository.findByRole("MEDICO");
         usuario.setRoles(new HashSet<Funcao>(Arrays.asList(userRole)));
         return userRepository.save(usuario);
-	}
+    }
+
+    public Usuario salvarRecepcionista(Usuario usuario) {
+        usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+        Funcao userRole = roleRepository.findByRole("RECEPCIONISTA");
+        usuario.setRoles(new HashSet<Funcao>(Arrays.asList(userRole)));
+        return userRepository.save(usuario);
+    }
 
 }

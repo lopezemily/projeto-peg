@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Nova Consulta</title>
+    </head>
+    <body>
+        <div class="container" layout:fragment="content">
+
+            <div  class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novaConsulta.png}"/>
+                <h4>Novo agendamento​</h4>
+            </div>
+
+            <form autocomplete="off" action="#" th:action="@{/admin/novaConsulta}" method="post">
+                <div class="blockwhite" id="espacotitulo">
+                    <div class="form-row align-items-sm-end">
+                        <div class="col-sm-3">
+                            <label for="cpf">CPF:</label>
+                            <input id="cpf" type="text" name="paciente.cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
+                        </div>
+                        <div class="col-sm">
+                            <label for="nome">Nome</label>
+                            <div id="nomePacientePlaceholder">
+                                <input id="pacienteNome" type="text" class="form-control" style="text-transform: uppercase" readonly required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <label for="tipoAtendimento">Tipo de atendimento</label>
+                            <select id="tipoAtendimento" class="form-control" required name="tipoAtendimento">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Consulta</option>
+                                <option>Retorno</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="tipoConvenio">Convênio</label>
+                            <select id="tipoConvenio" class="form-control" required name="convenio">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option>Particular</option>
+                                <option>Convênio</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="especialidade">Especialidade</label>
+                            <select id="especialidade" class="form-control" required name="especialidade.id">
+                                <option selected disabled>Escolha uma opção</option>
+                                <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <label for="data">Data</label>
+                            <input id="data" class="form-control" type="date" value="dd-mm-aaaa" name="data" required disabled>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="horario">Horário</label>
+                            <select id="horario" class="form-control" required name="horaInicio" disabled>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-sm align-items-center">
+                    <div class="col-sm offset-sm-8">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div layout:fragment="scripts">
+            <script type="text/javascript" th:src="@{/js/novaConsulta.js}"></script>
+        </div>
+    </body>
+
+</html>
