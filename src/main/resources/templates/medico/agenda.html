@@ -26,7 +26,8 @@
                     <div class="col-sm-md">
                         <p>
                             <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
-                            <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span></br>
+                            <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span> 
+                            <i>(<span th:text="${consulta.paciente.idade}"></span> anos)</i></br>
                             <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
                         </p>
                     </div>
