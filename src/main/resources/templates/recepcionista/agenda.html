@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Agenda</title>
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="row col-sm align-items-center">
+                <div class="col-sm-9" id="espacotitulo">
+                    <h4>Próximas consultas agendadas</h4>
+                </div>
+                <div class="col-sm">
+                    <a type="button" class="btn btn-primary btnAlt" href="/home">Voltar</a>
+                </div>
+            </div>
+            <div id="proximasConsultas">
+                <div  class="blockwhite col-sm-md row align-items-center" th:if="${proximasConsultas.empty}">
+                    <p>
+                        <b>Não há mais consultas para hoje</b>
+                    </p>
+                </div>
+                <div class="row blockwhite align-items-center" th:each="consulta : ${proximasConsultas}">
+                    <div class="col-sm">
+                        <p>
+                            <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                            <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span> 
+                            <i>(<span th:text="${consulta.paciente.idade}"></span> anos)</i></br>
+                            <b>- Contato:</b> <span th:text="${consulta.paciente.contato.celular}"></span>/<span th:text="${consulta.paciente.contato.email}"></span>)</br>
+                            <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
+                            <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                        </p>
+                    </div>
+                    <div class="form-row col-sm justify-content-end">
+                        <div class="col-sm">
+                            <form th:action="@{/recepcionista/cancelarConsultaAgenda/} + ${consulta.numAtendimento}" method="post">
+                                <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
+                            </form>
+                        </div>
+                        <div class="col-sm" th:if="!${consulta.confirmada}">
+                            <form th:action="@{/recepcionista/confirmarAgenda/} + ${consulta.numAtendimento}" method="post">
+                                <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
+                            </form>
+                        </div>
+                        <div class="col-sm" th:if="${consulta.confirmada}">
+                            <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirmado">Confirmado</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -16,8 +19,12 @@ public abstract class Pessoa {
     
     private String nome;
     
+    @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate dtNascimento;
+
+    @Formula("ROUND(DATEDIFF(CURDATE(), dt_nascimento) / 365.25, 1)")
+    private float idade;
     
     private char sexo;
     
@@ -32,7 +39,7 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf = cpf.replace(".", "").replace("-", "");
     }
 
     public String getNome() {
@@ -83,5 +90,11 @@ public abstract class Pessoa {
         this.estadoCivil = estadoCivil;
     }
     
+    public float getIdade(){
+        return idade;
+    }
     
+    public void setIdade(float idade){
+        this.idade = idade;
+    }
 }

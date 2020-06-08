@@ -24,9 +24,13 @@
                             <label for="numAtendimentoPront">Nº atendimento</label>
                             <input id="numAtendimentoPront" type="number" class="form-control" readonly th:value="${numeroAtendimento}">
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-7">
                             <label for="nomePaciente">Paciente</label>
                             <input id="nomePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.nome}">
+                        </div>
+                        <div class="col-sm">
+                            <label for="idadePaciente">Idade</label>
+                            <input id="idadePaciente" type="text" class="form-control" readonly th:value="${consulta.paciente.idade} + ' anos'">
                         </div>
                     </div>
                     <div class="form-row col-sm">
@@ -69,48 +73,27 @@
                     <div class="form-row col-sm">
                         <label for="examesPront">Exames</label>
                         <textarea id="examesPront" class="form-control" placeholder="Ex: Hemograma, Glicemia, Colesterol total" rows="2" name="exames"></textarea>
-                    </div><p></p>
-                    <div class="row justify-content-end">
-                        <div class="col-sm-3">
-                            <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
-                        </div>
-                        <div class="col-sm-3">
-                            <a class="btn btnAlt" id="btnReceita" th:href="@{/medico/novaReceita/} + ${numAtendimento}">Receita</a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a class="btn btnAlt" id="btnAtestado" th:href="@{/medico/atestado/} + ${numAtendimento}">Atestado</a>
-                        </div>
+                    </div>
+                </div>
+                <div class="row col-sm-10 offset-sm-1 align-items-center">
+                    <div class="col-sm">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                    </div>
+                    <div class="col-sm">
+                        <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
+                    </div>
+                    <div class="col-sm">
+                        <a class="btn btnAlt" id="btnReceita" th:href="@{/medico/novaReceita/} + ${numAtendimento}">Receita</a>
+                    </div>
+                    <div class="col-sm">
+                        <a class="btn btnAlt" id="btnAtestado" th:href="@{/medico/atestado/} + ${numAtendimento}">Atestado</a>
                     </div>
                 </div>
             </form>
         </div>
 
         <div layout:fragment="scripts">
-            <script>
-                $(document).ready(function () {
-                    $('#cid').change(obterCidDescricao);
-
-                    function obterCidDescricao() {
-                        var cid = $('#cid').val();
-
-                        if (cid) {
-                            var url = `/medico/cid/${cid}`;
-
-                            $('#cidPlaceholder').load(url, function (responseTxt, statusTxt, xhr) {
-                                if (statusTxt == "success") {
-                                }
-                                if (statusTxt == "error") {
-                                    $('#cidDescricao').val("");
-                                    alert(responseTxt);
-                                }
-                            });
-                        }else{
-                            $('#cidDescricao').val("");
-                        }
-                    }
-
-                })
-            </script>
+            <script type="text/javascript" th:src="@{/js/registrarConsulta.js}"></script>
         </div>
     </body>
 

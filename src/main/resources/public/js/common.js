@@ -61,24 +61,23 @@ function mascaracpf(i) {
 
 }
 
-
-
 //adiciona mascara de telefone
 function mascaratelefone(o, f) {
     v_obj = o
     v_fun = f
     setTimeout("execmascara()", 1)
 }
+
 function execmascara() {
     v_obj.value = v_fun(v_obj.value)
 }
+
 function mtel(v) {
     v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
     v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
     v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
     return v;
 }
-
 
 //adiciona mascara de cep
 function mascaracep(t, mask) {
@@ -88,26 +87,6 @@ function mascaracep(t, mask) {
     if (texto.substring(0, 1) != saida) {
         t.value += texto.substring(0, 1);
     }
-}
-
-
-//Calcula idade
-document.getElementById("data").addEventListener('change', function () {
-    var data = new Date(this.value);
-    if (isDate_(this.value) && data.getFullYear() > 1900)
-        document.getElementById("idade").value = calculateAge(this.value);
-});
-
-function calculateAge(dobString) {
-    var dob = new Date(dobString);
-    var currentDate = new Date();
-    var currentYear = currentDate.getFullYear();
-    var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
-    var age = currentYear - dob.getFullYear();
-    if (birthdayThisYear > currentDate) {
-        age--;
-    }
-    return age;
 }
 
 function calcular(data) {

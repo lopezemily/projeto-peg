@@ -60,6 +60,10 @@ public class ConsultaService {
 
         consultaRepository.save(consulta);
     }
+    
+    public void criarConsulta(Consulta consulta) {
+        criarConsulta(consulta.getPaciente().getCpf(), consulta);
+    }
 
     public List<Consulta> obterConsultasAnterioresPaciente(String cpf) {
         return consultaRepository.findByRealizadaAndPacienteCpf(true, cpf);
@@ -71,6 +75,18 @@ public class ConsultaService {
 
     public List<Consulta> obterConsultasProximasMedico(String cpf) {
         return consultaRepository.findConsultasDoDiaByMedicoCpf(cpf);
+    }
+    
+    public List<Consulta> obterConsultasProximasTodasMedico(String cpf) {
+        return consultaRepository.findConsultasByMedicoCpf(cpf);
+    }
+    
+    public List<Consulta> obterConsultasProximasTodas() {
+        return consultaRepository.findConsultas();
+    }
+    
+    public List<Consulta> obterConsultasDia(){
+        return consultaRepository.findConsultasDoDia();
     }
 
     public void registrarProntuario(long numAtendimento, Prontuario prontuario) {

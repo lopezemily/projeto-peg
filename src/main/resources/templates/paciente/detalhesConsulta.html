@@ -78,11 +78,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-12" style="text-align: right;" id="button">  
-                    <form th:action="@{/home}" method="get">
-                        <button type="submit" class="btn btn-primary btnAlt">Voltar</button>
-                    </form>
-                </div>
+            </div>
+            <div class="col-sm-3 offset-sm-9">
+                <button type="button" class="btn btn-primary btnAlt" onClick="history.back()">Voltar</button>
             </div>
         </div>
     </body>

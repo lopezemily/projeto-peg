@@ -39,23 +39,21 @@
                     <label for="exampleFormControlTextarea1">Descrição</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="descReceita"></textarea>
                 </div>
-                <div id="textoAssinaturaReceita" class="row">
+                <div id="textoAssinaturaReceita" class="row col-sm justify-content-center">
                     <div>
-                        <div>
-                            ___________________________________</br>
-                            <span th:text="${consulta.medico.nome}"></span></br>
-                            CRM: <span th:text="${consulta.medico.crm.numeroRegistro}"></span> - <span th:text="${consulta.medico.crm.uf}"></span><br>
+                        ___________________________________</br>
+                        Dr(a) <span th:text="${consulta.medico.nome}"></span></br>
+                        CRM: <span th:text="${consulta.medico.crm.numeroRegistro}"></span> - <span th:text="${consulta.medico.crm.uf}"></span><br>
                             <span th:text="${#dates.format(#execInfo.now.time, 'dd/MM/yyyy')}"></span>
-                        </div>
                     </div>
                 </div>
-                <div class="form-row noprint">
-                    <div class="col-sm-4 offset-5">
-                        <input type="button" value="Voltar" class="btn btn-primary btnAlt" onClick="history.back()"/>
-                    </div>
-                    <div>
-                        <input type="button" value="Imprimir" class="btn btn-success btnAlt" onClick="window.print()"/>
-                    </div>
+            </div>
+            <div class="row justify-content-end align-items-center noprint">
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-primary btnAlt" onClick="history.back()">Voltar</button>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-success btnAlt" onClick="window.print()">Imprimir</button>
                 </div>
             </div>
     </body>
