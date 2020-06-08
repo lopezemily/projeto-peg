@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+
+    <body>
+        <div th:fragment="pacienteNome">
+            <input id="pacienteNome" type="text" class="form-control" style="text-transform: uppercase" readonly required th:value="${paciente.nome}">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+
+    <body>
+        <div th:fragment="horariosSelect">
+            <select id="horario" class="form-control" required name="horaInicio">
+                <option th:each="d : ${disponibilidades}" th:value="${d}" th:text="${d}"></option>
+            </select>
+        </div>
+    </body>
+</html>

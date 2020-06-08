@@ -35,4 +35,8 @@ public class MedicoService {
     public int obterContagemPacientesAusentesMes(String medicoId) {
         return consultaRepository.countConsultaMesAusenteByMedicoCpf(medicoId);
     }
+
+	public void inserirMedico(Medico medico) {
+        medicoRepository.save(medico);
+	}
 }

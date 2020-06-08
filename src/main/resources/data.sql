@@ -28,14 +28,14 @@ INSERT INTO unidade VALUES
     ("999", "99999-9999","unidadeclinica@unidade.com",NULL,"1234-5678","08870-000","Barueri","Centro","Avenida abc","1111","Clinica PEG");
 
 INSERT INTO paciente
-    (cpf, nome, sexo,email,celular, ca, dm, dpoc, etilista, has, ic, tabagista,cidade)
+    (cpf, nome, sexo,email,celular, ca, dm, dpoc, etilista, has, ic, tabagista, cidade, dt_nascimento)
 VALUES
-    ("12312312312", "Diego da Silva", "M", "diego@gmail.com", "99999-8888", 0, 0, 0, 0, 0, 0, 1,"Sao Paulo");
+    ("12312312312", "Diego da Silva", "M", "diego@gmail.com", "99999-8888", 0, 0, 0, 0, 0, 0, 1,"Sao Paulo", "1999-01-01");
 
 INSERT INTO recepcionista
-    (cpf, nome, sexo)
+    (cpf, nome, sexo, dt_nascimento)
 VALUES
-    ("12355510001", "Daniela Oliveira", "F");
+    ("12355510001", "Daniela Oliveira", "F", "1940-01-01");
 
 
 INSERT INTO prontuario

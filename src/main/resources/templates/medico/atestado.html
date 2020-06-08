@@ -32,34 +32,29 @@
                     </p>
                 </div>
                 <div id="cidadeData">
-                    <span th:text="${consulta.unidade.endereco.cidade}"></span>, <span th:text="${consulta.horaInicio}"></span>
+                    <span th:text="${consulta.unidade.endereco.cidade}"></span>, <span th:text="${#temporals.format(consulta.data,'dd MMM yyyy')}"></span>.
                 </div>
                 <div id="textoAssinatura" class="row">
-                    <div>
-                        <div>
-                            ___________________________________</br>
-                            <span th:text="${consulta.medico.nome}"></span></br>
-                            CRM: <span th:text="${consulta.medico.crm.numeroRegistro}"></span> - <span th:text="${consulta.medico.crm.uf}"></span>
-                        </div>
+                    <div class='col-sm'>
+                        ___________________________________</br>
+                        Dr(a) <span th:text="${consulta.medico.nome}"></span></br>
+                        CRM: <span th:text="${consulta.medico.crm.numeroRegistro}"></span> - <span th:text="${consulta.medico.crm.uf}"></span>
                     </div>
-                    <div>
-                        <div class="offset-2">
-                            ___________________________________</br>
-                            <span th:text="${consulta.paciente.nome}"></span></br>
-                            CPF: <span th:text="${cpf}"></span>
-                        </div>
+                    <div class='col-sm'>
+                        ___________________________________</br>
+                        <span th:text="${consulta.paciente.nome}"></span></br>
+                        CPF: <span th:text="${cpf}"></span>
                     </div>
                 </div>
             </div>
-            <div class="form-row noprint">
-                <div class="col-sm-4 offset-5">
-                    <input type="button" value="Voltar" class="btn btn-primary btnAlt" onClick="history.back()"/>
+            <div class="row justify-content-end align-items-center noprint">
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-primary btnAlt" onClick="history.back()">Voltar</button>
                 </div>
-                <div>
-                    <input type="button" value="Imprimir" class="btn btn-success btnAlt" onClick="window.print()"/>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-success btnAlt" onClick="window.print()">Imprimir</button>
                 </div>
             </div>
-
         </div>
     </body>
 </html>

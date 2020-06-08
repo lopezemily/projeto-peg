@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default.html}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
     <head>
         <title>Novo cadastro</title>
     </head>
 
     <body>
-        <div class="container-md" layout:fragment="content">
+        <div class="container" layout:fragment="content">
 
             <div id="espacotitulo" class="form-row col-sm align-items-center">
                 <img th:src="@{/img/novoPaciente.png}"/>
-                <h2>Novo Paciente</h2><br>
+                <h2>Novo Médico</h2><br>
             </div>
 
-            <form autocomplete="off" action="#" th:action="@{/cadastro}" method="post">
+            <form autocomplete="off" action="#" th:action="@{/recepcionista/novoMedico}" method="post">
                 <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
                 <div>
                     <div class="blockwhite" id="dadosPessoais">
@@ -27,7 +27,7 @@
                             <div class="col-sm-2">
                                 <label class="mr-sm-2" for="sexo">Sexo*</label>
                                 <select id="sexo" class="custom-select mr-sm-2" name="sexo" required>
-                                    <option value="" disabled selected>Selecione...</option>
+                                    <option selected value="" disabled>Selecione...</option>
                                     <option value="M">Masculino</option>
                                     <option value="F">Feminino</option>
                                 </select>
@@ -39,7 +39,7 @@
                             <div class="col-sm">
                                 <label class="mr-sm-2" for="estadoCivil">Estado civil*</label>
                                 <select id="estadoCivil" class="custom-select mr-sm-2" required name="estadoCivil">
-                                    <option value="" disabled selected>Selecione...</option>
+                                    <option selected>Selecione...</option>
                                     <option value="Solteiro(a)">Solteiro(a)</option>
                                     <option value="Casado(a)">Casado(a)</option>
                                     <option value="Viúvo(a)">Viúvo(a)</option>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-sm-5">
                                 <label for="email">E-mail*</label>
-                                <input id="email" type="email" name="contato.email" class="form-control" style="text-transform:lowercase; required">
+                                <input id="email" type="email" name="contato.email" class="form-control" style="text-transform:lowercase;" required>
                             </div>
                             <div class="col-sm">
                                 <label for="tel">Telefone</label>
@@ -74,7 +74,7 @@
                                 <label for="cep">CEP</label>
                                 <input id="cep" type="text" name="endereco.CEP" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <label for="endereco">Endereço</label>
                                 <input id="endereco" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
                             </div>
@@ -93,42 +93,85 @@
                         </div>
                     </div>
 
-                    <div class="blockwhite" id="Observações">
-                        <h5 class="text-primary">Observações</h5>
+                    <div class="blockwhite" id="dadosProfissionais">
+                        <h5 class="text-primary">Dados Profissionais</h5>
+
                         <div class="align-items-center">
-                            <div class="col-sm">
-                                <label for="alergias">Alergias</label>
-                                <input id="alergias" type="text" class="form-control" name="alergias" placeholder="Ex.: Dipirona, AAS...">
+                            <div class="row col-sm">
+                                <div class="col-sm">
+                                    <label for="numcrm">Número CRM</label>
+                                    <input id="numcrm" type="number" name="crm.numeroRegistro" class="form-control">
+                                </div>
+                                <div class="col-sm">
+                                    <label class="mr-sm-2" for="ufcrm">UF CRM</label>
+                                    <select id="ufcrm" class="custom-select mr-sm-2" name="crm.uf">
+                                        <option selected disabled>Estados</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <label class="mr-sm-2" for="especialidade">Especialidade</label>
+                                    <select id="especialidade" class="custom-select mr-sm-2" name="especialidades">
+                                        <option selected>Especialidades</option>
+                                        <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
+                                    </select>
+                                </div>
                             </div>
-                            <label class="col-sm">Doenças pré existentes:</label>
-                            <div class="form-row col-sm">
+                            <label class="col-sm">Disponibilidade de atendimento:</label>
+                            <div class="row col-sm">
                                 <div class="form-check form-check-inline">
-                                    <input id="dm" class="form-check-input" name="dm" type="checkbox">
-                                        <label for="dm" class="form-check-label">Diabetes</label>
+                                    <input id="seg" class="form-check-input" name="segunda" type="checkbox">
+                                    <label for="seg" class="form-check-label">Segunda</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="has" class="form-check-input" name="has" type="checkbox">
-                                        <label for="has" class="form-check-label">Hipertensão</label>
+                                    <input id="ter" class="form-check-input" name="terca" type="checkbox">
+                                    <label for="ter" class="form-check-label">Terça</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="ic" class="form-check-input" name="ic" type="checkbox">
-                                        <label for="ic" class="form-check-label">Insuficiência cardíaca</label>
+                                    <input id="qua" class="form-check-input" name="quarta" type="checkbox">
+                                    <label for="qua" class="form-check-label">Quarta</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="dpoc" class="form-check-input" name="dpoc" type="checkbox">
-                                        <label for="dpoc" class="form-check-label">DPOC</label>
+                                    <input id="qui" class="form-check-input" name="quinta" type="checkbox">
+                                    <label for="qui" class="form-check-label">Quinta</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="ca" class="form-check-input" name="ca" type="checkbox">
-                                        <label for="ca" class="form-check-label">Câncer</label>
+                                    <input id="sex" class="form-check-input" name="sexta" type="checkbox">
+                                    <label for="sex" class="form-check-label">Sexta</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="etilismo" class="form-check-input" type="checkbox">
-                                        <label for="etilismo" class="form-check-label" name="etilista">Etilismo</label>
+                                    <input id="sab" class="form-check-input" name="sabado" type="checkbox">
+                                    <label for="sab" class="form-check-label">Sábado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="tabagismo" class="form-check-input" name="tabagista" type="checkbox">
-                                        <label for="tabagismo" class="form-check-label">Tabagismo</label>
+                                    <input id="dom" class="form-check-input" name="domingo" type="checkbox">
+                                    <label for="dom" class="form-check-label">Domingo</label>
                                 </div>
                             </div>
                         </div>

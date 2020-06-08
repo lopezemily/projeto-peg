@@ -5,7 +5,6 @@
     <head>
         <title>Nova Consulta</title>
     </head>
-
     <body>
         <div class="container" layout:fragment="content">
 
@@ -14,8 +13,20 @@
                 <h4>Novo agendamento​</h4>
             </div>
 
-            <form action="#" th:action="@{/paciente/novaConsulta}" method="post">
+            <form autocomplete="off" action="#" th:action="@{/recepcionista/novaConsulta}" method="post">
                 <div class="blockwhite" id="espacotitulo">
+                    <div class="form-row align-items-sm-end">
+                        <div class="col-sm-3">
+                            <label for="cpf">CPF:</label>
+                            <input id="cpf" type="text" name="paciente.cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)">
+                        </div>
+                        <div class="col-sm">
+                            <label for="nome">Nome</label>
+                            <div id="nomePacientePlaceholder">
+                                <input id="pacienteNome" type="text" class="form-control" style="text-transform: uppercase" readonly required>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row align-items-center">
                         <div class="col-sm-4">
                             <label for="tipoAtendimento">Tipo de atendimento</label>
@@ -68,7 +79,6 @@
         <div layout:fragment="scripts">
             <script type="text/javascript" th:src="@{/js/novaConsulta.js}"></script>
         </div>
-
     </body>
 
 </html>

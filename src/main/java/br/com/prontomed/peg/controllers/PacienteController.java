@@ -73,7 +73,7 @@ public class PacienteController {
             @RequestParam("especialidadeId") int especialidadeId) throws Exception {
         try {
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("paciente/fragments/horariosDisponiveis :: horariosSelect");
+            modelAndView.setViewName("fragments/horariosDisponiveis :: horariosSelect");
             modelAndView.addObject("disponibilidades", consultaService.obterHorariosDisponiveis(data, especialidadeId));
             return modelAndView;
         } catch (Exception e) {

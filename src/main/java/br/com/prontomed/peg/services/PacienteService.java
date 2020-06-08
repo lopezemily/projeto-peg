@@ -41,7 +41,10 @@ public class PacienteService {
     }
 
 	public Paciente obterPaciente(String cpf) {
-		return repository.getOne(cpf);
+		return repository.getOne(cpf.replace(".", "").replace("-", ""));
 	}
     
+    public Optional<Paciente> obterPacientePorCpf(String cpf) {
+        return repository.findById(cpf.replace(".", "").replace("-", ""));
+	}
 }

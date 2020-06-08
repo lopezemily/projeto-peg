@@ -41,4 +41,11 @@ public class UserService {
         return userRepository.save(usuario);
     }
 
+	public Usuario salvarMedico(Usuario usuario) {
+        usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+        Funcao userRole = roleRepository.findByRole("MEDICO");
+        usuario.setRoles(new HashSet<Funcao>(Arrays.asList(userRole)));
+        return userRepository.save(usuario);
+	}
+
 }

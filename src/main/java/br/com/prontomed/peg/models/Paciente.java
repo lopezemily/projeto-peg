@@ -87,6 +87,11 @@ public class Paciente extends Pessoa {
     public void setTabagista(boolean tabagista) {
         this.tabagista = tabagista;
     }
-    
-    
+
+    public Paciente() {
+    }
+
+    public Paciente(String nome) {
+        setNome(nome);
+    }
 }

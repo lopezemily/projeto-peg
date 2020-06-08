@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Agenda</title>
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="row col-sm align-items-center">
+                <div class="col-sm-9" id="espacotitulo">
+                    <h4>Próximas consultas agendadas</h4>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn btn-primary btnAlt" onClick="history.back()">Voltar</button>
+                </div>
+            </div>
+            <div id="proximasConsultas">
+                <div  class="blockwhite col-sm-md row align-items-center" th:if="${proximasConsultas.empty}">
+                    <p>
+                        <b>Não há mais consultas para hoje</b>
+                    </p>
+                </div>
+                <div class="row blockwhite align-items-center" th:each="consulta : ${proximasConsultas}">
+                    <div class="col-sm-md">
+                        <p>
+                            <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                            <b>Paciente:</b> <span th:text="${consulta.paciente.nome}">Paciente</span> 
+                            <i>(<span th:text="${consulta.paciente.idade}"></span> anos)</i></br>
+                            <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                        </p>
+                    </div>
+                    <div  class="col-sm-md mx-auto">
+                        <div th:if="!${consulta.confirmada}">
+                            <span style="color: #FFD333"><b>Aguardando confirmação</b></span>
+                        </div>
+                        <div th:if="${consulta.confirmada}">
+                            <p style="color: #A6A6A6"><b>Confirmado</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

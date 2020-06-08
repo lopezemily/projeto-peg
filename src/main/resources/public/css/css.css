@@ -8,6 +8,12 @@
     box-shadow: 1px 5px 30px  rgb(195,195,195);
 }
 
+#tituloLogin{
+    margin: auto;
+    text-align: center;
+}
+
+
 #fundologin{
     background-color: rgb(243,243,243);
     background-image: url("../img/fundo.jpg");
@@ -16,7 +22,6 @@
     background-size: cover;
 }
 .container {
-    margin-top: 10px;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -48,10 +53,16 @@
 
 #btnReceita {
     background-color: #FFD333;
+    padding: 10px 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #btnAtestado {
     background-color: #FFC3C3;
+    padding: 10px 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #btnDadosPaciente{
@@ -65,6 +76,18 @@
 
 #btnConfirma{
     padding: 10px 25px;
+}
+
+#btnConfirmado {
+    padding: 10px 20px;
+    color: gray;
+    border-color: gray;
+}
+
+#btnBuscar {
+    padding: 10px 15px;
+    font-size: 12px;
+    margin: auto;
 }
 
 #textoAtestado {
@@ -88,9 +111,13 @@
 
 #textoAssinaturaReceita {
     text-align: center;
-    margin-left: 260px;
     margin-top: 100px;
     margin-bottom: 60px;
+}
+
+#btnAgenda {
+    background-color: #9DDBF0;
+    padding: 10px 20px;
 }
 /*CADASTRO*/
 .blockwhite {
@@ -104,7 +131,7 @@
 }
 
 .kpi{
-    background-color: #FDFDFD;
+    background-color: white;
     border-radius: 5px;
     border:1px solid #C0C0C0;
     margin-bottom: 2px;
@@ -114,6 +141,15 @@
     padding: 15px;
     width: 210px;
     height: 130px;
+    box-shadow: 1px 5px 10px  rgb(195,195,195);
+}
+
+#contentKpi{
+    margin: auto;
+    text-align: center;
+}
+a:link{
+    text-decoration:none;
 }
 
 #block {
@@ -170,12 +206,12 @@ body
 
 #ladoEsquerdoRecep{
     background-color: white;
-    border-radius: 5px;
     border:1px solid #C0C0C0;
+    margin-top: 0px;
 }
 
 #ladoDireitoRecep {
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 #titulorecep {
@@ -184,6 +220,20 @@ body
 }
 
 #botaoRecep{
-      margin-top: 50px;
-      padding-right:10px;
+    background-color: #FFD333; 
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#menuRecepcionista {
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 40px;
+
+}
+
+.itemMenuRecep {
+    margin: 10px;
 }

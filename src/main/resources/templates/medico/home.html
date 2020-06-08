@@ -15,15 +15,19 @@
             </div>
             <div class="row">
                 <div id="ladoEsquerdo" class="col-sm-6">
-
-                    <div id="espacotitulo">
-                        <h4>Próximas consultas agendadas</h4>
+                    <div class="row col-sm align-items-center">
+                        <div class="col-sm" id="espacotitulo">
+                            <h4>Consultas do dia</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <a class="btn" id="btnAgenda" th:href="@{/medico/agenda}">Agenda</a>
+                        </div>
                     </div>
 
                     <div id="proximasConsultas">
                         <div  class="blockwhite col-sm-md row align-items-center" th:if="${proximasConsultas.empty}">
                             <p>
-                                <b>Não há consultas futuras</b>
+                                <b>Não há mais consultas para hoje</b>
                             </p>
                         </div>
                         <div class="row blockwhite align-items-center" th:each="consulta : ${proximasConsultas}">
@@ -55,52 +59,28 @@
                         <h4>Estatísticas do mês</h4>
                     </div>
                     <div class="blockwhite">
-                        <div class="row col-sm justify-content-around">
-                            <div id="pacientesAgendados" class="kpi">
-                                <div class="row mx-auto">
-                                    <h2 th:text="${pacientesAgendados}"></h2>
-                                </div>
-                                <div class="row mx-auto">
-                                    <span>Pacientes agendados</span>
-                                </div>
-                                <div class="row mx-auto">
-                                    <img th:src="@{/img/pacientesAgendados.png}"/>
-                                </div>
+                        <div class="row col-sm" style="margin-left: 0px; margin-right: 0px;">
+                            <div  id="contentKpi" class="kpi">
+                                <h2 th:text="${pacientesAgendados}"></h2>
+                                <span>Pacientes agendados</span></br>
+                                <img th:src="@{/img/pacientesAgendados.png}"/></br>
                             </div>
-                            <div id="pacientesAtendidos" class="kpi">
-                                <div class="row mx-auto">
-                                    <h2 th:text="${pacientesAtendidos}"></h2>
-                                </div>
-                                <div class="row mx-auto">
-                                    <span>Pacientes atendidos</span>
-                                </div>
-                                <div class="row mx-auto">
-                                    <img th:src="@{/img/pacientesAtendidos.png}"/>
-                                </div>
+                            <div id="contentKpi" class="kpi">
+                                <h2 th:text="${pacientesAtendidos}"></h2>
+                                <span>Pacientes atendidos</span></br>
+                                <img th:src="@{/img/pacientesAtendidos.png}"/></br>
                             </div>
                         </div>
-                        <div class="row col-sm justify-content-around">
-                            <div id="pacientesConfirmados" class="kpi">
-                                <div class="row mx-auto">
-                                    <h2 th:text="${pacientesConfirmados}"></h2>
-                                </div>
-                                <div class="row mx-auto">
-                                    <span>Pacientes confimados</span>
-                                </div>
-                                <div class="row mx-auto">
-                                    <img th:src="@{/img/pacientesConfirmados.png}"/>
-                                </div>
+                        <div class="row col-sm"  style="margin-left: 0px; margin-right: 0px;">
+                            <div id="contentKpi" class="kpi">
+                                <h2 th:text="${pacientesConfirmados}"></h2>
+                                <span>Pacientes confimados</span></br>
+                                <img th:src="@{/img/pacientesConfirmados.png}"/></br>
                             </div>
-                            <div id="pacientesAusentes" class="kpi">
-                                <div class="row mx-auto">
-                                    <h2 th:text="${pacientesAusentes}"></h2>
-                                </div>
-                                <div class="row mx-auto">
-                                    <span>Pacientes ausentes</span>
-                                </div>
-                                <div class="row mx-auto">
-                                    <img th:src="@{/img/pacientesAusentes.png}"/>
-                                </div>
+                            <div id="contentKpi" class="kpi">
+                                <h2 th:text="${pacientesAusentes}"></h2>
+                                <span>Pacientes ausentes</span></br>
+                                <img th:src="@{/img/pacientesAusentes.png}"/></br>
                             </div>
                         </div>
                     </div>
