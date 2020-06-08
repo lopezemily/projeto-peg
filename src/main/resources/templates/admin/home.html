@@ -3,12 +3,97 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
     <head>
-        <title>Paciente</title>
+        <title>Administrador</title>
     </head>
 
     <body>
         <div class="container" layout:fragment="content">
-
+            <div class="row" id="homeRecep">
+                <div id="ladoEsquerdoRecep" class="col-sm-6">
+                    <div>
+                        <div class="row align-items-center">
+                            <img th:src="@{/img/logoPEG.png}"/>
+                            <h4>Olá, <span th:text="${nome}"></span>!</h4><br>
+                        </div>
+                    </div></br>
+                    <div id="menuRecepcionista">
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novaConsultaRecep.png}"/>
+                            </div>
+                            <div class="itemMenuRecep col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:href="@{/admin/novaConsulta}">Nova consulta</a>
+                            </div>
+                        </div>
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novoPacienteRecep.png}"/>
+                            </div>
+                            <div class="itemMenuRecep  col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:href="@{/admin/novoPaciente}">Nova paciente</a>
+                            </div>
+                        </div>
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novoMedicoRecep.png}"/>
+                            </div>
+                            <div class="itemMenuRecep  col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:href="@{/admin/novoMedico}">Novo médico</a>
+                            </div>
+                        </div>
+                        <div class="row col-sm-md align-items-center justify-content-center">
+                            <div class="itemMenuRecep">
+                                <img th:src="@{/img/novoRecepcionista.png}"/>
+                            </div>
+                            <div class="itemMenuRecep  col-sm">
+                                <a class="btn btnAlt" id="botaoRecep" th:href="@{/admin/novaRecepcionista}">Nova recepcionista</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ladoDireitoRecep"  class="col-sm-6">
+                    <div class="row col-sm">
+                        <div class="col-sm" id="espacotitulo">
+                            <h4>Consultas do dia</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <a class="btn" id="btnAgenda" th:href="@{/admin/agenda}">Agenda</a>
+                        </div>
+                    </div>
+                    <div id="proximasConsultas">
+                        <div  class="blockwhite col-sm row  align-items-center" th:if="${proximasConsultas.empty}">
+                            <p>
+                                <b>Não há mais consultas para hoje</b>
+                            </p>
+                        </div>
+                        <div  class="row blockwhite" th:each="consulta : ${proximasConsultas}">
+                            <div class="col-sm-12 align-items-center">
+                                <p>
+                                    <b>Data:</b> <span th:text="${#temporals.format(consulta.data,'dd/MM/yyyy')}">Data</span>, <span th:text="${consulta.horaInicio}">horaInicio</span> as <span th:text="${consulta.horaFim}">horaFim</span></br>
+                                    <b>Paciente:</b> <span th:text="${consulta.paciente.nome}"></span></br>
+                                    <b>Médico:</b> <span th:text="${consulta.medico.nome}">Medico</span></br>
+                                    <b>Especialidade:</b> <span th:text="${consulta.especialidade.descricao}">Especialidade</span>
+                                </p>
+                            </div>
+                            <div class="form-row col-sm-9 justify-content-end">
+                                <div class="col-sm">
+                                    <form th:action="@{/admin/cancelarConsulta/} + ${consulta.numAtendimento}" method="post">
+                                        <button type="submit" class="btn btn-danger btnAlt">Cancelar</button>
+                                    </form>
+                                </div>
+                                <div class="col-sm offset-md-3" th:if="!${consulta.confirmada}">
+                                    <form th:action="@{/admin/confirmar/} + ${consulta.numAtendimento}" method="post">
+                                        <button type="submit" class="btn btn-success btnAlt">Confirmar</button>
+                                    </form>
+                                </div>
+                                <div class="col-sm offset-md-3" th:if="${consulta.confirmada}">
+                                    <button type="none" disabled class="btn btn-outline-primary btnAlt" id="btnConfirmado">Confirmado</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

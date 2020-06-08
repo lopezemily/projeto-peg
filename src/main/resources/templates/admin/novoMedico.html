@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+        <title>Novo cadastro</title>
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+
+            <div id="espacotitulo" class="form-row col-sm align-items-center">
+                <img th:src="@{/img/novoPaciente.png}"/>
+                <h2>Novo Médico</h2><br>
+            </div>
+
+            <form autocomplete="off" action="#" th:action="@{/admin/novoMedico}" method="post">
+                <h6 class="form-row col-sm align-items-center"> <i><small>*Campos obrigatórios</small></i></h6>
+                <div>
+                    <div class="blockwhite" id="dadosPessoais">
+                        <h5 class="text-primary">Dados pessoais</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-4">
+                                <label for="nome">Nome completo*</label>
+                                <input id="nome" type="text" class="form-control" name="nome" style="text-transform: uppercase" onkeypress="return ApenasLetras(event, this);" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="mr-sm-2" for="sexo">Sexo*</label>
+                                <select id="sexo" class="custom-select mr-sm-2" name="sexo" required>
+                                    <option selected value="" disabled>Selecione...</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="dtNascimento">Data de nascimento*</label>
+                                <input id="dtNascimento" type="date" class="form-control" name="dtNascimento" required>
+                            </div>
+                            <div class="col-sm">
+                                <label class="mr-sm-2" for="estadoCivil">Estado civil*</label>
+                                <select id="estadoCivil" class="custom-select mr-sm-2" required name="estadoCivil">
+                                    <option selected>Selecione...</option>
+                                    <option value="Solteiro(a)">Solteiro(a)</option>
+                                    <option value="Casado(a)">Casado(a)</option>
+                                    <option value="Viúvo(a)">Viúvo(a)</option>
+                                    <option value="Divorciado(a)">Divorciado(a)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cpf">CPF*</label>
+                                <input id="cpf" type="text" name="cpf" class="form-control" placeholder="000.000.000-00" oninput="mascaracpf(this); onlynumber(this)" required>
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="email">E-mail*</label>
+                                <input id="email" type="email" name="contato.email" class="form-control" style="text-transform:lowercase;" required>
+                            </div>
+                            <div class="col-sm">
+                                <label for="tel">Telefone</label>
+                                <input id="tel" type="text" name="contato.telefone" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="14">
+                            </div>
+                            <div class="col-sm">
+                                <label for="cel">Celular</label>
+                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="dadosComplementares">
+                        <h5 class="text-primary">Dados complementares</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cep">CEP</label>
+                                <input id="cep" type="text" name="endereco.CEP" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="endereco">Endereço</label>
+                                <input id="endereco" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm-1">
+                                <label for="numEndereco">Número</label>
+                                <input id="numEndereco" type="text" name="endereco.numero" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="bairro">Bairro</label>
+                                <input id="bairro" type="text" name="endereco.bairro" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="cidade">Cidade</label>
+                                <input id="cidade" type="text" name="endereco.cidade" class="form-control" style="text-transform: uppercase">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="dadosProfissionais">
+                        <h5 class="text-primary">Dados Profissionais</h5>
+
+                        <div class="align-items-center">
+                            <div class="row col-sm">
+                                <div class="col-sm">
+                                    <label for="numcrm">Número CRM</label>
+                                    <input id="numcrm" type="number" name="crm.numeroRegistro" class="form-control">
+                                </div>
+                                <div class="col-sm">
+                                    <label class="mr-sm-2" for="ufcrm">UF CRM</label>
+                                    <select id="ufcrm" class="custom-select mr-sm-2" name="crm.uf">
+                                        <option selected disabled>Estados</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <label class="mr-sm-2" for="especialidade">Especialidade</label>
+                                    <select id="especialidade" class="custom-select mr-sm-2" name="especialidades">
+                                        <option selected>Especialidades</option>
+                                        <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <label class="col-sm">Disponibilidade de atendimento:</label>
+                            <div class="row col-sm">
+                                <div class="form-check form-check-inline">
+                                    <input id="seg" class="form-check-input" name="segunda" type="checkbox">
+                                    <label for="seg" class="form-check-label">Segunda</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="ter" class="form-check-input" name="terca" type="checkbox">
+                                    <label for="ter" class="form-check-label">Terça</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="qua" class="form-check-input" name="quarta" type="checkbox">
+                                    <label for="qua" class="form-check-label">Quarta</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="qui" class="form-check-input" name="quinta" type="checkbox">
+                                    <label for="qui" class="form-check-label">Quinta</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="sex" class="form-check-input" name="sexta" type="checkbox">
+                                    <label for="sex" class="form-check-label">Sexta</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="sab" class="form-check-input" name="sabado" type="checkbox">
+                                    <label for="sab" class="form-check-label">Sábado</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="dom" class="form-check-input" name="domingo" type="checkbox">
+                                    <label for="dom" class="form-check-label">Domingo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row blockwhite align-items-center" id="labelSenha" style="padding-right:70px">
+                        <div class="col-sm-4">
+                            <label for="senha">Senha*</label>
+                            <input id="senha" type="password" placeholder="Senha minima de 6 digitos" name="senha" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="row col-sm align-items-center">
+                        <div class="col-sm offset-sm-8">
+                            <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+</html>

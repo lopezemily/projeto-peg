@@ -50,7 +50,8 @@ $(document).ready(function () {
         var cpf = $('#cpf').val();
 
         if (cpf) {
-            var url = `/recepcionista/paciente/${cpf}`;
+            var funcao = window.location.pathname.split("/")[1];
+            var url = `/${funcao}/paciente/${cpf}`;
 
             $('#nomePacientePlaceholder').load(url, function (responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success") {

@@ -2,10 +2,13 @@ package br.com.prontomed.peg.controllers;
 
 import br.com.prontomed.peg.dto.CadastroMedico;
 import br.com.prontomed.peg.dto.CadastroPaciente;
+import br.com.prontomed.peg.dto.CadastroRecepcionista;
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Medico;
 import br.com.prontomed.peg.models.Paciente;
+import br.com.prontomed.peg.models.Recepcionista;
 import br.com.prontomed.peg.models.Usuario;
+import br.com.prontomed.peg.services.AdministradorService;
 import br.com.prontomed.peg.services.ConsultaService;
 import br.com.prontomed.peg.services.EspecialidadeService;
 import br.com.prontomed.peg.services.MedicoService;
@@ -32,9 +35,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path = "/recepcionista")
-public class RecepcionistaController {
-
+@RequestMapping(path = "/admin")
+public class AdminController {
+    @Autowired
+    private AdministradorService admService;
+    
     @Autowired
     private RecepcionistaService recepcionistaService;
 
@@ -61,8 +66,8 @@ public class RecepcionistaController {
         String cpf = autenticacao.getName();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("recepcionista/home");
-        modelAndView.addObject("nome", recepcionistaService.obterRecepcionista(cpf).getNome());
+        modelAndView.setViewName("admin/home");
+        modelAndView.addObject("nome", admService.obterAdmin(cpf).getNome());
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasDia());
 
         return modelAndView;
@@ -71,11 +76,12 @@ public class RecepcionistaController {
     @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.GET)
     public ModelAndView novaConsulta() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("recepcionista/novaConsulta");
+        modelAndView.setViewName("admin/novaConsulta");
         modelAndView.addObject("especialidades", especialidadeService.obterEspecialidadesComMedicosAssociados());
         return modelAndView;
     }
 
+    
     @RequestMapping(value = { "/novaConsulta/horariosDisponiveis" }, method = RequestMethod.GET)
     public Object horariosDisponiveis(@RequestParam("data") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate data,
             @RequestParam("especialidadeId") int especialidadeId) throws Exception {
@@ -88,6 +94,36 @@ public class RecepcionistaController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
+    public String salvarNovaConsulta(Consulta consulta) {
+        consultaService.criarConsulta(consulta);
+        return "redirect:/admin/home?mensagem=Consulta criada com sucesso.";
+    }
+
+    @RequestMapping(value = {"/confirmar/{numAtendimento}"}, method = RequestMethod.POST)
+    public String confirmar(@PathVariable long numAtendimento) {
+        consultaService.confirmarConsulta(numAtendimento);
+        return "redirect:/admin/home?mensagem=Consulta confirmada com sucesso.";
+    }
+    
+    @RequestMapping(value = {"/confirmarAgenda/{numAtendimento}"}, method = RequestMethod.POST)
+    public String confirmarAgenda(@PathVariable long numAtendimento) {
+        consultaService.confirmarConsulta(numAtendimento);
+        return "redirect:/admin/agenda?mensagem=Consulta confirmada com sucesso.";
+    }
+    
+    @RequestMapping(value = { "/cancelarConsulta/{numAtendimento}" }, method = RequestMethod.POST)
+    public String cancelarConsulta(@PathVariable long numAtendimento) {
+        consultaService.cancelarConsulta(numAtendimento);
+        return "redirect:/admin/home?mensagem=Consulta cancelada com sucesso.";
+    }
+    
+    @RequestMapping(value = { "/cancelarConsultaAgenda/{numAtendimento}" }, method = RequestMethod.POST)
+    public String cancelarConsultaAgenda(@PathVariable long numAtendimento) {
+        consultaService.cancelarConsulta(numAtendimento);
+        return "redirect:/admin/agenda?mensagem=Consulta cancelada com sucesso.";
+    }
     
     @RequestMapping(value = { "/paciente/{cpf}" }, method = RequestMethod.GET)
     public ModelAndView buscarPaciente(@PathVariable String cpf) {
@@ -96,41 +132,11 @@ public class RecepcionistaController {
         modelAndView.addObject("paciente", pacienteService.obterPacientePorCpf(cpf).orElse(new Paciente("Não Encontrado")));
         return modelAndView;
     }
-
-    @RequestMapping(value = {"/novaConsulta"}, method = RequestMethod.POST)
-    public String salvarNovaConsulta(Consulta consulta) {
-        consultaService.criarConsulta(consulta);
-        return "redirect:/recepcionista/home?mensagem=Consulta criada com sucesso.";
-    }
-
-    @RequestMapping(value = {"/confirmar/{numAtendimento}"}, method = RequestMethod.POST)
-    public String confirmar(@PathVariable long numAtendimento) {
-        consultaService.confirmarConsulta(numAtendimento);
-        return "redirect:/recepcionista/home?mensagem=Consulta confirmada com sucesso.";
-    }
-    
-    @RequestMapping(value = {"/confirmarAgenda/{numAtendimento}"}, method = RequestMethod.POST)
-    public String confirmarAgenda(@PathVariable long numAtendimento) {
-        consultaService.confirmarConsulta(numAtendimento);
-        return "redirect:/recepcionista/agenda?mensagem=Consulta confirmada com sucesso.";
-    }
-    
-    @RequestMapping(value = { "/cancelarConsulta/{numAtendimento}" }, method = RequestMethod.POST)
-    public String cancelarConsulta(@PathVariable long numAtendimento) {
-        consultaService.cancelarConsulta(numAtendimento);
-        return "redirect:/recepcionista/home?mensagem=Consulta cancelada com sucesso.";
-    }
-    
-    @RequestMapping(value = { "/cancelarConsultaAgenda/{numAtendimento}" }, method = RequestMethod.POST)
-    public String cancelarConsultaAgenda(@PathVariable long numAtendimento) {
-        consultaService.cancelarConsulta(numAtendimento);
-        return "redirect:/recepcionista/agenda?mensagem=Consulta cancelada com sucesso.";
-    }
     
     @RequestMapping(value = "/novoPaciente", method = RequestMethod.GET)
     public ModelAndView novoPaciente() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("recepcionista/novoPaciente");
+        modelAndView.setViewName("admin/novoPaciente");
         return modelAndView;
     }
     
@@ -151,14 +157,14 @@ public class RecepcionistaController {
             Paciente paciente = objectMapper.readValue(objectMapper.writeValueAsString(cadastroPaciente), Paciente.class);
             pacienteService.inserirPaciente(paciente);
 
-            return "redirect:/recepcionista/home?mensagem=Paciente cadastrado com sucesso.";
+            return "redirect:/admin/home?mensagem=Paciente cadastrado com sucesso.";
         }
     }
     
     @RequestMapping(value = "/novoMedico", method = RequestMethod.GET)
     public ModelAndView novoMedico() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("recepcionista/novoMedico");
+        modelAndView.setViewName("admin/novoMedico");
         modelAndView.addObject("especialidades", especialidadeService.obterTodasEspecialidades());
         return modelAndView;
     }
@@ -166,7 +172,7 @@ public class RecepcionistaController {
     @RequestMapping(value = { "/agenda" }, method = RequestMethod.GET)
     public ModelAndView visualizarAgenda(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("recepcionista/agenda");
+        modelAndView.setViewName("admin/agenda");
         
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasTodas());
 
@@ -174,7 +180,7 @@ public class RecepcionistaController {
     }
 
     @RequestMapping(value = "/novoMedico", method = RequestMethod.POST)
-    public String criarNovoPaciente(@Valid CadastroMedico cadastroMedico, BindingResult bindingResult) throws JsonProcessingException {
+    public String criarNovoMedico(@Valid CadastroMedico cadastroMedico, BindingResult bindingResult) throws JsonProcessingException {
         Optional<Usuario> userExists = userService.findUserByCpf(cadastroMedico.getCpf());
         if (userExists.isPresent()) {
             bindingResult.rejectValue("userName", "error.user",
@@ -191,8 +197,35 @@ public class RecepcionistaController {
             medico.setDisponibilidade(cadastroMedico.getDaysOfWeek());
             medicoService.inserirMedico(medico);
 
-            return "redirect:/recepcionista/home?mensagem=Medico cadastrado com sucesso.";
+            return "redirect:/admin/home?mensagem=Medico cadastrado com sucesso.";
         }
     }
+    
+    @RequestMapping(value = "/novaRecepcionista", method = RequestMethod.POST)
+    public String criarNovoRecepcionista(@Valid CadastroRecepcionista cadastroRecepcionista, BindingResult bindingResult) throws JsonProcessingException {
+        Optional<Usuario> userExists = userService.findUserByCpf(cadastroRecepcionista.getCpf());
+        if (userExists.isPresent()) {
+            bindingResult.rejectValue("userName", "error.user",
+                    "There is already a user registered with the user name provided");
+        }
+        if (bindingResult.hasErrors()) {
+            return "novaRecepcionista";
+        } else {
+            Usuario usuario = new Usuario(cadastroRecepcionista.getCpf(), cadastroRecepcionista.getSenha(), null);
+            userService.salvarRecepcionista(usuario);
 
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Recepcionista recepcionista = objectMapper.readValue(objectMapper.writeValueAsString(cadastroRecepcionista), Recepcionista.class);
+            recepcionistaService.inserirRecepcionista(recepcionista);
+
+            return "redirect:/admin/home?mensagem=Recepcionista cadastrado com sucesso.";
+        }
+    }
+    
+    @RequestMapping(value = "/novaRecepcionista", method = RequestMethod.GET)
+    public ModelAndView novaRecepcionista() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/novaRecepcionista");
+        return modelAndView;
+    }
 }
