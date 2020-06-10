@@ -162,7 +162,7 @@ public class MedicoController {
         } else {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Medico medico = objectMapper.readValue(objectMapper.writeValueAsString(cadastroMedico), Medico.class);
-            medicoService.atualizarmedico(cpf, medico);
+            medicoService.atualizarMedico(cpf, medico);
 
             return "redirect:/medico/home?mensagem=Dados atualizados com sucesso.";
         }

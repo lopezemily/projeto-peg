@@ -39,4 +39,9 @@ public class MedicoService {
 	public void inserirMedico(Medico medico) {
         medicoRepository.save(medico);
 	}
+
+    public void atualizarMedico(String cpf, Medico medico) {
+        medico.setCpf(cpf);
+        medicoRepository.save(medico);
+    }
 }
