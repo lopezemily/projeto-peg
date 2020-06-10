@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
     <head>
-        <title>Nova Consulta</title>
+        <title>Nova Consulta | PEG</title>
     </head>
     <body>
         <div class="container" layout:fragment="content">
@@ -31,7 +31,7 @@
                         <div class="col-sm-4">
                             <label for="tipoAtendimento">Tipo de atendimento</label>
                             <select id="tipoAtendimento" class="form-control" required name="tipoAtendimento">
-                                <option selected disabled>Escolha uma opção</option>
+                                <option selected value="" disabled>Escolha uma opção</option>
                                 <option>Consulta</option>
                                 <option>Retorno</option>
                             </select>
@@ -39,7 +39,7 @@
                         <div class="col-sm-4">
                             <label for="tipoConvenio">Convênio</label>
                             <select id="tipoConvenio" class="form-control" required name="convenio">
-                                <option selected disabled>Escolha uma opção</option>
+                                <option selected value="" disabled>Escolha uma opção</option>
                                 <option>Particular</option>
                                 <option>Convênio</option>
                             </select>

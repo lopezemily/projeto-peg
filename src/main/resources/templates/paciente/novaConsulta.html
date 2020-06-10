@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
 
     <head>
-        <title>Nova Consulta</title>
+        <title>Nova Consulta | PEG</title>
     </head>
 
     <body>
@@ -28,7 +28,7 @@
                         <div class="col-sm-4">
                             <label for="tipoConvenio">Convênio</label>
                             <select id="tipoConvenio" class="form-control" required name="convenio">
-                                <option selected disabled>Escolha uma opção</option>
+                                <option selected value="" disabled>Escolha uma opção</option>
                                 <option>Particular</option>
                                 <option>Convênio</option>
                             </select>
@@ -36,7 +36,7 @@
                         <div class="col-sm-4">
                             <label for="especialidade">Especialidade</label>
                             <select id="especialidade" class="form-control" required name="especialidade.id">
-                                <option selected disabled>Escolha uma opção</option>
+                                <option selected value="" disabled>Escolha uma opção</option>
                                 <option th:each="i : ${especialidades}" th:value="${i.id}" th:text="${i.descricao}"></option>
                             </select>
                         </div>
