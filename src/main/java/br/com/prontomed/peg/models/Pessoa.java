@@ -11,27 +11,27 @@ import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Pessoa {
-    
+
     @Id
     private String cpf;
-    
+
     private String nome;
-    
+
     @NotNull
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtNascimento;
 
     @Formula("ROUND(DATEDIFF(CURDATE(), dt_nascimento) / 365.25, 1)")
     private float idade;
-    
+
     private char sexo;
-    
+
     private String estadoCivil;
-        
+
     private Endereco endereco;
-    
+
     private Contato contato;
 
     public String getCpf() {
@@ -39,7 +39,11 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf.replace(".", "").replace("-", "");
+        if (cpf != null) {
+            this.cpf = cpf.replace(".", "").replace("-", "");
+        } else {
+            this.cpf = "";
+        }
     }
 
     public String getNome() {
@@ -80,7 +84,7 @@ public abstract class Pessoa {
 
     public void setContato(Contato contato) {
         this.contato = contato;
-    }    
+    }
 
     public String getEstadoCivil() {
         return estadoCivil;
@@ -89,12 +93,12 @@ public abstract class Pessoa {
     public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
-    
-    public float getIdade(){
+
+    public float getIdade() {
         return idade;
     }
-    
-    public void setIdade(float idade){
+
+    public void setIdade(float idade) {
         this.idade = idade;
     }
 }
