@@ -14,4 +14,9 @@ public class AdministradorService {
     public Administrador obterAdmin(String adminId) {
         return administradorRepository.getOne(adminId);
     }
+    
+    public void atualizarAdmin(String cpf, Administrador admin) {
+        admin.setCpf(cpf);
+        administradorRepository.save(admin);
+    }
 }
