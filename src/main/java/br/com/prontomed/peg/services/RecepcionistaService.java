@@ -30,4 +30,9 @@ public class RecepcionistaService {
             throw new RuntimeException("Paciente não cadastrado!");
         }
     }
+
+    public void atualizarRecepcionista(String cpf, Recepcionista recepcionista) {
+        recepcionista.setCpf(cpf);
+        recepcionistaRepository.save(recepcionista);
+    }
 }

@@ -1,8 +1,10 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.dto.CadastroAdmin;
 import br.com.prontomed.peg.dto.CadastroMedico;
 import br.com.prontomed.peg.dto.CadastroPaciente;
 import br.com.prontomed.peg.dto.CadastroRecepcionista;
+import br.com.prontomed.peg.models.Administrador;
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Medico;
 import br.com.prontomed.peg.models.Paciente;
@@ -227,5 +229,37 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/novaRecepcionista");
         return modelAndView;
+    }
+    
+    @RequestMapping(value = { "/dashboard" }, method = RequestMethod.GET)
+    public ModelAndView visualizarDash() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/dashboard");
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = { "/meusDados" }, method = RequestMethod.GET)
+    public ModelAndView visualizarDados(Authentication autenticacao) {
+        String cpf = autenticacao.getName();
+        
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/meusDados");
+        modelAndView.addObject("admin", admService.obterAdmin(cpf));
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "/meusDados", method = RequestMethod.POST)
+    public String atualizarAdmin(@Valid CadastroAdmin cadastroAdmin, BindingResult bindingResult, Authentication autenticacao) throws JsonProcessingException {
+        String cpf = autenticacao.getName();
+
+        if (bindingResult.hasErrors()) {
+            return "admin/meusDados";
+        } else {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Administrador admin = objectMapper.readValue(objectMapper.writeValueAsString(cadastroAdmin), Administrador.class);
+            admService.atualizarAdmin(cpf, admin);
+
+            return "redirect:/admin/home?mensagem=Dados atualizados com sucesso.";
+        }
     }
 }

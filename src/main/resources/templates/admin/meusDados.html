@@ -1,0 +1,101 @@
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado}">
+
+    <head>
+
+        <title>Meus Dados | PEG</title>
+
+    </head>
+
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="form-row col-sm align-items-center">
+                <img th:src="@{/img/detalhesConsulta.png}"/>
+                <h4>Meus Dados</h4>
+            </div>
+            <form autocomplete="off" action="#" th:action="@{/admin/meusDados}" method="post">
+                <div id="espacotitulo">
+                    <div class="blockwhite" id="dadosPessoais">
+                        <h5 class="text-primary">Dados pessoais</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-4">
+                                <label for="nome">Nome completo</label>
+                                <input id="nome" type="text" class="form-control" name="nome" th:value="${admin.nome}" style="text-transform: uppercase" onkeypress="return ApenasLetras(event, this);" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="mr-sm-2" for="sexo">Sexo</label>
+                                <select id="sexo" class="custom-select mr-sm-2" name="sexo">
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="dtNascimento">Data de nascimento</label>
+                                <input id="dtNascimento" type="date" class="form-control" name="dtNascimento" th:value="${admin.dtNascimento}">
+                            </div>
+                            <div class="col-sm">
+                                <label class="mr-sm-2" for="estadoCivil">Estado civil</label>
+                                <select id="estadoCivil" class="custom-select mr-sm-2"  name="estadoCivil">
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="Solteiro(a)">Solteiro(a)</option>
+                                    <option value="Casado(a)">Casado(a)</option>
+                                    <option value="Viúvo(a)">Viúvo(a)</option>
+                                    <option value="Divorciado(a)">Divorciado(a)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-4">
+                                <label for="email">E-mail</label>
+                                <input id="email" type="email" name="contato.email" th:value="${admin.contato.email}" class="form-control" style="text-transform:lowercase; required">
+                            </div>
+                            <div class="col-sm">
+                                <label for="tel">Telefone</label>
+                                <input id="tel" type="text" name="contato.telefone" th:value="${admin.contato.telefone}" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="14">
+                            </div>
+                            <div class="col-sm">
+                                <label for="cel">Celular</label>
+                                <input id="cel" type="text" name="contato.celular" th:value="${admin.contato.celular}" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockwhite" id="dadosComplementares">
+                        <h5 class="text-primary">Dados complementares</h5>
+                        <div class="form-row align-items-center">
+                            <div class="col-sm">
+                                <label for="cep">CEP</label>
+                                <input id="cep" type="text" name="endereco.CEP" th:value="${admin.endereco.CEP}" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="endereco">Endereço</label>
+                                <input id="endereco" type="text" name="endereco.logradouro" th:value="${admin.endereco.logradouro}" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm-1">
+                                <label for="numEndereco">Número</label>
+                                <input id="numEndereco" type="text" name="endereco.numero" th:value="${admin.endereco.numero}" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="bairro">Bairro</label>
+                                <input id="bairro" type="text" name="endereco.bairro" th:value="${admin.endereco.bairro}" class="form-control" style="text-transform: uppercase">
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="cidade">Cidade</label>
+                                <input id="cidade" type="text" name="endereco.cidade" th:value="${admin.endereco.cidade}" class="form-control" style="text-transform: uppercase">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-sm align-items-center">
+                    <div class="col-sm offset-sm-8">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-success btnAlt">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

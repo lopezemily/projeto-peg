@@ -15,12 +15,68 @@
 
     <body>
         <div>
-            <nav class="navbar navbar-dark" style="background-color: #1395d3;">
+            <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #1395d3;">
                 <div  class="container">
-                    <img th:src="@{/img/logoP.png}"/>
+                    <a class="navbar-brand" th:href="@{/home}">
+                        <img th:src="@{/img/logoP.png}"/>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse topnav" id="navbarNav">
+                        <ul class="nav nav-pills">
+                            <div>
+                                <li class="nav-item active">
+                                    <a class="nav-link" th:href="@{/home}">Home <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('PACIENTE')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/paciente/meusDados}">Meus Dados <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('MEDICO')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/medico/meusDados}">Meus Dados <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('RECEPCIONISTA')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/recepcionista/meusDados}">Meus Dados <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('ADMIN')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/admin/meusDados}">Meus Dados <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('MEDICO')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/medico/agenda}">Agenda <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('RECEPCIONISTA')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/recepcionista/agenda}">Agenda <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('ADMIN')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/admin/agenda}">Agenda <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+                            <div sec:authorize="hasAuthority('ADMIN')">
+                                <li class="nav-item active" >
+                                    <a class="nav-link" th:href="@{/admin/dashboard}">Dashboard <span class="sr-only"></span></a>
+                                </li>
+                            </div>
+
+                        </ul>
+                    </div>
                     <form class="form-inline" th:action="@{/logout}" method="get">
                         <button class="btn btn-outline-success my-2 my-sm-0" id="btnSair" type="submit">Sair</button>
                     </form>
+
                 </div>
             </nav>
 

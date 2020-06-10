@@ -1,5 +1,6 @@
 package br.com.prontomed.peg.services;
 
+import br.com.prontomed.peg.models.Administrador;
 import br.com.prontomed.peg.models.Paciente;
 import br.com.prontomed.peg.repositories.PacienteRepository;
 import java.util.List;
@@ -47,4 +48,9 @@ public class PacienteService {
     public Optional<Paciente> obterPacientePorCpf(String cpf) {
         return repository.findById(cpf.replace(".", "").replace("-", ""));
 	}
+
+    public void atualizarPaciente(String cpf, Paciente paciente) {
+        paciente.setCpf(cpf);
+        repository.save(paciente);
+    }
 }

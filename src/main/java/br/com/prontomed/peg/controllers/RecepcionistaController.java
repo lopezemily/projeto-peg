@@ -2,9 +2,11 @@ package br.com.prontomed.peg.controllers;
 
 import br.com.prontomed.peg.dto.CadastroMedico;
 import br.com.prontomed.peg.dto.CadastroPaciente;
+import br.com.prontomed.peg.dto.CadastroRecepcionista;
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Medico;
 import br.com.prontomed.peg.models.Paciente;
+import br.com.prontomed.peg.models.Recepcionista;
 import br.com.prontomed.peg.models.Usuario;
 import br.com.prontomed.peg.services.ConsultaService;
 import br.com.prontomed.peg.services.EspecialidadeService;
@@ -192,6 +194,31 @@ public class RecepcionistaController {
             medicoService.inserirMedico(medico);
 
             return "redirect:/recepcionista/home?mensagem=Medico cadastrado com sucesso.";
+        }
+    }
+    
+    @RequestMapping(value = { "/meusDados" }, method = RequestMethod.GET)
+    public ModelAndView visualizarDados(Authentication autenticacao) {
+        String cpf = autenticacao.getName();
+        
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recepcionista/meusDados");
+        modelAndView.addObject("recepcionista", recepcionistaService.obterRecepcionista(cpf));
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "/meusDados", method = RequestMethod.POST)
+    public String atualizarRecepcionista(@Valid CadastroRecepcionista cadastroRecepcionista, BindingResult bindingResult, Authentication autenticacao) throws JsonProcessingException {
+        String cpf = autenticacao.getName();
+
+        if (bindingResult.hasErrors()) {
+            return "recepcionista/meusDados";
+        } else {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Recepcionista recepcionista = objectMapper.readValue(objectMapper.writeValueAsString(cadastroRecepcionista), Recepcionista.class);
+            recepcionistaService.atualizarRecepcionista(cpf, recepcionista);
+
+            return "redirect:/recepcionista/home?mensagem=Dados atualizados com sucesso.";
         }
     }
 
