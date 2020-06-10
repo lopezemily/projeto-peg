@@ -1,16 +1,25 @@
 package br.com.prontomed.peg.controllers;
 
+import br.com.prontomed.peg.dto.CadastroMedico;
 import br.com.prontomed.peg.models.CID;
 import br.com.prontomed.peg.models.Consulta;
+import br.com.prontomed.peg.models.Medico;
 import br.com.prontomed.peg.models.Prontuario;
 import br.com.prontomed.peg.services.CIDService;
 import br.com.prontomed.peg.services.ConsultaService;
+import br.com.prontomed.peg.services.EspecialidadeService;
 import br.com.prontomed.peg.services.MedicoService;
+import br.com.prontomed.peg.services.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.text.ParseException;
 import javax.swing.text.MaskFormatter;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,12 +28,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(path = "/medico")
 public class MedicoController {
+    
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     private ConsultaService consultaService;
 
     @Autowired
     private MedicoService medicoService;
+    
+    @Autowired
+    private EspecialidadeService especialidadeService;
 
     @Autowired
     private CIDService cidService;
@@ -122,5 +140,31 @@ public class MedicoController {
         modelAndView.addObject("proximasConsultas", consultaService.obterConsultasProximasTodasMedico(cpf));
 
         return modelAndView;
+    }
+    
+    @RequestMapping(value = { "/meusDados" }, method = RequestMethod.GET)
+    public ModelAndView visualizarDados(Authentication autenticacao) {
+        String cpf = autenticacao.getName();
+        
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("medico/meusDados");
+        modelAndView.addObject("medico", medicoService.obterMedico(cpf));
+        modelAndView.addObject("especialidades", especialidadeService.obterTodasEspecialidades());
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "/meusDados", method = RequestMethod.POST)
+    public String atualizarMedico(@Valid CadastroMedico cadastroMedico, BindingResult bindingResult, Authentication autenticacao) throws JsonProcessingException {
+        String cpf = autenticacao.getName();
+
+        if (bindingResult.hasErrors()) {
+            return "medico/meusDados";
+        } else {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Medico medico = objectMapper.readValue(objectMapper.writeValueAsString(cadastroMedico), Medico.class);
+            medicoService.atualizarmedico(cpf, medico);
+
+            return "redirect:/medico/home?mensagem=Dados atualizados com sucesso.";
+        }
     }
 }
