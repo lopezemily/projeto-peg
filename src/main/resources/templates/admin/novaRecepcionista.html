@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/autenticado.html}">
 
     <head>
-        <title>Novo cadastro</title>
+        <title>Novo recepcionista | PEG</title>
     </head>
 
     <body>
@@ -61,8 +61,8 @@
                                 <input id="tel" type="text" name="contato.telefone" class="form-control" placeholder="(00) 0000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="14">
                             </div>
                             <div class="col-sm">
-                                <label for="cel">Celular</label>
-                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15">
+                                <label for="cel">Celular*</label>
+                                <input id="cel" type="text" name="contato.celular" class="form-control" placeholder="(00) 00000-0000" onkeyup="mascaratelefone(this, mtel);" maxlength="15" required>
                             </div>
                         </div>
                     </div>
@@ -75,20 +75,20 @@
                                 <input id="cep" type="text" name="endereco.CEP" class="form-control" placeholder="00000-000" onkeypress="mascaracep(this, '#####-###');onlynumber();" maxlength="9">
                             </div>
                             <div class="col-sm-5">
-                                <label for="endereco">Endereço</label>
-                                <input id="endereco" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase">
+                                <label for="endereco">Endereço*</label>
+                                <input id="endereco" type="text" name="endereco.logradouro" class="form-control" style="text-transform: uppercase" required>
                             </div>
                             <div class="col-sm-1">
-                                <label for="numEndereco">Número</label>
-                                <input id="numEndereco" type="text" name="endereco.numero" class="form-control">
+                                <label for="numEndereco">Número*</label>
+                                <input id="numEndereco" type="text" name="endereco.numero" class="form-control" required>
                             </div>
                             <div class="col-sm-2">
-                                <label for="bairro">Bairro</label>
-                                <input id="bairro" type="text" name="endereco.bairro" class="form-control" style="text-transform: uppercase">
+                                <label for="bairro">Bairro*</label>
+                                <input id="bairro" type="text" name="endereco.bairro" class="form-control" style="text-transform: uppercase" required>
                             </div>
                             <div class="col-sm-2">
-                                <label for="cidade">Cidade</label>
-                                <input id="cidade" type="text" name="endereco.cidade" class="form-control" style="text-transform: uppercase">
+                                <label for="cidade">Cidade*</label>
+                                <input id="cidade" type="text" name="endereco.cidade" class="form-control" style="text-transform: uppercase" required>
                             </div>
                         </div>
                     </div>
