@@ -64,14 +64,14 @@ VALUES
     ("12312312333", "Roberta Mendes", "F", "roberta@gmail.com", "98283-4040", 0, 1, 0, 0, 1, 0, 0,"Sao Paulo", "1997-04-09");
 
 INSERT INTO recepcionista
-    (cpf, nome, sexo, dt_nascimento)
+    (cpf, nome, sexo, dt_nascimento, celular, email, bairro, cidade)
 VALUES
-    ("12355510001", "Daniela Oliveira", "F", "1940-01-01");
+    ("12355510001", "Daniela Oliveira", "F", "1940-01-01", "(11) 93030-4040", "recep@recep.com", "Vila Nova", "Jandira");
 
 INSERT INTO administrador
-    (cpf, nome, sexo, dt_nascimento)
+    (cpf, nome, sexo, dt_nascimento, celular, email, bairro, cidade)
 VALUES
-    ("12355510002", "Melinda Souza", "F", "1980-01-01");
+    ("12355510002", "Melinda Souza", "F", "1980-01-01","(11) 92020-3030","adm@adm.com", "Sao Paulo", "Sao Paulo");
 
 INSERT INTO prontuario
     (id,aval_medico,fr,pa,peso,queixa,temperatura)
