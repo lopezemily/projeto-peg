@@ -37,14 +37,7 @@
                     <label for="queixa">Queixa principal</label>
                     <input id="queixa" type="text" class="form-control" readonly th:value="${consulta.prontuario.queixa}">
                 </div>
-                <div class="form-group">
-                    <label for="cids" readonly>CIDs</label>
-                    <ul>
-                        <li id="cids" th:each="cid : ${consulta.prontuario.cids}">
-                            <span th:text="${cid.descricao}"></span></br>
-                        </li>
-                    </ul>
-                </div>
+                
                 <div class="form-row align-items-center">
                     <div class="col-sm">
                         <label for="pa">Pressão Arterial</label>
