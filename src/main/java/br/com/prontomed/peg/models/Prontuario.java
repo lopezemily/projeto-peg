@@ -28,7 +28,16 @@ public class Prontuario {
 
     private float peso;
 
-    //private String medicamentos;
+    private float fc;
+
+    public float getFc() {
+        return fc;
+    }
+
+    public void setFc(float fc) {
+        this.fc = fc;
+    }
+    
     private String avalMedico;
 
     @ElementCollection

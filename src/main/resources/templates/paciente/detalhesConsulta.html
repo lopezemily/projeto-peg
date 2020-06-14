@@ -47,21 +47,25 @@
                     </div>
                 </div>
                 <div class="form-row align-items-center">
-                    <div class="col-sm">
+                    <div class="col-sm-2">
                         <label for="pa">Pressão Arterial</label>
-                        <input id="pa" type="text" class="form-control" readonly th:value="${consulta.prontuario.pa}">
+                        <input id="pa" type="text" class="form-control" readonly th:value="${consulta.prontuario.pa} + ' mmHg'">
+                    </div>
+                    <div class="col-sm">
+                        <label for="peso">Frequência Cardíaca</label>
+                        <input id="peso" type="text" class="form-control" readonly th:value="${consulta.prontuario.fc} + ' bpm'">
                     </div>
                     <div class="col-sm">
                         <label for="fr">Frequência Respiratória</label>
-                        <input id="fr" type="text" class="form-control" readonly th:value="${consulta.prontuario.fr}">
+                        <input id="fr" type="text" class="form-control" readonly th:value="${consulta.prontuario.fr} + ' rpm'" >
                     </div>
-                    <div class="col-sm">
+                    <div class="col-sm-2">
                         <label for="temperatura">Temperatura</label>
-                        <input id="temperatura" type="text" class="form-control" readonly th:value="${consulta.prontuario.temperatura}">
+                        <input id="temperatura" type="text" class="form-control" readonly th:value="${consulta.prontuario.temperatura} + ' °C'">
                     </div>
-                    <div class="col-sm">
+                    <div class="col-sm-2">
                         <label for="peso">Peso</label>
-                        <input id="peso" type="text" class="form-control" readonly th:value="${consulta.prontuario.peso}">
+                        <input id="peso" type="text" class="form-control" readonly th:value="${consulta.prontuario.peso} + ' kg'">
                     </div>
                 </div>
                 <div class="form-row">
