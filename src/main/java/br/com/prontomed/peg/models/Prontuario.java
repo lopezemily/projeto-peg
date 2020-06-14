@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Prontuario {
@@ -17,8 +17,8 @@ public class Prontuario {
 
     private String queixa;
 
-    @OneToMany
-    private List<CID> cids;
+    @ManyToOne
+    private CID cid;
 
     private String pa;
 
@@ -48,14 +48,6 @@ public class Prontuario {
 
     public void setQueixa(String queixa) {
         this.queixa = queixa;
-    }
-
-    public List<CID> getCids() {
-        return cids;
-    }
-
-    public void setCids(List<CID> cids) {
-        this.cids = cids;
     }
 
     public String getPa() {
@@ -112,5 +104,12 @@ public class Prontuario {
     public void setPeso(float peso) {
         this.peso = peso;
     }
+    
+    public CID getCid() {
+        return cid;
+    }
 
+    public void setCid(CID cid) {
+        this.cid = cid;
+    }
 }
