@@ -5,7 +5,8 @@ INSERT INTO cid VALUES
     ('J15.9','Pneumonia nao especificada'),
     ('O82.1','Parto cesariana de emergencia'),
     ('K35.0','Apendicite aguda com peritonite generalizada'),
-    ('R51','Cefaleia');
+    ('R51','Cefaleia'),
+    ('Z00.0','Exame médico geral');
 
 INSERT INTO medico VALUES
     ("12300012300","931819191","medico1@medico.com","","","1999-01-01","01770-000","Lapa","Barueri","Rua abc","20","Casado","Marcos Souza","M","100","SP"),
@@ -108,19 +109,14 @@ VALUES
     ("12355510002", "Melinda Souza", "F", "1980-01-01","(11) 92020-3030","adm@adm.com", "Sao Paulo", "Sao Paulo");
 
 INSERT INTO prontuario
-    (id,aval_medico,fr,pa,peso,queixa,temperatura)
+    (id,aval_medico,fr,pa,peso,queixa,temperatura, cid_codigo)
 VALUES
-    (1,"Paciente apresenta dor em regiao occiptal",70,"12x80",80,"Dor",36.5),
-    (2,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5),
-    (3,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5),
-    (4,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5),
-    (5,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5),
-    (6,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5);
-
-INSERT INTO prontuario_cids
-    (prontuario_id,cids_codigo)
-VALUES
-    (1,"J15.9");
+    (1,"Paciente apresenta dor em regiao occiptal",70,"12x80",80,"Dor",36.5, "R51"),
+    (2,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5, "Z00.0"),
+    (3,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5, "Z00.0"),
+    (4,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5, "Z00.0"),
+    (5,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5, "Z00.0"),
+    (6,"Paciente presente no consultorio para realizacao de exames de rotina",70,"12x80",80,"Avaliacao medica",36.5, "Z00.0");
 
 INSERT INTO consulta
     (paciente_cpf, medico_cpf, especialidade_id, unidade_cnpj, confirmada, realizada, data, hora_inicio, hora_fim, prontuario_id, convenio, tipo_atendimento)
