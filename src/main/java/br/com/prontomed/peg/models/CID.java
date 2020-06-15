@@ -34,4 +34,8 @@ public class CID {
 
     public CID() { }
     
+        public CID(String codigo) {
+        this.codigo = codigo;
+    }
+    
 }

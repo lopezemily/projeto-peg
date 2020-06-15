@@ -41,7 +41,7 @@
                         <div id="cids" class="form-row align-items-end col-sm">
                             <div class="col-sm-3">
                                 <label for="cid">Buscar CID</label>
-                                <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9" required>
+                                <input id="cid" type="text" class="form-control cid" placeholder="ex: J15.9" name="cid.codigo" required>
                             </div>
                             <div class="col-sm-9" id="cidPlaceholder">
                                 <input id="cidDescricao" type="text" readonly class="form-control" required> 
@@ -49,21 +49,25 @@
                         </div>
                     </div>
                     <div class="form-row col-sm align-items-center">
-                        <div class="col-sm-3">
-                            <label for="paPront">PA</label>
+                        <div class="col-sm">
+                            <label for="paPront">PA<i><small> (mmHg)</small></i></label>
                             <input id="paPront" type="text" placeholder="ex: 120x80" class="form-control" name="pa" required>
                         </div>
-                        <div class="col-sm-3">
-                            <label for="frPront">FR</label>
-                            <input id="frPront" type="number" class="form-control" name="fr" required>
+                        <div class="col-sm">
+                            <label for="fcPront">FC<i><small> (bpm)</small></i></label>
+                            <input id="fcPront" type="number" placeholder="ex: 65" class="form-control" name="fc" required>
                         </div>
-                        <div class="col-sm-3">
-                            <label for="temperaturaPront">Temperatura</label>
-                            <input id="temperaturaPront" type="number" class="form-control" name="temperatura" required>
+                        <div class="col-sm">
+                            <label for="frPront">FR<i><small> (rpm)</small></i></label>
+                            <input id="frPront" type="number" placeholder="ex: 20" class="form-control" name="fr" required>
                         </div>
-                        <div class="col-sm-3">
-                            <label for="pesoPront">Peso</label>
-                            <input id="pesoPront" type="number" class="form-control" name="peso" required>
+                        <div class="col-sm-2">
+                            <label for="temperaturaPront">Temperatura<i><small> (°C)</small></i></label>
+                            <input id="temperaturaPront" type="number" step="0.1" placeholder="ex: 36,5" class="form-control" name="temperatura" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="pesoPront">Peso<i><small> (kg)</small></i></label>
+                            <input id="pesoPront" type="number" step="0.001" placeholder="ex: 85,200" class="form-control" name="peso" required>
                         </div>
                     </div>
                     <div class="form-row col-sm">
@@ -72,13 +76,10 @@
                     </div>
                     <div class="form-row col-sm">
                         <label for="examesPront">Exames</label>
-                        <textarea id="examesPront" class="form-control" placeholder="Ex: Hemograma, Glicemia, Colesterol total" rows="2" name="exames"></textarea>
+                        <textarea id="examesPront" class="form-control" placeholder="Insira a lista de exames sepadado por vírgula. Ex: Hemograma, Glicemia, Colesterol total" rows="2" name="exames"></textarea>
                     </div>
                 </div>
                 <div class="row col-sm-10 offset-sm-1 align-items-center">
-                    <div class="col-sm">
-                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
-                    </div>
                     <div class="col-sm">
                         <button type="submit" id="btnSalvar" class="btn btn-success btnAlt">Finalizar</button>
                     </div>
@@ -87,6 +88,9 @@
                     </div>
                     <div class="col-sm">
                         <a class="btn btnAlt" id="btnAtestado" th:href="@{/medico/atestado/} + ${numAtendimento}">Atestado</a>
+                    </div>
+                    <div class="col-sm">
+                        <a class="btn-danger btnAlt" id="btnCancelar" href="/home">Cancelar</a>
                     </div>
                 </div>
             </form>

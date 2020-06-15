@@ -1,11 +1,13 @@
 package br.com.prontomed.peg.services;
 
 import br.com.prontomed.peg.dto.Disponibilidade;
+import br.com.prontomed.peg.models.CID;
 import br.com.prontomed.peg.models.Consulta;
 import br.com.prontomed.peg.models.Especialidade;
 import br.com.prontomed.peg.models.Medico;
 import br.com.prontomed.peg.models.Paciente;
 import br.com.prontomed.peg.models.Prontuario;
+import br.com.prontomed.peg.repositories.CIDRepository;
 import br.com.prontomed.peg.repositories.ConsultaRepository;
 import br.com.prontomed.peg.repositories.EspecialidadeRepository;
 import br.com.prontomed.peg.repositories.MedicoRepository;
@@ -37,6 +39,9 @@ public class ConsultaService {
 
     @Autowired
     private EspecialidadeRepository especialidadeRepository;
+    
+    @Autowired
+    private CIDRepository cidRepository;
 
     private final static LocalTime inicioAtendimento = LocalTime.of(8, 0);
     private final static LocalTime fimAtendimento = LocalTime.of(18, 0);
@@ -93,6 +98,8 @@ public class ConsultaService {
         Optional<Consulta> consulta = consultaRepository.findById(numAtendimento);
 
         if (consulta.isPresent()) {
+            CID cid = cidRepository.getOne(prontuario.getCid().getCodigo());
+            prontuario.setCid(cid);
             consulta.get().setProntuario(prontuario);
             consulta.get().setRealizada(true);
             consulta.get().setConfirmada(true);
